@@ -1,0 +1,26 @@
+public class Main {
+	public static void main(String[] args)  {
+
+		int[] numbers = {1, 2, 3};
+		
+		int k = 3;
+		int answer = 0;
+		
+		int num = 0;
+		int n = 0;
+		int length = numbers.length;
+		
+		for (int i = 1; i <= k; i++) {
+			num = n % length;
+			System.out.println("num = " + num);
+			n += 2;
+			System.out.println("n = " + n);
+			answer = numbers[num];
+		}
+		
+		System.out.println(answer);
+		
+		
+	}
+		
+}

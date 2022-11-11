@@ -1,0 +1,42 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args)  {
+		Scanner sc = new Scanner(System.in);
+		
+		int[] numbers = {3, 30, 34, 5, 9};
+		String answer = "";
+		
+		int[] numbers2 = numbers.clone();
+		int length = numbers.length;
+		String[] num = new String[length];
+		String n = "";
+		int count = 0;
+		
+		for (int  i = 0; i < length; i++) {
+			int max = 0;
+			for (int j = 0; j < length; j++) {
+				n = String.valueOf(numbers[j]);
+				char ch = n.charAt(0);
+				n = "";
+				n += ch;
+				int num1 = Integer.parseInt(n);
+				System.out.println(num1);
+				max = max > num1 ? max : num1;
+				if (max == num1) {
+					numbers2[j] = count;
+					count++;
+				}
+				// System.out.println("numbers2[" + j + "] = " + numbers2[j]);
+			}
+			for (int j = 0; j < length; j++) {
+				
+			}
+		}
+		
+		
+		
+		sc.close();
+	}
+		
+}

@@ -1,0 +1,51 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args)  {
+		Scanner sc = new Scanner(System.in);
+		
+		int[] numbers = {3, 30, 34, 5, 9};
+		String answer = "";
+		
+		int length = numbers.length;
+		int[] numbers2 = numbers.clone();
+		int[] score = new int[length];
+		String[] num = new String[length];
+		String n = "";
+		int count = 0;
+		int max = 0;
+		int maxNum = 0;
+		boolean boo = false;
+		for (int j = 0; j < length; j++) {
+			if (numbers2[j] == -1) continue;
+			n = String.valueOf(numbers2[j]);
+			char ch = n.charAt(0);
+			n = "";
+			n += ch;
+			int num1 = Integer.parseInt(n);
+			numbers2[j] = num1;
+			if (max == num1) boo = true;
+			max = max > num1 ? max : num1;
+			System.out.println(numbers2[j]);
+		}
+		System.out.println(max);
+		for (int  i = 0; i < length; i++) {
+			
+			for (int j = 0; j < length; j++) {
+				if (max == numbers2[j] && boo == false) {
+					count++;
+					score[j] = count;
+				}
+				else if (max == numbers2[j] && boo == true) {
+					score[j] = count;
+				}
+				
+			}
+		}
+		
+		
+		
+		sc.close();
+	}
+		
+}
