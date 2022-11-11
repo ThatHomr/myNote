@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>CSS - Property</title>
+        <style>
+            #paragraph1 {
+                /* white-space 속성 */
+                /*  - 공백을 처리하는 방식을 지정하는 속성 */
+
+                /* 여러 개의 공백(띄어쓰기, 탭, 개행..)을 하나로 표시 */
+                /* 영역을 벗어나면 자동으로 개행이 된다. */
+                white-space: normal;
+
+                /* 여러 개의 공백을 그대로 표시 */
+                /* 영역을 벗어나도 개행을 하지 않는다. */
+                white-space: pre;
+
+                /* 여러 개의 공백을 하나로 표시(단, 개행은 제외) */
+                /* 영역을 벗어나면 자동으로 개행된다. */
+                white-space: pre-line;
+
+                /* 여러 개의 공백을 그대로 표시 */
+                /* 영역을 벗어나면 자동으로 개행된다. */
+                white-space: pre-wrap;
+
+                /* 여러 개의 공백을 하나로 표시 */
+                /* 영역을 벗어나도 개행하지 않는다. */
+                /*  → 한 줄로 표시 */
+                white-space: nowrap;
+            }
+
+            #list1 {
+                /* 마커의 종류 */
+                list-style-type: decimal;
+                list-style-type: lower-alpha;
+                list-style-type: upper-alpha;
+                list-style-type: upper-roman;
+
+                /* 마커의 위치 */
+                list-style-position: outside;
+                list-style-position: inside;
+
+                /* 마커 제거 */
+                list-style: none;
+
+            }
+            #list1 > li {
+                background-color: yellowgreen;
+            }
+
+            #hello1 {
+                /* 그림자 관련 속성 */
+                /*  - text shadow */
+                /*      : 텍스트에 그림자를 설정하기 위한 속성 */
+                /*  - box-shadow */
+                /*      : 요소에 그림자를 설정하기 위한 속성*/
+
+                color: white;
+
+                text-shadow: 10px 10px red;
+                text-shadow: 10px 10px 4px red;
+                text-shadow: -10px -10px 4px red;
+                text-shadow: -3px -3px 4px red;
+                text-shadow: 0px -3px 4px red;
+                text-shadow: 0px 0px 4px red;
+                text-shadow: 0px -2px 4px yellow, 0 -4px 4px red;
+                /* 쉼표(,)를 구분으로 다수의 그림자를 추가할 수 있으며 */
+                /* 이때, 가장 먼저 작성된 그림자가 가장 위에 올라온다. */
+
+                /* box-shadow: <x축> <y축> <흐림> <번짐> <색상> [,<그림자>] */
+                /*   <흐림> : 값이 클수록 흐려진다. */
+                /*   <번짐> : 값이 클수록 그림자의 크기를 증가 */
+                /*          : 값이 작아질수록 그림자의 크기를 감소 */
+                box-shadow: 5px 5px navy;
+                box-shadow: 5px 5px 5px navy;
+                box-shadow: 5px 5px 5px 10px navy;
+                box-shadow: 5px 50px 5px -10px navy;
+
+                width: 300px;
+                background-color: yellowgreen;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>white-space 속성</h2>
+        <p id="paragraph1">
+            Lorem Ipsum is simply dummy text of the printing and typesetting 
+            industry. Lorem Ipsum has been the industry's standard dummy text 
+            ever since the 1500s, when an unknown printer took a galley of type 
+            and scrambled it to make a type specimen book. It has survived not 
+            only five centuries, but also the leap into electronic typesetting, 
+            remaining essentially unchanged. It was popularised in the 1960s 
+            with the release of Letraset sheets containing Lorem Ipsum passages, 
+            and more recently with desktop publishing software like Aldus 
+            PageMaker including versions of Lorem Ipsum.
+        </p>
+        <hr>
+        <h2>list-style 속성</h2>
+        <ol id="list1">
+            <li>Item A</li>
+            <li>Item B</li>
+            <li>Item C</li>
+            <li>Item D</li>
+        </ol>
+        <hr>
+        <h2>shadow 속성</h2>
+        <h1 id="hello1">Hello World!</h1>
+    </body>
+</html>

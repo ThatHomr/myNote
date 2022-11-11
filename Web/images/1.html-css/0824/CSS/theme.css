@@ -1,0 +1,9 @@
+/* File Name : theme.css */
+/* 스타일 시트 영역 */
+
+body {
+    /* 배경색 */
+    background-color: #333;
+    /* 글자색 */
+    color: #ccc;
+}

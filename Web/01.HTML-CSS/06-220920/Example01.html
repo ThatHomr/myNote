@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF=-8">
+    <title>Example01 - SIGN UP</title>
+</head>
+<body>
+    <h2>회원 가입</h2>
+    <!-- 회원 가입을 할 때 필요한 정보를 -->
+    <!-- 입력을 받기 위한 입력 양식 -->
+    <form action="/server/signup.jsp" method="post">
+        <!-- 입력 요소를 격자 형식의 틀로 배치하기 위해 -->
+        <!-- table 관련 태그를 이용 -->
+        <table>
+            <!-- 표를 만들기 위한 것이 아닌 격자 형식의 틀을 만들기 위함이기 때문에 -->
+            <!-- 제목 영역(thead)는 만들 필요가 없다. -->
+            <tbody>
+                <!-- ID -->
+                <tr>
+                    <td><label for="input_id">ID</label></td>
+                    <td>
+                        <input 
+                            type="text" 
+                            id="input_id"
+                            name="input_id"
+                            placeholder="Your ID"
+                            autocomplete="off"
+                            autofocus
+                            required
+                        >
+                    </td>
+                </tr>
+                <!-- Password 입력 -->
+                <tr>
+                    <td><label for="input_pw"> PW </label></td>
+                    <td>
+                        <input 
+                            type="password" 
+                            id="input_pw"
+                            name="input_pw"
+                            placeholder="Your Password"
+                            required
+                        >
+                    </td>
+                </tr>
+                <!-- 이름 입력 -->
+                <tr>
+                    <td><label for="input_name">이름</label></td>
+                    <td>
+                        <input 
+                            type="text" 
+                            id="input_name" 
+                            name="input_name" 
+                            placeholder="Your name" 
+                            required
+                        >
+                    </td>
+                </tr>
+                <!-- 성별 -->
+                <tr>
+                    <td>성별</td>
+                    <td>
+                        <!-- checked 속성 -->
+                        <!--  : 체크 상태로 만들기 위한 속성 -->
+                        <!--  : checkbox 요소에서도 사용할 수 있다. -->
+                        <label>남자 <input type="radio" name="gender" value="male" checked></label>
+                        <label>여자 <input type="radio" name="gender" value="female"></label>
+                    </td>
+                </tr>
+
+                <!-- 자기 소개 -->
+                <tr><td>자기 소개</td></tr>
+                <tr>
+                    <td colspan="2">
+                        <textarea cols="33" rows="7" name="self_introduction" style="resize:none; "></textarea>
+                    </td>
+                </tr>
+                <!-- 완료 -->
+                <tr><td><button type="submit">완료</button></td></tr>
+
+            </tbody>
+
+        </table>
+
+
+
+    </form>
+</body>
+
+
+
+</html>

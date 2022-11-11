@@ -1,0 +1,140 @@
+<!-- 
+    편집할 때 유용한 키/단축키
+    ctrl + s : 파일 저장
+    ctrl + c : 복사
+    ctrl + v : 붙여넣기
+    ctrl + x : 잘라내기
+    ctrl + n : 새 파일
+    alt + shift + 상, 하 : 지정된 라인 복붙
+    alt + 상, 하 : 지정된 라인을 이동
+    ctrl + 좌, 우 : 커서를 단어 별로 이동
+    ctrl + alt + 상, 하 : 입력 커서 추가
+    ctrl + k(누른상태) + f : 지정된 라인 정리(정렬)
+    Home : 커서를 해당 라인 맨 앞으로 이동
+    End : 커서를 해당 라인 맨 뒤로 이동
+-->
+
+<!-- 문서의 타입이 HTML5 형식임을 알림 -->
+<!doctype html>
+
+<!-- HTML 문서의 시작 -->
+<html>
+<!-- HTML 문서의 서두 -->
+<!--  - 화면에 보여지는 영역이 아님 -->
+<!--  - HTML 문서의 정도 또는 외부 파일의 경로를 설정 -->
+
+<head>
+    <!-- HTML 문서의 인코딩 방식 -->
+    <meta charset="UTF-8">
+    <!-- 웹 페이지의 탭 제목, 즐겨찾기 제목 -->
+    <title>HTML - Tag</title>
+</head>
+
+<!-- HTML 문서의 몸체 -->
+<!--  - 브라우저 화면에 보여지는 영역 -->
+
+<body>
+    <!-- 텍스트 영역을 만드는 태그 -->
+    <!--  - 자신의 영역(틀)을 만들 수 있는 태그 -->
+    <!--  - 자신만의 영역을 가지기 때문에 기본적으로 -->
+    <!--    다른 태그와 나란히 배치될 수 없다. -->
+    Default Text
+    <!-- 제목 태그 - <h#></h#> -->
+    <!--  - h1 ~ h6 까지 있으며 숫자가 클수록 폰트 크기가 작아진다 -->
+    <h1>Header 1</h1>
+    <h2>Header 2</h2>
+    <h3>Header 3</h3>
+    <h4>Header 4</h4>
+    <h5>Header 5</h5>
+    <h6>Header 6</h6>
+
+    <!-- 단락(문단) 태그 - <p></p> -->
+    <!--  - 텍스트를 한 줄로 표시하며, -->
+    <!--    영역의 너비보다 긴 경우 다음 줄에 표시 -->
+    <!-- 줄 바꿈 태그 - <br> -->
+    <!--  - HTML 문서에서는 개행(엔터)을 공백 문자로 표시하기 때문에 -->
+    <!--    개행을 하려면 해당 태그를 이용 -->
+    <p>
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's <br>
+        standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make <br>
+        a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, <br>
+        remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing <br>
+        Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions <br>
+        of Lorem Ipsum.
+    </p>
+    <!-- 수평줄 태그 - <hr> -->
+    <!--  - 구분선을 표시하기 위한 태그 -->
+    <hr>
+    <!-- HTML 형식의 본문 - <pre> -->
+    <!--  - HTML 문서 상의 텍스트를 브라우저에 그대로 출력 -->
+    <pre>
+        Hello World!
+            Hello World!
+                Hello world!
+    </pre>
+    <!-- 인용문 태그 - <blockquotr></blockquotr> -->
+    <blockquotr>
+        HTML : Hyper Text Markup Language
+    </blockquotr>
+    <hr>
+
+    <!-- 텍스트를 한 줄로 표시하는 태그 -->
+    <!--  - 한 행 전체를 영역으로 갖는 것이 아닌 -->
+    <!--    지정된 텍스트까지만 영역을 갖는다. -->
+    
+    Lorem Ipsum is simply dummy text <br>
+
+    <!-- 굵은 글자 태그 -->
+    <!--  - strong : 포함된 텍스트를 "강조"하기 위해 굵게 표시 -->
+    <!--  - b      : 포함된 텍스트를 꾸미기 위해 굵게 표시 -->
+    <!--    차이점  : 웹 접근성에 따른 강조성 -->
+    <strong>Lorem Ipsum is simply dummy text</strong> <br>
+    <b>Lorem Ipsum is simply dummy text</b> <br>
+    
+    <!-- 기울기 태그 -->
+    <!--  - em : 포함된 텍스트를 "강조"하기 위해 기울기 -->
+    <!--  - i  : 포함된 텍스트를 꾸미기 위해 기울기 -->
+    <!--    차이점  : 웹 접근성에 따른 강조성 -->
+    <em>Lorem Ipsum is simply dummy text</em> <br>
+    <i>Lorem Ipsum is simply dummy text</i> <br>
+
+    <!-- 밑줄 태그 -->
+    <!--  - ins : 삽입(추가)된 텍스트를 표시 -->
+    <!--  - u   : 단순한 밑줄 -->
+    <ins>Lorem Ipsum is simply dummy text</ins> <br>
+    <u>Lorem Ipsum is simply dummy text</u> <br>
+
+    <!-- 형광펜 태그 -->
+    <mark>Lorem Ipsum is simply dummy text</mark> <br>
+
+    <!-- 위 첨자 태그 -->
+    Lorem Ipsum <sup>is simply dummy text</sup> <br>
+    
+    <!-- 아래 첨자 태그 -->
+    Lorem Ipsum <sub>is simply dummy text</sub> <br>
+    <hr>
+    <b><i>Lorem Ipsum is simply dummy text</i></b> <br>
+    <u><mark>Lorem Ipsum</mark> is simply dummy text</u> <br>
+    <hr>
+    <!-- HTML 문서에서는 특정 문자를 별도로 처리가 되어진다 -->
+    <!--  - 공백(개행, 탭, 띄어쓰기) → 하나의 공백 -->
+    <!--  - '<', '>' 를 태그를 만드는 문자로 인식 -->
+    <!-- → 자음 + 한자키 = 특수문자 -->
+    <!--     ㄷ + 한자 = ＜, ＞ -->
+    <!-- → HTML 문자 코드를 이용 -->
+    <!--     &lt;   : '<' 문자 -->
+    <!--     &gt;   : '>' 문자 -->
+    <!--     &nbsp; : ' ' 문자 -->
+    <!--     &copy; : copyright -->
+    <p>
+        <!-- <NEW> Hello World! <br> -->
+        &lt;NEW&gt; Hello World! <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;안녕하세요. <br>
+        &copy; Copyright <br>
+
+    </p>
+</body>
+
+<!-- HTML 문서의 끝 -->
+
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS(Cascading Style Sheet)</title>
+    <!--외부 스타일 시트-->
+    <!-- HTML 문서 외부에서 작성되는 스타일 시트-->
+    <!-- 다수의 HTML 문서에서 적용되는 스타일 시트-->
+    <!-- <link rel="stylesheet" href="css 경로">-->
+    <link rel="stylesheet" href="../../css/theme.css">
+
+    <!-- 내부 스타일 시트 -->
+    <!-- HTML 문서 내부에서 작성되는 스타일 시트 -->
+    <!-- 해당 HTML 문서에만 적용되는 스타일 시트 -->
+    <style>
+        /* 스타일 시트 */
+        /* css를 통해서 css 블록을 작성하는 영역 */
+        /* HTML 문법을 사용하지 않는다 */
+
+        /* H1 요소의 글자의 색상을 빨강으로 설정 */
+        /* - 스타일을 설정할 요소를 선택 */
+        /* - 선택된 요소에 적용할 스타일을 작성할 영역 */
+        /* - 영역 내에서 스타일 속성과 값을 통해 스타일을 설정 */
+        h1 {
+            /* 속성 값을설정한 다음 세미콜론(;)을 작성해야한다. */
+            /* 세미콜론의 역할 : 마침표 */
+            
+            color: red;
+            background-color: rgba(255,207,87,0.9);
+        }
+
+    </style>
+
+    <style>
+        /* 선택자 */
+        /*    : HTML 요소를선택하기 위한 지정자 */
+
+        /* 전체 선택자 */
+        *{
+            background-color: white;
+        }
+
+        /* ID 선택자 */
+        /* HTML요소의 id 속성을 지정하여 선택 */
+        /* id  속성의값을 통해서 선택을하며 */
+        /* id 속성의 값 앞에 '#'을 붙인다. */
+
+        /* id 속성의 값이 "list1"인 요소의 */
+        /* 배경색을 '#333' 설정 */
+        #list1 {
+            background-color: #333;
+        }
+        
+        /* Class 선택자 */
+        /*   : HTML 요소의 class 속성을 지정하여 선택 */
+        /*      Class 속성 : 다수의 요소들의 그룹 */
+        /*                 : 다수의 그룹에도 포함될 수 있다.  */
+        /*   : class 속성의 값 앞에 '.'을 붙인다. */
+        .item {
+            background-color: navy;
+        }
+        .choice {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Hello CSS!</h1>
+    <h1>Cascading Style Sheet</h1>
+    <!-- 인라인 스타일 -->
+    <!--  요소에 직접적으로 스타일을 설정하는 방식 -->
+    <!--  요소의 style 속성을 통해서 설정한다. -->
+    <!--  권장하는 방식은 아님 -->
+    <p style="background-color: yellowgreen;">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+    </p>
+    <hr>
+    <h2>Item List</h2>
+    <ul id="list1">
+        <li class="item choice">Item 1</li>
+        <li class="item">Item 2</li>
+        <!-- class 속성의 값이 -->
+        <!-- "item" 과 "choice" 두개이다. -->
+        <li class="item">Item 3</li>
+        <li class="item">Item 4</li>
+        <li class="item">Item 5</li>
+    </ul>
+
+
+</body>
+
+</html>

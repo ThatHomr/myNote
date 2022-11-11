@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>HTML - Image & Anchor Tag</title>
+        <!-- 기본 경로를 지정하는 속성 -->
+        <!-- <base href="../../"> -->
+    </head>
+    <body>
+        <!-- 이미지 태그(Image Tag) -->
+        <!--  - 브라우저에 이미지 컨텐츠를 표시하기 위한 태그 -->
+        <!--    → 이미지 태그를 통해서 배경을 표시하지는 않는다. -->
+        <!--  - 이미지 태그는 <img> 이며, 끝 태그 없이 작성된다. -->
+        <!--  - 출력할 이미지의 경로를 지정하여 브라우저에 출력한다. -->
+        <!--  - 속성 -->
+        <!--        src : source, 이미지의 경로를 지정하는 속성 -->
+        <!--        alt : alternative text, 이미지가 표시되지 못 할 때 표시될 대체 글자 -->
+        <!--        width  : 이미지의 너비 -->
+        <!--        height : 이미지의 높이 -->
+        <img src="apple.jpg" alt="apple">
+        <hr>
+
+        <!-- 경로를 지정하는 방식 -->
+        <!--  - URL 경로 -->
+        <!--        : 네트워크 상에 저장된 이미지의 경로를 지정 -->
+        <!--        : 호스팅 서버와 같은 곳에 업로드된 이미지를 불러온다. -->
+        <!--  - 절대 경로 -->
+        <!--        : 절대적인 경로 -->
+        <!--        : 드라이브에서부터 파일까지의 경로를 지정 -->
+        <!--        : PC 또는 환경에 영향을 많이 받는다. -->
+        <!--  - 상대 경로 -->
+        <!--        : 상대적인 경로 -->
+        <!--        : 파일을 불러올 HTML 문서에서부터 파일까지의 경로 -->
+        <!--            같은 폴더에 있는 경우 : 파일만 지정 -->
+        <!--            다른 폴더에 있는 경우 : 파일까지의 경로를 지정 -->
+        
+        <!-- URL 경로 -->
+        <h3 id="dummy-image">URL 경로</h3>
+        <img src="https://via.placeholder.com/300.png/09f/fff">
+        <hr>
+        <!-- 절대 경로 -->
+        <img src="C:\Users\user\OneDrive\바탕 화면\수업\웹퍼블리싱\Web_박성준\01.HTML-CSS\04-220916\apple.jpg" alt="apple">
+        <hr>
+        <!-- 상대 경로 : 같은 폴더에 있는 경우 -->
+        <h3>상대 경로 : 같은 폴더에 있는 경우</h3>
+        <img src="apple.jpg" alt="apple">
+        <hr>
+        <!-- 상대 경로 : 하위 폴더에 있는 경우 -->
+        <h3>상대 경로 : 하위 폴더에 있는 경우</h3>
+        <!-- C:\Users\user\OneDrive\바탕 화면\수업\웹퍼블리싱\Web_박성준\01.HTML-CSS\04-220916 -->
+        <!-- C:\Users\user\OneDrive\바탕 화면\수업\웹퍼블리싱\Web_박성준\01.HTML-CSS\04-220916\Images -->
+        <img src="Images/apple.jpg" alt="apple">
+        <hr>
+        <!-- 상대 경로 : 상위 폴더에 있는 경우 -->
+        <h3>상대 경로 : 상위 폴더에 있는 경우</h3>
+        <!-- C:\Users\user\OneDrive\바탕 화면\수업\웹퍼블리싱\Web_박성준\01.HTML-CSS\04-220916 -->
+        <!-- C:\Users\user\OneDrive\바탕 화면\수업\웹퍼블리싱\Web_박성준\images -->
+        <!--    하위 폴더 : 폴더이름/ -->
+        <!--    상위 폴더 : ../ -->
+        <!--    현재 폴더 : ./ -->
+        <img src="../../images/apple.jpg" alt="apple">
+        <hr>
+        <!-- 앵커 태그(Anchor Tag) -->
+        <!--  - 하이퍼 텍스트(Hyper Text) -->
+        <!--       : 사용자의 선택에 따라 특정한 정보/서비스와 관련 부분으로 -->
+        <!--         이동할 수 있게 조직화된 문서 -->
+        <!--  - 링크(hyper Link)를 생성하기 위한 태그 -->
+        <!--  - HTML 상에서 조직화된 문서 형태를 가질 수 있도록 한다. -->
+        <!--  - 서로 다른 웹 페이지를 이동할 뿐 만아니라, -->
+        <!--    웹 페이지 내부의 특정 위치(대상)로 이동할 수도 있다. -->
+        <!--  - 속성 -->
+        <!--        href   : Hypertext Referefce, 이동할 페이지 or 이동할 위치를 지정 -->
+        <!--        target : 지정돤 문서를 열 위치를 지정 -->
+        <!--                 _self  : 현재 문서(프레임) -->
+        <!--                 _blank : 새 창 또는 새 탭 -->
+        
+        <a href="http://www.naver.com" target="_blank">Naver</a> <br>
+        <a href="Example01.html">Example01</a> <br>
+        <a href="../03-220915/File02-TableTag.html">Table Tag</a> <br>
+        <a href="#">○ TOP</a>
+        <!-- 이동하고자 하는 요소(태그)에 id 속성을 설정하고 -->
+        <!-- href 속성의 값을 '#' 과 함께 id 속성 값을 지정 -->
+        <a href="#dummy-image">Dummy Image</a>
+        <!-- 웹 페이지 내의 id 속성 값이 'dummy-image' 인 요소로 이동 -->
+
+    </body>
+</html>

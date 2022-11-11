@@ -1,0 +1,31 @@
+body {
+    background-color: #222;
+    color: #ccc;
+    font: 1.6em / 1.6 "Source Sans Pro", "Open Sans", "나눔바른고딕", "맑은 고딕", Tahoma, Verdana, sans-serif;
+    height: 3000px;
+}
+
+pre {
+    background-color: #555;
+    margin: 20px;
+    padding: 1em;
+    border-radius: 12px;
+    font-family: consolas, D2Coding, Courier, monospace;
+}
+
+#gray-box {
+    background-color: #555;
+    margin: 20px;
+    padding: 1em;
+    border-radius: 12px;
+    font-family: consolas, D2Coding, Courier, monospace;
+}
+
+.gray-box {
+    background-color: #555;
+    margin: 20px;
+    padding: 1em;
+    border-radius: 12px;
+    font-family: consolas, D2Coding, Courier, monospace;
+}
+

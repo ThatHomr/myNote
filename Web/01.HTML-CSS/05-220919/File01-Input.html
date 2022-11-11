@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>HTML - Input Form Tag</title>
+    </head>
+    <body>
+        <!-- 입력 양식 태그 -->
+        <!--   입력 양식 : 사용자로부터 입력을 받기 위한 공간(영역) -->
+
+        <!-- 로그인 양식 -->
+        <form action="/server/login.jsp" method="post">
+            <!-- GTE    : 서버로부터 데이터를 받아오기 위한 방식 -->
+            <!--        : 검색 -->
+            <!-- POST   : 서버에 데이터를 반영하기 위한 방식 -->
+            <!--        : 게시글 등록/수정, 로그인 -->
+
+            <!-- id 속성    : HTML 문서 내에서 요소를 식별하기 위한 속성 -->
+            <!-- name 속성  : 입력된 값을 서버에 전달할 때 부여할 이름 -->
+            <!-- value 속성 : 입력 요소의 입력 값 -->
+            <input  type="text" 
+                    id="accunt"
+                    name="account"
+                    autocomplete="off"
+                    placeholder="Account"
+                    autofocus
+                    required
+                    value="Account123"
+                    minlength="5"
+                    maxlength="10"
+            >
+            <br> <br>
+
+            <input type="password" name="password" placeholder="Password" required> 
+            <br> <br>
+
+            <input type="submit" value="LOG IN">
+
+
+        </form>
+        <hr>
+        <!-- action 속성 -->
+        <!--    : form 태그 내에의 입력 값들을 전달할 서버의 경로(주소) -->
+        <form action="/server/" method="get">
+            <!-- hidden -->
+            <!--    : 사용자로부터 입력을 받는 것이 아닌 -->
+            <!--      서버에 전달할 값을 지정하기 위한 타입 -->
+            <input type="hidden" name="encoding" value="UTF-8">
+            
+            <label for="email">email : </label>
+            <input type="email" name="email">
+            <br><br>
+
+            <input type="number" min="0" max="10" step="2" value="0">
+            <br><br>
+
+            <input type="range" name="range" min="0" max="200" value="130">
+            <br> <br>
+
+            <input type="color" name="color">
+            <br> <br>
+            
+            <input type="date">
+            <br> <br>
+
+            <input type="time">
+            <br> <br>
+
+            <!-- lable 태그 -->
+            <!--  : 입력 요소의 레이블을 만들기 위한 태그 -->
+            <!--  : 입력 요소와 텍스트를 하나로 만들 수 있으며 -->
+            <!--    텍스트가 입력 요소에 포함되게끔 연결(결합)한다 -->
+            <!--  : for 속성을 통해 입력 요소를 지정하여 연결(결합)할 수 있다. -->
+
+            <!-- 체크 박스 -->
+            <!--  : 체크를 설정/해제하는 버튼 -->
+            <!--  : on/off 기능 또는 다수의 항목을 체크 -->
+            <!--    → 다수의 항목을 하나로 묶을 때는 동일한 name 속성을 사용하는 것이 좋다. -->
+            <!--      이때 각 요소마다 value 속성을 통해 서버에 전달할 값을 지정 -->
+            <!-- <label><input type="checkbox" name="login_keep"> 로그인 상태 유지 </label> -->
+            <input type="checkbox" name="login_keep" id="login-keep-check"> 
+            <label for="login-keep-check"> 로그인 상태 유지 </label>
+
+            <br> <br>
+            <b>Favorite Items</b> <br>
+            <input type="checkbox" name="f_item" value="a"> Item A <br>
+            <input type="checkbox" name="f_item" value="b"> Item B <br>
+            <input type="checkbox" name="f_item" value="c"> Item C <br>
+            <br> <br>
+
+            <!-- 라디오 버튼 -->
+            <!--  : 2개 이상의 항목 중 하나만 선택되는 버튼 -->
+            <!--     → 동일한 name 속성인 요소들 중 하나만 선택 -->
+            <!--     → 각 요소의 value 속성을 통해 전달할 값을 명시 -->
+            <!--  : 동의 여부 -->
+            <b>약관 동의 A</b> <br>
+            <input type="radio" name="agreeA" value="y"> Agree <br>
+            <input type="radio" name="agreeA" value="n"> Disagree <br>
+            
+            <b>약관 동의 B</b> <br>
+            <input type="radio" name="agreeB" value="y"> Agree <br>
+            <input type="radio" name="agreeB" value="n"> Disagree <br>
+            <br> <br>
+
+            <!-- 드롭 다운 태그 -->
+            <!-- 선택지를 만들기 위한 태그 -->
+            <select name="select">
+                <optgroup label="Select Group A">
+                    <!-- 선택지 내의 항목을 만들기 위한 태그 -->
+                    <option value="a">select A</option>
+                    <option value="b">select B</option>
+                    <option value="c">select C</option>
+                </optgroup>
+                <optgroup label="Select Group B">
+                    <!-- 선택지 내의 항목을 만들기 위한 태그 -->
+                    <option value="d">select A</option>
+                    <option value="e">select B</option>
+                    <option value="f">select C</option>
+                </optgroup>
+            </select>
+            <br><br>
+
+            <!-- 텍스트 영역 태그 -->
+            <!--  : 여러 줄의 텍스트 영역을 만들기 위한 태그 -->
+            <!--  : 속성 -->
+            <!--    cols : 한 줄에 보여질 글자 수 -->
+            <!--    rows : 화면에 보여질 줄 수 -->
+            <!-- : style="resize:none;"  -->
+            <textarea cols="30" rows="5"> </textarea>
+            <br> <br>
+
+
+            <!-- 버튼 태그 -->
+            <!--  : input 태그를 통한 버튼과 유사 -->
+            <!--  : 컨텐츠를 포함할 수 있다. -->
+            <button type="submit">Submit</button>
+            <button type="reset">Reset</button>
+
+
+            <br> <br>
+            <input type="submit">
+        </form>
+
+
+
+
+    </body>
+</html>

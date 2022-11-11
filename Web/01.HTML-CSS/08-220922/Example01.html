@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Exapmle01 - Selector</title>
+    <style>
+        /* #lecture-course strong { */
+        #lecture-course > li > strong {
+            color:blue;
+        }
+        #lecture-course ul {
+            /* CSS 특성 중 상속 */
+            /*  - 하위 요소가 상위 요소의 속성 값을 그대로 물려받아 */
+            /*    동일한 속성 값을 사용 */
+            /*  - 글자 관련 속성(color..)은 기본적으로 상위 요소의 */
+            /*    속성 값을 상속 받는다. */
+            color: blueviolet;
+        }
+        #lecture-course > li.lecture-select {
+            color:red;
+        }
+        #lecture-course > li.lecture-select > strong {
+            /* color:red; */
+            /* 상위 요소인 .lecture-select 요소의 */
+            /* 글자 색상과 동일하게 설정 */
+            /*  → 속성 값을 'inherit' 설정*/
+            color:inherit;
+            /* .... */
+        }
+    </style>
+</head>
+<body>
+    <!-- id 속성 -->
+    <!--    : 식별자, 특정 대상을 식별하기 위해 고유한 이름(ID)를 부여 -->
+    <!--    : 한 번 정해지면 수정/삭제를 하는 것을 피해야한다. -->
+    <!-- class 속성 -->
+    <!--    : 그룹, 상태를 표현하기 위해 사용 -->
+    <!--    : 추가/수정/삭제가 자유롭다. -->
+    <h2>Web Publishing</h2>
+    <ul id="lecture-course">
+        <li class="lecture-select">
+            <strong>HTML</strong>
+            <ul>
+                <li>Tutorial</li>
+                <li>Example</li>
+                <li>Reference</li>
+            </ul>
+        </li>
+        <li>
+            <strong>CSS</strong>
+            <ul>
+                <li>Tutorial</li>
+                <li>Exapmle</li>
+                <li>Reference</li>
+            </ul>
+        </li>
+        <li>
+            <strong>JavaScrtip</strong>
+            <ul>
+                <li>Tutorial</li>
+                <li>Exapmle</li>
+                <li>Reference</li>
+            </ul>
+        </li>
+        <li>
+            <strong>jQuery</strong>
+            <ul>
+                <li>Tutorial</li>
+                <li>Example</li>
+                <li>Reference</li>
+            </ul>
+        </li>
+    </ul>
+</body>
+</html>

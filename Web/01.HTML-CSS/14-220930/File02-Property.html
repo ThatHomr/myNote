@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CSS - Property</title>
+    <style>
+        body {
+            height: 3000px;
+        }
+
+        /* overflow 속성 */
+        /*  - 하위 요소가 영역을 벗어난 경우 벗어난 부분을 처리하기 위한 방식을 지정 */
+        /*  - 속성 값 */
+        /*      - visible : 보이기 */
+        /*      - hidden  : 숨기기 */
+        /*      - scroll  : 영역 내에서 볼 수 있도록 스크롤 바를 생성 */
+        /*                : 영역을 벗어나지 않아도 스크롤 바를 생성 */
+        /*      - auto    : 영역을 벗어난 경우에만 스크롤 바를 생성 */
+        #container1 {
+            width: 400px;
+            height: 300px;
+            border: 5px solid black;
+            margin: 200px auto;
+
+            overflow: visible;
+            overflow: hidden;
+            overflow: scroll;
+            overflow: auto;
+
+            background: url("../../images/apple.jpg") center /cover no-repeat;
+            background-attachment: fixed;
+            background-attachment: scroll;
+            background-attachment: local;
+            /* → 해당 요소에 스크롤 바가 있는 경우 */
+            /*   스크롤 할 때 이미지도 같이 스크롤이 된다. */
+        }
+
+        #container1>div {
+            width: 200px;
+            height: 200px;
+            background-color: yellowgreen;
+            position: relative;
+
+            top: 20px;
+            left: 30px;
+
+            top: 200px;
+            left: 300px;
+        }
+
+        /* text-overflow 속성 */
+        /*  - 영역을 벗어난 숨겨진 텍스트를 말 줄임표(...)로 표시 */
+        #comments {
+            width: 400px;
+            border: 5px solid black;
+            margin: 20px auto;
+            padding: 10px 20px;
+            list-style-position: inside;
+        }
+
+        #comments>li {
+            text-overflow: clip;
+            /* 자른다. (기본 값) */
+            text-overflow: ellipsis;
+            /* 말 줄임표(...) 표시 */
+
+            /* 영역을 벗어나게끔 한 줄로 표시 */
+            white-space: nowrap;
+
+            /* 영역을 벗어난 부분을 숨기기 */
+            overflow: hidden;
+        }
+
+        /* float 속성 */
+        /*  - 요소를 부유시키기 위한 속성 */
+        /*    즉, 상위 요소로부터 위로 띄운다. */
+        /*  → 다음 형제 요소가 위로 올라온다. */
+        /*  → 상위 요소가 컨텐츠로 인식하지 않는다. */
+        /*  → float 속성이 설정된 요소 뒤에는 텍스트가 배치되지 않는다. */
+
+        #container2 {
+            width: 800px;
+            border: 5px solid black;
+            margin: 20px auto;
+
+            position: relative;
+        }
+        /*
+        #container2 > p {
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 300px;
+        }
+        */
+        #container2 > img {
+            /* 해당 이미지를 #container2 요소의 왼쪽에 부유시킨다. */
+            /* → 다음 형제 요소인 p 태그가 위로 올라온다. */
+            /* → p 태그의 내부 문자들이 뒤에 배치되지 않는다. */
+            float: left;
+            float: right;
+        }
+        #container2 > p {
+            text-align: center;
+        }
+
+        .clear {
+            /* 좌, 우에 flaot 속성이 설정된 요소가 오지 않도록 배치*/
+            clear: both;
+        }
+
+        /* clear 속성을 가진 요소를 추가 */
+        #container2::after {
+            content:"";
+            display: block;
+            clear: both;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container1">
+        <div></div>
+    </div>
+    <hr>
+    <ul id="comments">
+        <li>Etiam malesuada felis pharetra nisi pretium faucibus.</li>
+        <li>Nunc scelerisque nisl pretium, vestibulum neque tincidunt, lobortis nibh.</li>
+        <li>Curabitur quis nisi quis leo fermentum efficitur nec bibendum libero.</li>
+        <li>Nunc semper sem vel laoreet sagittis.</li>
+    </ul>
+    <hr>
+    <div id="container2">
+        <img src="../../images/apple.jpg" alt="apple">
+        <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+            scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
+            electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
+            Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
+            Aldus PageMaker including versions of Lorem Ipsum.
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+            scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
+            electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
+            Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
+            Aldus PageMaker including versions of Lorem Ipsum.
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+            scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
+            electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
+            Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
+            Aldus PageMaker including versions of Lorem Ipsum.
+        </p>
+        <img src="../../images/apple.jpg" alt="apple">
+        <!-- - float 속성을 설정하게 되면 부유하게 되는데 -->
+        <!--   이때 이전 형제 요소에는 영향이 없다. -->
+        <!-- - 상위 요소가 컨텐츠로 인식하지 않기 때문에  -->
+        <!--   상위 요소의 영역 밖에 배치된다. -->
+        <!-- <div class="clear"></div> -->
+    </div>
+</body>
+
+</html>

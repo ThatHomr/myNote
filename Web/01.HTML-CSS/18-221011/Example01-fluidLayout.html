@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Example01 - Fluid Layout</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <style>
+        #header > h1 {
+            font-size: 2.4em;
+            font-weight: bold;
+            padding: 1em;
+            text-shadow: 4px 4px 4px rgba(0,0,0,0.4);
+        }
+
+        #nav {
+            background-color: #333;
+            box-shadow: 0 4px 4px rgba(0,0,0,0.4);
+        }
+        #nav::after { content:""; display: block; clear: both;}
+        #nav > ul:first-child { float: left;}
+        #nav > ul:last-child { float: right;}
+        #nav > ul > li {float: left;}
+        #nav > ul > li > a {
+            /* 클릭할 수 있는 버튼처럼 만들기 위해 */
+            /* 블록 형식으로 설정 */
+            display: block;
+            padding: 1.2em 2em;
+
+            color: white;
+            text-decoration: none;
+        }
+        #nav > ul > li > a:hover {
+            background-color: yellowgreen;
+            color: navy;
+        }
+
+        /* 사이드 바 + 본문 영역 */
+        #wrap-container {
+            /* 자신의 영역을 벗어난 부분을 숨긴다. */
+            /*  + float 속성을 가진 하위 요소들을 */
+            /*    컨텐츠로 인식하여 높이가 잡히게 된다. */
+            overflow: hidden;
+        }
+        #sidebar { 
+            width: 200px;
+            float: left;
+            margin-top: 16px;
+        }
+        #sidebar > ul > li > a {
+            display: block;
+            padding: 1em;
+            color: black;
+            text-decoration: none;
+        }
+        #wrap {
+            /* #sidebar 요소와 나란히 배치 */
+            float: left;
+            /* 뷰포트의 너비만큼 설정 */
+            /* 뷰포트의 너비 = #wrap-container 요소의 너비 */
+            width: 100%;
+            /* #sidebar 요소와 나란히 배치하기 위해 */
+            /* 오른쪽 방향으로 200px 만큼 이동 */
+            margin-right: -200px;
+        }
+
+        #content {
+            /* 뷰포트만큼의 크기를 가진 #wrap 요소가 #sidebar 와 나란히 배치되면서 */
+            /* 총 너비가 뷰포트보다 커지게된다. */
+            /*  → #content 요소의 영역도 같이 벗어나게 된다. */
+            /*  → 컨텐츠를 뷰포트 내에 모두 보이게 하기 위해 외부 여백을 설정 */
+            margin-right: 200px;
+
+            padding: 1em;
+            border-left: 1px solid #999;
+        }
+
+        #content > h2 {
+            font-size: 1.6em;
+            font-weight: bold;
+            margin-bottom: 0.7em;
+        }
+        #content > p {
+            line-height: 1.6;
+            text-align: justify;
+            margin-bottom: 1em;
+        }
+        #content > p:last-child {
+            margin-bottom: 0;
+        }
+        #footer {
+            height: 100px;
+            border-top: 1px solid #999;
+            position: relative;
+        }
+        #footer .copyright {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <header id="header">
+        <h1>Fluid Layout</h1>
+    </header>
+
+    <nav id="nav">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#html">HTML</a></li>
+            <li><a href="#css">CSS</a></li>
+            <li><a href="#javascript">JavaScript</a></li>
+            <li><a href="#jquery">jQuery</a></li>
+        </ul>
+
+        <ul>
+            <li><a href="#login">Log in</a></li>
+            <li><a href="#signup">Sign up</a></li>
+        </ul>
+    </nav>
+
+    <!-- 사이드바 + 본문 영역 -->
+    <div id="wrap-container">
+        <!-- 사이드 바 -->
+        <aside id="sidebar">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#html">HTML</a></li>
+                <li><a href="#css">CSS</a></li>
+                <li><a href="#javascript">JavaScript</a></li>
+                <li><a href="#jquery">jQuery</a></li>
+            </ul>
+        </aside>
+
+        <!-- 본문 영역 -->
+        <!-- 뷰포트의 너비와 동일한 #wrap 요소를 추가 -->
+        <div id="wrap">
+            <article id="content">
+                <h2>What is Lorem Ipsum?</h2>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In dapibus purus in faucibus tincidunt.
+                    Duis convallis mauris odio, in ultricies ligula egestas at. Nam elementum rutrum quam tristique
+                    congue. In sed venenatis odio, sed luctus libero. Vestibulum suscipit eros vel venenatis efficitur.
+                    In ornare in ligula at consectetur. Fusce commodo vulputate nibh. Vivamus ut eros mi. Sed vulputate,
+                    nibh sed consectetur sollicitudin, orci nisl tincidunt leo, nec cursus lorem metus sit amet enim.
+                    Integer bibendum sem non mauris auctor, a malesuada tellus ullamcorper. Donec varius, justo a
+                    faucibus sodales, erat lacus tempus eros, et tincidunt urna est ut metus. In at metus tristique,
+                    vehicula nisi non, ultrices massa. Vivamus elit odio, sollicitudin eu nisl quis, maximus pharetra
+                    odio. Nulla suscipit mi erat, a posuere orci laoreet eu. Etiam in faucibus massa, a pulvinar est.
+                </p>
+                <p>
+                    Vivamus a tincidunt nisl, at fringilla purus. Praesent dictum urna nisi, eu vehicula nisl porttitor
+                    at. Nam ut tellus eget nibh pellentesque consequat id quis erat. Suspendisse eu neque aliquet, porta
+                    massa feugiat, aliquet nisl. Nulla hendrerit elit eget ex rutrum, quis venenatis mi facilisis. Donec
+                    semper varius odio, a vehicula orci vestibulum at. Sed eros felis, vulputate non dui a, egestas
+                    finibus risus. Nam tempor nec metus vitae elementum. Ut quis tortor suscipit, vulputate elit quis,
+                    interdum nulla. Mauris tempor turpis vel tempor finibus. Suspendisse sit amet velit sit amet nisi
+                    pretium faucibus sed ac orci.
+                </p>
+                <p>
+                    Aliquam sed tempus odio, at eleifend massa. In eget viverra elit. Integer vestibulum sapien vel
+                    lorem aliquam dignissim. Mauris neque elit, fermentum et egestas ac, tincidunt vel risus. Maecenas
+                    vehicula iaculis est, quis faucibus arcu efficitur at. Proin quis magna non eros interdum dictum ac
+                    sit amet nibh. Praesent sed nunc lectus. Mauris ultricies sapien lectus, non cursus eros fringilla
+                    non.
+                </p>
+            </article>
+        </div> <!-- end of #wrap-->
+    </div> <!-- end of #wrap-container -->
+
+    <footer id="footer">
+        <div class="copyright">&copy; 2022 SBS Academy Gwangju</div>
+    </footer>
+</body>
+
+</html>

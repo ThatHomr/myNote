@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>HTML - Fluid Layout</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <style>
+        body {
+            font-size: 2em;
+            font-weight: bold;
+            text-align: center;
+            line-height: 2.5;
+        }
+        #header {background-color: #faa;}
+        #nav {background-color: #afa;}
+        #sidebar {background-color: #aaf; height: 500px; line-height: 500px;}
+        #content {background-color: #ffa; height: 500px; line-height: 500px;}
+        #footer {background-color: #faf;}
+        /* ------------------------------------------------------------------- */
+        #wrap-container::after{content:"";display: block; clear: both;}
+        #sidebar {
+            /* 사이드바의 너비를 고정 */
+            width: 200px;
+            float: left;
+        }
+        #content {
+            float: left;
+            /* width: 100% - 200px; */
+            width: calc(100% - 200px);
+            /* → 가장 간단한 방법이긴 하나 */
+            /*   지원하지 않는 브라우저와 버전이 있기 때문에 */
+            /*   다른 방식도 알아두는 것이 좋다. */
+        }
+    </style>
+</head>
+<body>
+    <!-- 가변 폭 레이아웃(Fluid Layout) -->
+    <!--  - 뷰포트 전체를 차지하며, 뷰포트의 크기에 따라 -->
+    <!--    본문 영역의 크기가 변하는 레이아웃 -->
+    <!--  - 고정 폭 레이아웃과는 다르게 레이아웃 전체를 감싸는 -->
+    <!--    컨테이닝 요소가 필수는 아니다. -->
+
+    <header id="header">Header</header>
+
+    <nav id="nav">Navigation</nav>
+
+    <div id="wrap-container">
+
+        <aside id="sidebar">Side bar</aside>
+
+        <article id="content">Content</article>
+
+    </div> 
+
+    <footer id="footer">Footer</footer>
+
+</body>
+</html>

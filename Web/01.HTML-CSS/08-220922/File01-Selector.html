@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>CSS - Selector</title>
+        <style>
+            /* 연결 선택자 */
+            /*  두 선택자를 하나의 선택자로 연결하기 위한 선택자 */
+            /*   - 후손 선택자 */
+            /*      형태 : selectorA selectorB */
+            /*      selectorA 요소의 후손에 위치한 selectorB 요소를 선택 */
+            /*   - 자식 선택자 */
+            /*      형태 : selectorA > selectorB */
+            /*      selectorA 요소의 자손에 위치한 selectorB 요소를 선택 */
+            /*   - 형제 선택자 */
+            /*      형태 : selectorA ~ selectorB */
+            /*      selectorA 요소 뒤의 selectorB 요소를 선택 */
+            /*   - 인접 형제 선택자 */
+            /*      형태 : selectorA + selectorB */
+            /*      selectorA 요소 바로 뒤의 selectorB 요소를 선택 */
+
+
+            /* 후손 선택자 */
+            /*  id 속성이 'list1'인 요소의 후손 요소 중 strong 요소를 선택 */
+            #list1 strong {
+                color: orangered;
+            }
+
+            /* 자식 선택자 */
+            /* id 속성이 'list2'인 요소의 자손 요소 중 li 요소를 선택 */
+            #list2 > li {
+                color: green;
+            }
+
+            /* 연결 선택자도 하나의 선택자이기 때문에 */
+            /* 연결 선택자를 이어서 작성할 수 있다. */
+            /*  → 왼쪽에서부터 차례대로 접근 */
+            #list2 > li > strong {
+                /* 기울기 */
+                font-style: italic;
+            }
+
+            /* 형제 선택자 */
+            /*  class 속성의 값이 'main' 인 요소 뒤의 li 요소를 선택 */
+            .main ~ li {
+                color: green;
+            }
+            /*  class 속성의 값이 'main' 인 요소 뒤의 .sub 요소를 선택 */
+            .main ~ .sub {
+                font-style: italic;
+            }
+
+            /* 인접 형제 선택자 */
+            /*  class 속성의 값이 'main' 인 요소 바로 뒤의 li 요소를 선택 */
+            .main + li {
+                background-color: orange;
+            }
+
+            /*  class 속성의 값이 'main' 인 요소 바로 뒤의 .sub 요소를 선택 */
+            /*   → .main 요소와 가까운 .sub 요소를 선택하는 것이 아니라 */
+            /*     .main 요소 바로 뒤에 오는 .sub 요소를 선택하는 것 */
+            /*   → .main 요소 바로 뒤에 .sub 요소가 없기 때문에*/
+            /*     아무 요소도 선택되지 않았다. */
+            .main + .sub {
+                /* 취소선 */
+                text-decoration: line-through;
+            }
+
+
+        </style>
+    </head>
+    <body>
+        <ul id="list1">
+            <li>
+                <strong>Item A</strong>
+            </li>
+            <li>
+                <strong>Item B</strong>
+            </li>
+            <li>
+                <strong>Item C</strong>
+            </li>
+            <li>
+                <strong>Item D</strong>
+            </li>
+        </ul>
+        <ul id="list2">
+            <li>
+                <strong>Item A</strong>
+            </li>
+            <li>
+                <strong>Item B</strong>
+            </li>
+            <li>
+                <strong>Item C</strong>
+            </li>
+            <li>
+                <strong>Item D</strong>
+            </li>
+        </ul>
+        <hr>
+        <ul id="list3">
+            <li class="main">Item A</li>
+            <li>Item B</li>
+            <li>Item C</li>
+            <li class="sub">Item D</li>
+        </ul>
+
+        <!-- div > strong + (ul>li) -->
+        <div>
+            <strong></strong>
+            <ul>
+                <li></li>
+            </ul>
+        </div>
+    </body>
+</html>

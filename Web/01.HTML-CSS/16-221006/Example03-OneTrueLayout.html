@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Example03 - One True Layout</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <style>
+        body {
+            background-color: #333;
+            color: #ccc;
+
+            font-size: 2em;
+            font-weight: bold;
+            text-align: center;
+            line-height: 2.5;
+        }
+
+        #container {
+            width: 1080px;
+            margin: 0 auto;
+        }
+
+        #header, #nav, #sidebar, #content, #footer {
+            border: 5px solid #aaa;
+            border-radius: 16px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+
+        #wrap::after {content:""; display: block; clear: both;}
+        
+        #sidebar {
+            float: left;
+            width: 200px;
+            height: 580px;
+        }
+        #content {
+            float: left;
+            /* #container 요소의 너비에서 #sidebar 요소의 너비를 뺀 값이 */
+            /* #container 요소의 전체 너비 */
+            /*  1080px - 200px = 880px = (width + margin-left) */
+            width: 870px;
+            margin-left: 10px;
+            height: 580px;
+        }
+
+        /* #footer{
+            background-color: #aaf;
+        } */
+    </style>
+</head>
+<body>
+    <!-- 레이아웃의 모든 구성들을 포함하는 요소 -->
+    <div id="container"> <!-- 레이아웃의 크기와 위치를 결정 -->
+        <!-- 헤더 영역 -->
+        <header id="header">Header</header>
+
+        <!-- 네비게이션 영역 -->
+        <nav id="nav">Navigation</nav>
+
+        <!-- 사이드바 영역 + 컨텐츠 영역 -->
+        <!--  - 두 영역을 한 행에 나란히 배치하기 위해 -->
+        <!--    두 영역을 하나로 묶는 요소를 추가 -->
+        <div id="wrap">
+            <!-- 사이드바 영역 -->
+            <aside id="sidebar">Side Bar</aside>
+            <!-- 컨텐츠 영역 -->
+            <article id="content">Content</article>
+        </div> <!-- end of #wrap -->
+
+        <!-- 푸터 영역 -->
+        <footer id="footer">Footer</footer>
+
+    </div> <!-- end of #container, /#container -->
+</body>
+</html>

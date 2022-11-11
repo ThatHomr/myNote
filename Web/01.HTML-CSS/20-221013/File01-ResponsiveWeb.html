@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <title>HTML - Responsive Web</title>
+        <style>
+            body {
+                font-size: 2em;
+                font-weight: bold;
+                text-align: center;
+                line-height: 2.5;
+            }
+            #header {background-color: #faa;}
+            #nav {background-color: #afa;}
+            #sidebar {background-color: #aaf;}
+            #content {background-color: #ffa; height: 300px;}
+            #footer {background-color: #faf;}
+            /* ----------------------------------------------- */
+            /* 화면 크기에 따라 총 3가지 형태의 레이아웃을 출력하는데 */
+            /* 반드시 미디어 쿼리를 3개로 작성할 필요가 없다. */
+            /*  → 가장 간단한 레이아웃을 기본 스타일로 정의 */
+            /*  → 모바일 웹 레이아웃이 가장 간단한 방식이기 때문에 */
+            /*    모바일 웹 레이아웃을 기본 레이아웃으로 두고 */
+            /*    그 외는 미디어 쿼리를 통해 스타일을 정의 */
+
+            #sidebar {
+                width: 80%;
+                /* 브라우저를 기준으로 위치를 결정 */
+                position: fixed;
+                top: 0;
+                bottom: 0;
+                left: -80%;
+            }
+
+            /* 가변 폭 레이아웃 */
+            /*  768px <= width <= 1199px */
+            @media screen and (min-width:768px) and (max-width:1199px) {
+                #wrap-container { overflow: hidden;}
+                #sidebar {
+                    position: static;
+                    width: 200px;
+                    height: 300px;
+                    float: left;
+                }
+                #wrap {
+                    float: left;
+                    width: 100%;
+                    margin-right: -200px;
+                }
+                #content {
+                    margin-right: 200px;
+                }
+            }
+
+            /* 고정 폭 레이아웃 */
+            /*  width >= 1200px */
+            @media screen and (min-width:1200px) {
+                #container {
+                    width: 1200px;
+                    margin: 0 auto;
+
+                }
+
+                #sidebar {
+                    position: static;
+                    float: left;
+                    width: 200px;
+                    height: 300px;
+                }
+
+                #wrap {
+                    float: left;
+                    width: 1000px;
+                    
+                }
+            }
+
+        </style>
+    </head>
+    <body>
+        <!-- 화면 크기에 따라 총 3가지 형태의 레이아웃을 출력 -->
+        <!--  - 모바일 웹 레이아웃 -->
+        <!--  - 가변 폭 레이아웃 -->
+        <!--  - 고정 폭 레이아웃 -->
+        <!-- CSS 는 @media 를 통해 장치 별로 정의할 수 있지만 -->
+        <!-- HTML 은 하나의 마크업으로 모든 장치에서 보여지도록 해야한다. -->
+
+        <!-- 고정 폭 레이아웃을 만들 때 -->
+        <!-- 모든 레이아웃 구성들의 크기와 위치를 결정하기 위한 -->
+        <!-- 컨테이닝 요소가 필요하다. -->
+        <div id="container">
+            <!-- 헤더 영역 -->
+            <header id="header">Header</header>
+            <!-- 네비게이션 영역 -->
+            <nav id="nav">Navigation</nav>
+            <!-- 사이드바 + 본문 영역 -->
+            <div id="wrap-container">
+                <!-- 사이드바 영역 -->
+                <aside id="sidebar">Sidebar</aside>
+
+                <!-- 본문 영역 -->
+                <!--  가변 폭 레이아웃에서 #content 요소가 -->
+                <!-- 뷰포트 너비에 따라 변할 수 있도록 -->
+                <!-- 뷰포트 너비를 그대로 가지고 있어야 한다. -->
+                <div id="wrap">
+                    <article id="content">Content</article>
+                </div> <!-- end of #wrap -->
+            </div> <!-- end of #wrap-container -->
+            <footer id="footer">Footer</footer>
+
+        </div> <!-- end of #container -->
+    </body>
+</html>

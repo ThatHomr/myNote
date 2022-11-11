@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTP-8">
+        <title>Exmaple01 - Property</title>
+        <style>
+            p {
+                /* 컨텐츠 영역의 너비 300px 로 설정 */
+                width: 300px;
+                /* 요소 내부 여백을 20px 로 설정 */
+                padding: 20px;
+
+                /* → 화면에 보여지는 실제 요소의 크기 */
+                /*  = 컨텐츠 영역 + (내부 여백)*2 */
+                /*  = 340px */
+
+                /* 화면에 보여지는 요소의 크기르르 300px로 맞추기 위해서는 */
+                /*  → content 영역의 크기를 직접 구해서 설정 */
+                width: 360px;
+                /*  → box-sizing 속성을 통해 설정 범위를 'border-box' 로 설정 */
+                box-sizing: border-box;
+                /* 테두리까지의 너비를 300px 로 설정 */
+                width: 300px;
+                
+                background-color: orange;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>What is Lorem Ipsum?</h2>
+        <p>
+            Lorem Ipsum is simply dummy text of the printing  <br>
+            and typesetting industry. Lorem Ipsum has been the  <br>
+            industry's standard dummy text ever since the 1500s,  <br>
+            when an unknown printer took a galley of type and  <br>
+            scrambled it to make a type specimen book. It has  <br>
+            survived not only five centuries, but also the leap  <br>
+            into electronic typesetting, remaining essentially  <br>
+            unchanged. It was popularised in the 1960s with the  <br>
+            release of Letraset sheets containing Lorem Ipsum  <br>
+            passages, and more recently with desktop publishing  <br>
+            software like Aldus PageMaker including versions of  <br>
+            Lorem Ipsum. <br>
+        </p>
+    </body>
+</html>

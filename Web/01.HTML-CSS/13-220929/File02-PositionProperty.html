@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS - Positin Property</title>
+    <style>
+        body{height: 3000px;}
+        /* HTML 요소의 위치 */
+        /*  - 절대 위치 */
+        /*      기준 영역을 기준으로 지정된 좌표에 위치가 결정 */
+        /*  - 상대 위치 */
+        /*      자신의 영역을 기준으로 지정된 좌표에 위치가 결정 */
+
+        /* CSS 위치 관련 속성 */
+        #container1 {
+            width: 800px;
+            /* 높이는 컨텐츠의 크기만큼 설정 */
+
+            border: 5px solid black;
+            margin: 20px auto;
+
+            /* #absolute 요소의 기준 영역으로 지정하기 위해 */
+            /* position 속성의 값을 'relative' 로 설정 */
+            position: relative;
+        }
+        #container1 > div {
+            width: 100px;
+            height: 100px;
+            background-color: yellowgreen;
+        }
+
+        #static {
+            position: static; 
+            /*  - block 형식의 기본 속성 값 */
+            /*  - 컨테이닝 블록 = 조상 요소중 가장 가까운 block 형식의 요소 */
+            /*  - 위치, z-index 속성이 적용되지 않는다. */
+            top: 100px;
+            left: 200px;
+        }
+
+        #relative {
+            position: relative;
+            /*  - 기존 위치를 기준으로 위치를 결정하기 위한 속성 값 */
+            /*  - 컨테이닝 블록 : 가장 가까운 block 형식의 요소 */
+            /*  - 기준 영역    : 기존에 배치됐던 위치(영역) */
+            left: 200px;
+            top: 100px;
+        }
+
+        #fixed {
+            position: fixed;
+            /*  - 뷰포트(viewport, 브라우저 화면)를 기준으로 */
+            /*    위치를 결정하기 위한 속성 값 */
+            /*  - 컨테이닝 블록 = 뷰포트(브라우저 화면) */
+            /*  - 기준 영역     = 컨테이닝 블록(= 뷰포트) */
+            /*  - 상위 요소가 컨텐츠로 인식되지 않는다. */
+            right: 20px;
+            bottom: 20px;
+
+            /* 컨테이닝 블록 요소의 너비 100% 만큼 설정 */
+            width: 100% !important;
+        }
+
+        #absolute {
+            position: absolute;
+            /*  - 특정 요소를 기준으로 위치를 결정하기 위한 속성 값 */
+            /*  - 컨테이닝 블록 = 가장 가까운 static 이 아닌 block 형식의 요소 */
+            /*                 = 없는 경우 HTML 문서 */
+            /*  - 기준 영역     = 컨테이닝 블록 */
+            /*  - 상위 요소가 컨텐츠로 인식하지 않는다. */
+
+            /* 만약 #container1 요소를 기준으로 위치를 결정하고 싶다면 */
+            /* #container1 요소가 기준 영역이 되도록 position 속성의 값을 */
+            /* 'static' 이 아닌 다른 값으로 설정 해야한다. */
+            /*  → 지정된 값이 없으면 기본적으로 'relative' 를 이용 */
+            /*    컨테이닝 블록이 바뀌지 않으며 기존 위치가 유지되기 때문 */
+
+            top: 20px;
+            right: 20px;
+            
+            /* 컨테이닝 블록 요소의 컨텐츠 너비 100% 만큼 설정 */
+            width: 50% !important;
+
+        }
+
+    </style>
+</head>
+<body>
+    <div id="container1">
+        <div id="static">static box</div>
+        <div id="relative">relative box</div>
+        <div id="absolute">absolute box</div>
+        <div id="fixed">fixed box</div>
+    </div>
+</body>
+</html>

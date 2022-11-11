@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <!-- 뷰포트의 크기를 디바이스 크기에 맞춰지도록 한다. -->
+    <title>HTML - MobileWeb</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <style>
+        body {
+            font-size: 2em;
+            font-weight: bold;
+            text-align: center;
+            line-height: 100px;
+        }
+        #header {
+            height: 100px;
+            background-color: #faa;
+        }
+        body > * {height: 100px;}
+        #header {background-color: #faa;}
+        #nav {background-color: #afa;}
+        #content {background-color: #ffa; height: 500px;}
+        #footer {background-color: #faf;}
+
+
+        #sidebar {
+            width: 80%;
+            height: auto;
+            position: fixed;
+            top: 0; bottom: 0;
+            left: 0;
+            background-color: #aaf;
+
+            /* 화면에 보여지지 않도록 숨기는 방법 */
+            /*  1. display 속성 */
+            /* display: none; */
+            /*  2. 위치 속성 */
+            left: -80%;
+        }
+    </style>
+
+</head>
+<body>
+    <header id="header">Header</header>
+    <nav id="nav">Navigation</nav>
+    <aside id="sidebar">Sidebar</aside>
+    <article id="content">Content</article>
+    <footer id="footer">Footer</footer>
+</body>
+</html>

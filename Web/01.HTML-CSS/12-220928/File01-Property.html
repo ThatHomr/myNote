@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTP-8">
+        <title>CSS - Property</title>
+        <style>
+            body { height: 300px; }
+
+            /* 화명에 이미지를 출력하는 방식 */
+            /*  1. img 태그 */
+            /*      : 사용자에게 이미지 형식의 컨텐츠(내용)을 제공하기 위해 사용 */
+            /*  2. background 속성 */
+            /*      : 요소를 꾸미기 위한 배경을 설정하기 위해 사용 */
+            /*      : 요소의 컨텐츠보다 부각되서는 안된다. */
+
+            #container1 {
+                width: 800px;
+                height: 600px;
+                margin: 20px auto;
+                border: 5px solid navy;
+                /* ------------------------------------------------ */
+
+                /* 배경 색 */
+                background-color: orange;
+
+                /* 배경 이미지 */
+                /*  요소 내에 남은 공간이 없어지도록 반복 패턴으로 채운다 */
+                background-image: url('../../images/apple.jpg');
+
+                /* 배경 이미지 반복 패턴 */
+                background-repeat: repeat;      /* x축, y축 반복 패턴 */
+                background-repeat: repeat-x;    /* x축 반복 패턴  */
+                background-repeat: repeat-y;    /* y축 반복 패턴  */
+                background-repeat: no-repeat;   /* 반복 패턴 X */
+
+                /* 배경 이미지 크기 */
+                background-size: 400px 300px;   /* 너비, 높이 */
+                background-size: 400px;         /* 너비 */
+                /* 요소 안에서 최대한 크게 포함되도록 설정 */
+                background-size: contain;
+                /* 요소의 빈 공간 없이 최대한 크게 설정 */
+                background-size: cover;
+                /* 이미지의 원본 */
+                background-size: auto;
+
+                /* 배경 이미지 위치 */
+                /*  이미지가 다수인 경우 쉼표(,)를 구분으로 나열 */
+                background-position: 50px 100px;
+                background-position: right center;
+                background-position: center bottom;
+                background-position: center;
+
+                /* 배경 이미지 부착 방식 */
+                /*  요소에 부착되어 요소와 같이 스크롤된다. */
+                background-attachment: scroll;
+                /*  화면(브라우저)에 부착되어 위치는 고정 */
+                /*  해당 요소에서만 보여진다. */
+                background-attachment: fixed;
+
+                /* 배경 관련 속성들을 한 번에 설정하기 위한 속성 */
+                /* background: <image> <position> /<size> <repeat> <attaxhment> <color>;*/
+                /*  size 속성 지정 시 반드시 앞에 '/' 를 작성 */
+                background: url("../../images/apple.jpg") right top /100px no-repeat scroll;
+                
+                
+            }
+            #container2 {
+                width: 300px;
+                height: 300px;
+                margin: 20px auto;
+                
+                padding: 20px;
+
+                box-sizing: border-box;
+                background-color: skyblue;
+            }
+            #container2 > div {
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+                /* 배경 색 */
+                background-color: white;
+                /* 배경 이미지 */
+                background-image: url("../../images/apple.jpg");
+                /* 배경 이미지 크기 */
+                background-size: contain;
+                /* 배경 이미지 위치 */
+                background-position: center;
+            }
+            </style>
+            <style>
+
+                /* px 단위 */
+                /*  : 절대 값으로 적용되며, 브라우저의 폰트 크기 상관 없이 고정 */
+                #size-px {
+                    font-size: 30px;
+                }
+                #size-px > div {
+                    font-size: 40px;
+                }
+
+                /* em 단위 */
+                /*  : 현재 요소의 폰트 크기를 기준으로 한 배수 */
+                #size-em {
+                    /* 기존 16px 의 2배 */
+                    /*  = 32px */
+                    font-size: 2em;
+                }
+                #size-em > div {
+                    /* 상위 요소의 폰트 크기가 32 px 이기 때문에 */
+                    /* 기본 폰트의 크기가 32px 이다. */
+
+                    /* 기존 32px 의 2배 */
+                    /*  = 64px */
+                    font-size: 2em;
+                }
+
+                /* rem 단위 */
+                /*  : 최상위 요소(html)의 폰트 크기를 기준으로 한 배수 */
+                /*  : 최상위 요소(html)의 폰트 크기는 브라우저에서 설정된 폰트 크기 */
+                #size-rem {
+                    /* 최상위 요소의 크기(16px) 의 2배 */
+                    /*  = 32px */
+                    font-size: 2rem;
+                }
+                #size-rem > div {
+                    /* 최상우 요소의 크기(16px) 의 2배 */
+                    /*  = 32px */
+                    font-size: 2rem;
+                }
+
+                #container3 {
+                    /* 폰트 종류 */
+                    /*  세리프(명조체) : 획의 일부분이 튀어나오는 글자체 */
+                    font-family: 'Times New Roman', Times, serif;
+                    /*  산스-세리프(고딕체) : 획의 튀어나오는 부분이 없는 글자체 */
+                    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                    /*  모노스페이스(고정 폭 글자) */
+                    font-family: consolas, 'Courier New', Courier, monospace;
+
+                    /* 기울기 */
+                    font-style: normal;
+                    font-style: italic;
+                    font-style: oblique;
+
+                    /* 폰트 두께 */
+                    font-weight: normal;
+                    font-weight: bold; /* = 700 */
+                    
+                    /* 글자 행 높이 */
+                    line-height: 1.6;
+
+                    /* 폰트 관련 속성들을 한 번에 설정하기 위한 속성 */
+                    /*  font: [<style> <variant> <weight>] <size> [/<line-height>] <family> */
+                    /*    [...] : 생략 가능한 속성 */
+                    /*          : 즉, size, family 속성은 필수 */
+                    font: 1.6em / 1.6 "Times New Roman", Times, selif;
+
+                    /* 글자 간 간격 */
+                    /*  양수 : 간격이 멀어짐 */
+                    /*  음수 : 간격이 좁아짐, 겹칠 수 있다. */
+                    letter-spacing: 5px;
+
+                    /* 텍스트 정렬 */
+                    text-align: left;
+                    text-align: right;
+                    text-align: center;
+                    text-align: justify;
+
+                    /* 줄 표시 */
+                    text-decoration: underline;
+                    text-decoration: overline;
+                    text-decoration: line-through;
+                    text-decoration: none;
+                    
+                }
+                #container3 > span {
+                    /* 작은 대문자 변환 */
+                    font-variant: small-caps;
+
+                }
+            </style>
+    </head>
+    <body>
+        <h2>background 속성</h2>
+        <div id="container1"></div>
+        <hr>
+        <div id="container2">
+            <div></div>
+        </div>
+        <hr>
+        <h2>font 속성</h2>
+        <div id="size-px">
+            <div>px 단위</div>
+        </div>
+        <div id="size-em">
+            <div>em 단위</div>
+        </div>
+        <div id="size-rem">
+            <div>rem 단위</div>
+        </div>
+        <hr>
+        <p id="container3">
+            <span>Lorem Ipsum is simply </span>dummy text of the printing and typesetting <br>
+            industry. Lorem Ipsum has been the industry's standard dummy text <br>
+            ever since the 1500s, when an unknown printer took a galley of type <br>
+            and scrambled it to make a type specimen book. It has survived not <br>
+            only five centuries, but also the leap into electronic typesetting, <br>
+            remaining essentially unchanged. It was popularised in the 1960s <br>
+            with the release of Letraset sheets containing Lorem Ipsum passages, <br>
+            and more recently with desktop publishing software like Aldus <br>
+            PageMaker including versions of Lorem Ipsum.<br>
+        </p>
+    </body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>CSS - Cascading Style Sheet</title>
+
+        <!-- 외부 스타일 시트 -->
+        <!--  : HTML 문서 외부에서 작성하는 스타일 시트 -->
+        <!--      = 별도의 CSS 파일(.css)로 작성된 스타일 시트 -->
+        <!--  : 여러 HTML 문서에서 사용할 스타일 시트인 경우 -->
+        <!--  : head 태그 내에 link 태그로 CSS 파일을 로드 -->
+        <link rel="stylesheet" href="demo.css">
+
+        <!-- 내부 스타일 시트 -->
+        <!--  : HTML 문서 내부에서 작성하는 스타일 시트 -->
+        <!--  : 해당 문서에서만 사용할 스타일 시트인 경우 사용 -->
+        <!--  : head 태그 내에 style 태그로 작성 -->
+
+        <style>
+            /* CSS 를 작성하기 위한 스타일 시트 영역 */
+
+            /* h1 요소의 글자 색상을 초록색으로 설정 */
+            /*  1. 스타일을 설정할 요소를 선택(지정)하고 블록({,}) 작성 */
+            /*      → h1 태그 */
+            /*  2. 선택한 요소에 설정할 스타일 속성을 작성 */
+            /*      → 글자 색 = color 속성 */
+            /*  3. 스타일 속성에 설정할 속성 값을 작성 */
+            /*      → 스타일 속성 : 속성 값; */
+
+            h1 { /* CSS 블록의 시작 */
+                
+                /* h1 요소에 설정할 스타일을 작성하는 영역 */
+
+                color: green;
+                color: #f00;
+                color: #ffcccc;
+                color: rgb(255, 100, 210);
+                /* rgba(red, green, bule,alpha) */
+                /*  alpha : 투명도, 0 ~ 1(0:투명, 1:불투명)*/
+                color: rgba(255, 100, 210, 0.3);
+                background-color: skyblue;
+
+            }   /* CSS 블록의 끝 */
+
+        </style>
+
+    </head>
+    <body>
+        <h1>CSS - Cascading Style Sheet</h1>
+        <!-- 인라인 스타일 -->
+        <!--  : 스타일 시트를 작성하지 않고, -->
+        <!--    HTML 요소에 직접적으로 스타일을 지정하는 방식 -->
+        <!--  : HTML 요소의 style 속성을 사용하여 스타일을 설정 -->
+        <!--  : style 속성에는 CSS 블록에 작성되는 스타일 속성들을 작성 (잘 사용하지는 않는 방식)-->
+        <h2 style="color: red;">Hello World!</h2>
+        <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. <br>
+            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, <br>
+            when an unknown printer took a galley of type and scrambled it to make a type specimen <br>
+            book. It has survived not only five centuries, but also the leap into electronic typesetting, <br>
+            remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset  <br>
+            sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like  <br>
+            Aldus PageMaker including versions of Lorem Ipsum. <br>
+        </p>
+        <input type="color">
+    </body>
+</html>

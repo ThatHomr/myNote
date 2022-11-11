@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>CSS - float Property</title>
+        <style>
+            #container1 {
+                width: 400px;
+                margin: 10px auto;
+                background-color: yellowgreen;
+                padding: 1px;
+            }
+
+            /* #container1 요소의 하위 요소들이 모두 float 속성이 */
+            /* 설정되므로 높이가 0 이 된다. */
+            #container1::after {
+                content: "";
+                display: block;
+                clear: both;
+            }
+
+            #container1 > div {
+                width: 300px;
+                height: 100px;
+                background-color: orange;
+
+                /* 마진 중첩(Margin Collapsing) */
+                /*  - 서로 다른 요소의 상, 하 외부 여백이 */
+                /*    맞 닿을 때 발생하는 현상 */
+                /*  - 마진 중첩이 발생하면 서로의 여백이 겹쳐진다. */
+                /*  - 겹쳐질 때 큰 여백으로 설정이 되어진다. */
+                /* 마진 중첩이 되지 않는 경우 */
+                /*  - 상위 요소에 내부 여백 또는 테두리가 있는 경우 */
+                /*  - float 속성이 설정된 경우 */
+                margin: 50px;
+
+                float: left;
+            }
+            #container1 >div:last-child {
+                background-color: blueviolet;
+            }
+
+            #container2 {
+                width: 80%;
+                border: 5px solid black;
+                margin: 20px auto;
+            }
+            #container2::after {
+                content: "";
+                display: block;
+                clear: both;
+            }
+            #container2 > div {
+                width: 200px;
+                height: 200px;
+                background-color: yellowgreen;
+                
+                /* float 속성이 설정된 요소들은 나란히 나열될 수 있다. */
+                /* 단, 나란히 나열하기 위한 충분한 공간이 필요 */
+                float: left;
+            }
+            #container2 > div:nth-child(even) {
+                background-color: orange;
+            }
+
+            /* ------------------------------------------------------- */
+
+            #container3 {
+                width: 440px;
+                border: 3px solid black;
+                margin: 20px auto;
+                padding: 10px;
+            }
+            #container3::after {
+                content: "";
+                display: block;
+                clear: both;
+            }
+            #container3 > div {
+                width: 200px;
+                height: 200px;
+                margin: 10px;
+                float: left;
+
+                font-size: 1.2em;
+                font-weight: bold;
+                text-align: center;
+                line-height: 200px;
+            }
+            #container3 > div.pink {
+                background-color: pink;
+            }
+            #container3 > div.yellowgreen {
+                background-color: yellowgreen;
+            }
+            #container3 > div.cyan {
+                background-color: cyan;
+            }
+            #container3 > div.gold {
+                background-color: gold;
+            }
+            /* -------------------------------------------------- */
+            #container4 {
+                width: 460px;
+                border: 3px solid black;
+                margin: 20px auto;
+                padding: 10px;
+            }
+            #container4::after {
+                content: "";
+                display: block;
+                clear: both;
+            }
+            #container4 > div.box1 {
+                width: 200px;
+                height: 100px;
+                margin: 10px;
+                float: left;
+
+                background-color: pink;
+                font-size: 1.2em;
+                font-weight: bold;
+                text-align: center;
+                line-height: 100px;
+            }
+            #container4 > div.box2 {
+                width: 200px;
+                height: 220px;
+                margin: 10px;
+                float: right;
+
+                background-color: gold;
+                font-size: 1.2em;
+                font-weight: bold;
+                text-align: center;
+                line-height: 220px;
+            }
+            #container4 > div.box3 {
+                width: 200px;
+                height: 100px;
+                margin: 10px;
+                float: left;
+
+                background-color: yellowgreen;
+                font-size: 1.2em;
+                font-weight: bold;
+                text-align: center;
+                line-height: 100px;
+            }
+            /* -------------------------------------------------- */
+            .gold1 {background-color: gold;}
+            .pink1 {background-color: pink;}
+            .yellowgreen1 {background-color: yellowgreen;}
+            #container5 {
+                width: 440px;
+                padding: 10px;
+                border: 3px solid black;
+                margin: 20px auto;
+            }
+            #container5::after {
+                content: "";
+                display: block;
+                clear: both;
+            }
+            #container5 > div {
+                width: 200px;
+                height: 100px;
+                margin: 10px;
+                float: left;
+
+                font-size: 1.2em;
+                font-weight: bold;
+                text-align: center;
+                line-height: 100px;
+            }
+
+            #container4 > div:nth-child(1) {
+                float: right;
+                height: 220px;
+            }
+
+            /* --------------------------------------------------- */
+            #container5 {
+                width: 440px;
+                padding: 10px;
+                border: 3px solid black;
+                margin: 20px auto;
+            }
+            #container5::after {
+                content: "";
+                display: block;
+                clear: both;
+            }
+            #container5 > div {
+                width: 200px;
+                height: 220px;
+                margin: 10px;
+                float: left;
+
+                font-size: 1.2em;
+                font-weight: bold;
+                text-align: center;
+                line-height: 100px;
+            }
+
+            #container5.wrap > div {
+                height: 100px;
+            }
+
+            #container5.wrap > div:first-child {
+                margin-bottom: 20px;
+            }
+            /* ------------------------------------------ */
+            #container6 {
+                width: 680px;
+                border: 3px solid black;
+                padding: 10px;
+                margin: 20px auto;
+            }
+            #container6::after {
+                content: "";
+                display: block;
+                clear: both;
+            }
+            #container6 > div:nth-child(1) {
+                width: 640px;
+                height: 200px;
+                margin: 10px;
+                float: left;
+
+                font-size: 1.2em;
+                font-weight: bold;
+                text-align: center;
+                line-height: 200px;
+            }
+
+            .wrap2 > div {
+                width: 200px;
+                height: 200px;
+                margin: 10px;
+                float: left;
+
+                font-size: 1.2em;
+                font-weight: bold;
+                text-align: center;
+                line-height: 200px;
+            }
+
+            .yellowgreen2 {background-color: yellowgreen;}
+            .pink2 {background-color: pink;}
+            .cyan2 {background-color: cyan;}
+            .gold2 {background-color: gold;}
+
+            /* --------------------------------------------------- */
+            #container7 {
+                width: 680px;
+                border: 3px solid black;
+                margin: 10px auto;
+            }
+            #container7 > div {
+                width: 640px;
+                height: 200px;
+                margin: 20px;
+                
+            }
+            #container7 > .wrap3 > div {
+                width: 200px;
+                height: 200px;
+                float: left;
+            }
+            /* .wrap3 하위 요소 중 마지막 요소를 제외한 요소들을 선택 */
+            #container7 > .wrap3 > div:not(:last-child) {
+                margin-right: 20px;
+            }
+
+            .yellowgreen3 {background-color: yellowgreen;}
+            .pink3 {background-color: pink;}
+            .cyan3 {background-color: cyan;}
+            .gold3 {background-color: gold;}
+            body{height: 3000px;}
+        </style>
+    </head>
+    <body>
+        <h2>마진 중첩(Margin Collapsing</h2>
+        <div id="container1">
+            <div>Box 1</div>
+            <div>Box 2</div>
+        </div>
+        <hr>
+        <h2>block 형식의 요소 나란히 나열</h2>
+        <div id="container2">
+            <div>Box 1</div>
+            <div>Box 2</div>
+            <div>Box 3</div>
+            <div>Box 4</div>
+            <div>Box 5</div>
+            <div>Box 6</div>
+        </div>
+        <hr>
+        <div id="container3">
+            <div class="pink">Pink</div>
+            <div class="yellowgreen">yellowgreen</div>
+            <div class="cyan">Cyan</div>
+            <div class="gold">Gold</div>
+            <div>Box</div>
+            <div>Box</div>
+        </div>
+        <hr>
+        <div id="container4">
+            <div class="box2">gold</div>
+            <div class="box1">Pink</div>
+            <div class="box3">yellowgreen</div>
+        </div>
+        <hr>
+        <div id="container5">
+            <div class="wrap">
+                <div class="pink1">Pink</div>
+                <div class="yellowgreen1">yellowgreen</div>
+            </div>
+            <div class="gold1">gold</div>
+        </div>
+        <hr>
+        <div id="container6">
+            <div class="yellowgreen2">yellowgreen</div>
+            <div class="wrap2">
+                <div class="pink2">Pink</div>
+                <div class="cyan2">Cyan</div>
+                <div class="gold2">Gold</div>
+            </div>
+        </div>
+        <hr>
+        <div id="container7">
+            <div class="yellowgreen3">yellowgreen</div>
+            <div class="wrap3">
+                <div class="pink3">Pink</div>
+                <div class="cyan3">Cyan</div>
+                <div class="gold3">Gold</div>
+            </div>
+        </div>
+    </body>
+</html>

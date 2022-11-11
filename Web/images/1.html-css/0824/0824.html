@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>0824.html</title>
+    </head>
+    <body>
+        <h1>회원 가입</h1>
+        <form action="/sever" method="POST">
+            <!-- 입력 요소들을 깔끔하게 배치하기 위해-->
+            <!-- table 태그를 이용 -->
+            <table>
+                    <!-- 입력 요소들을 배치하기 위함이기 때문에 -->
+                    <!-- tbody 만 작성 -->
+                    <tbody>
+                        <tr>
+                            <td>ID</td>
+                            <!-- name 속성 : 입력된 값의 이름 -->
+                            <td><input type="text" name="account" required autocomplete="off"></td>
+                        </tr>
+                        <tr>
+                            <td>PW</td>
+                            <td><input type="password" name="password" required></td>
+                        </tr>
+
+                        <tr>
+                            <td>이름</td>
+                            <td><input type="text" name="name"></td>
+                        </tr>
+
+                        <tr>
+                            <td>성별</td>
+                            <td>
+                                <!-- radio 버튼은 같은 항목 중에하나만 체크 -->
+                                <!-- 같은 항목의 기준: 같은 name 속성 -->
+                                <!-- 입력된 값이 기본적으로 "on" 이므로 -->
+                                <!-- 내가 원하는 값으로 지정하려면 value 속성을 이용 -->
+                                <label>남자<input type="radio" name="gender" value="male"></label>
+                                <label>여자<input type="radio" name="gender" value="female"></label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">자기 소개</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <textarea name="introduction" cols="30" rows="10"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <!-- input 요소로도 submit 버튼을 만들 수 있지만 -->
+                                <!-- button 요소로 만들면 원하는 컨텐츠와 스타일을 -->
+                                <!-- 지정할 수 있다. -->
+                                <button type="submit">완료</button>
+                            </td>
+                        </tr>
+                    </tbody>
+            </table>
+        </form>
+    </body>
+</html>

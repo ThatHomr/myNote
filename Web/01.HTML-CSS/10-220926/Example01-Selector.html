@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>    
+    <meta charset="UTF-8">
+    <title>Example01 - Selector</title>
+    <style>
+        /* 테이블의 본문 영역 내의 홀수(odd) 번째 행 */
+        table > tbody > tr:nth-child(odd) {
+            background-color: darkkhaki;
+        }
+
+        /* 테이블의 본문 영역 내의 마우스 커서가 올라간 행 */
+        table > tbody > tr:hover {
+            background-color: darkgray;
+        }
+    </style>
+</head>
+<body>
+    <h2>SBS  아카데이 웹 퍼블리싱 수강 여부</h2>
+    <table border="1">
+        <!-- 제목 영역 -->
+        <thead>
+            <tr>
+                <th>이름</th>
+                <th>HTML</th>
+                <th>CSS</th>
+                <th>JavaScript</th>
+                <th>jQuery</th>
+            </tr>
+        </thead>
+        <!-- 본문 영역 -->
+        <tbody>
+            <tr>
+                <td>김철수</td>
+                <td>O</td>
+                <td>O</td>
+                <td>X</td>
+                <td>X</td>
+            </tr>
+            <tr>
+                <td>이영희</td>
+                <td>O</td>
+                <td>O</td>
+                <td>O</td>
+                <td>O</td>
+            </tr>
+            <tr>
+                <td>홍길동</td>
+                <td>X</td>
+                <td>X</td>
+                <td>X</td>
+                <td>X</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

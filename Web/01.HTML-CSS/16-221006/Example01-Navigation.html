@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>Example01 - Navigation(Menu)</title>
+        <style>
+            #nav {
+                font-size: 1.5em;
+
+                /* ul 요소의 기본 스타일을 제거 */
+                list-style: none;
+                padding: 0;
+                margin: 0;
+
+                /* 컨텐츠 영역의 최대 값만큼 설정 */
+                width: max-content;
+                margin: 0 auto;
+            }
+
+            /* 모든 항목들이 float 속성이 설정되면서 #nav 요소의 높이가 0 이 된다. */
+            /* 높이를 잡아주기 위해 clear 속성이 설정된 가상 요소를 추가 */
+            #nav::after {content: ""; display: block; clear: both;}
+
+            #nav > li {
+                /* 모든 항목들을 나란히 나열하기 위해 */
+                /* float 속성을 설정 */
+                float: left;
+
+                background-color: #eee;
+                border: 2px solid #999;
+
+                /* li 요소는 클릭 기능이 없는 요소이기 때문에 */
+                /* 크기를 가져도 클릭할 수 없는 영역만 늘어나게 된다. */
+                /* width: 110px;
+                height: 2em;
+                line-height: 2em;
+                text-align: center; */
+            }
+
+            #nav > li:first-child {
+                border-radius: 8px 0 0 8px;
+            }
+            #nav > li:last-child {
+                border-radius: 0 8px 8px 0;
+            }
+
+            /* 각 항목 사이의 테두리의 두께가 두 항목의 테두리의 두께 합과 같기 때문에 */
+            /* 한 항목의 테두리를 제거 */
+            /*  - 첫번째 항목을 제외한 항목들의 좌측 테두리를 제거 */
+            #nav > li:not(:first-child) {
+                border-left: none;
+            }
+
+            #nav > li > a {
+                /* 메뉴의 각 항목이 클릭 될 수 있는 영역으로 만들기 위해 */
+                /* inline 형식인 a 요소를 block 형식으로 설정 */
+                /*  inline 형식 : 텍스트 형식 → 크기, 위치 설정 X */
+                /*  block 형식  : 박스 형식  → 크기, 위치 설정 O */
+                display: block;
+                /* 내부 여백을 이용한 크기 설정 */
+                padding: 10px 16px;
+
+                /* a 요소의 기본 스타일 제거 */
+                text-decoration: none;
+                color: blue;
+
+            }
+
+
+
+        </style>
+    </head>
+    <body>
+        <ul id="nav">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#html">HTML</a></li>
+            <li><a href="#css">CSS</a></li>
+            <li><a href="#javascript">JavaScript</a></li>
+            <li><a href="#jquery">jQuery</a></li>
+        </ul>
+        <hr>
+    </body>
+</html>

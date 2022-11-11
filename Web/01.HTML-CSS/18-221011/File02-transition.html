@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <style>
+        #box1 {
+            width: 400px;
+            height: 400px;
+            margin: 20px auto;
+            background-color: yellowgreen;
+
+            /* transition 속성 */
+            /*  - 스타일 속성 값이 바뀔 때 */
+            /*    시간에 따라 서서히 변화되도록 */
+            /*    지정하는 속성 */
+
+            /* 진행 시간 */
+            transition-duration: 1000ms; /* 1s = 1000ms */
+            /* 적용 속성 */
+            transition-property: width, height;
+            /* 대기 시간 */
+            transition-delay: 1s;
+            /* 속도 함수 */
+            transition-timing-function: ease;
+            transition-timing-function: linear;
+            transition-timing-function: ease-out;
+            transition-timing-function: cubic-bezier(0,1.57,1,-0.9);
+
+        }
+
+        #box1:hover {
+            background-color: orange;
+            width: 200px;
+            height: 200px;
+
+            /* transition-duration: 1000ms; 1s = 1000ms */
+        }
+
+        #box2 {
+            width: 400px;
+            height: 400px;
+            border: 5px solid navy;
+            margin: 20px auto;
+
+            position: relative;
+            overflow: hidden;
+        }
+
+        #box2 > div {
+            width: 100%;
+            height: 100%;
+            background-color: orange;
+
+            /* margin-left: 200px; */
+            position: relative;
+            left: 0;
+            left: 100%;
+            
+            /* position: absolute;
+            right: 0;
+            width: 200px; */
+
+            transition: all 1s linear 0s;
+            transition: 1s linear ;
+        }
+        #box2:hover > div {
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="box1"></div>
+    <hr>
+    <div id="box2">
+        <div>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In dapibus purus in faucibus tincidunt.
+            Duis convallis mauris odio, in ultricies ligula egestas at. Nam elementum rutrum quam tristique
+            congue. In sed venenatis odio, sed luctus libero. Vestibulum suscipit eros vel venenatis efficitur.
+            In ornare in ligula at consectetur. Fusce commodo vulputate nibh. Vivamus ut eros mi. Sed vulputate,
+            nibh sed consectetur sollicitudin, orci nisl tincidunt leo, nec cursus lorem metus sit amet enim.
+            Integer bibendum sem non mauris auctor, a malesuada tellus ullamcorper. Donec varius, justo a
+            faucibus sodales, erat lacus tempus eros, et tincidunt urna est ut metus. In at metus tristique,
+            vehicula nisi non, ultrices massa. Vivamus elit odio, sollicitudin eu nisl quis, maximus pharetra
+            odio. Nulla suscipit mi erat, a posuere orci laoreet eu. Etiam in faucibus massa, a pulvinar est.
+        </div>
+    </div>
+</body>
+</html>

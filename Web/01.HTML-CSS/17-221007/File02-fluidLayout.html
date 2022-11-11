@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>HTML - Fluid Layout</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <style>
+        body {
+            font-size: 2em;
+            font-weight: bold;
+            text-align: center;
+            line-height: 2.5;
+        }
+        #header {background-color: #faa;}
+        #nav {background-color: #afa;}
+        #sidebar {background-color: #aaf; height: 500px; line-height: 500px;}
+        #content {background-color: #ffa; height: 500px; line-height: 500px;}
+        #footer {background-color: #faf;}
+        /* ------------------------------------------------------------------- */
+        #wrap-container {
+            /* 5. #wrap 요소가 화면 밖으로 벗어나면서 */
+            /*    브라우저에 스크롤이 생성된다. */
+            /*    영역을 벗어난 부분을 숨기면서 스크롤바가 생성되지 않도록 한다. */
+            overflow: hidden;
+        }
+
+        /* float 속성이 설정된 요소의 상위 요소에 */
+        /* overflow 속성이 설정되면 높이가 잡히게 된다. */
+        /* 따라서 가상 요소를 추가할 필요가 없다. */
+        /* #wrap-container::after{content:""; display: block; clear: both;} */
+
+        #sidebar {
+            width: 200px;
+            /* #wrap 요소와 나란히 배치 */
+            float: left;
+        }
+        #wrap {
+            float: left;
+            /* 2. 상위 요소인 #wrap-container 요소의 너비만큼 설정 */
+            width: 100%;
+
+            /* 3. #sidebar 요소와 나란히 배치하기 위해 */
+            /*    #sidebar 요소의 너비만큼 반대 방향으로 이동 */
+            margin-right: -200px;
+        }
+
+        #content {
+            /* 4. #wrap 요소가 #sidebar 요소와 나란히 배치가 되면서 */
+            /*    #content 요소의 영역도 화면 밖으로 벗어난다. */
+            /*    벗어난 만큼 외부 여백을 줌으로써 화면 안에 */
+            /*    모두 보이도록 해야한다. */
+            margin-right: 200px;
+        }
+
+        #container {
+            width: 1080px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- 가변 폭 레이아웃(Fluid Layout) -->
+    <!--  - 뷰포트 전체를 차지하며, 뷰포트의 크기에 따라 -->
+    <!--    본문 영역의 크기가 변하는 레이아웃 -->
+    <!--  - 고정 폭 레이아웃과는 다르게 레이아웃 전체를 감싸는 -->
+    <!--    컨테이닝 요소가 필수는 아니다. -->
+    <div id="container">
+        <header id="header">Header</header>
+
+        <nav id="nav">Navigation</nav>
+
+        <div id="wrap-container">
+
+            <aside id="sidebar">Side bar</aside>
+
+            <!-- 1. #content 요소의 너비를 (뷰포트의 너비 - 사이브바의 너비)로 -->
+            <!--    설정할 수 없기 때문에 뷰포트의 너비만큼 차지하는 요소를 추가 -->
+            <div id="wrap">
+                <article id="content">Content</article>
+            </div> <!-- end of #wrap -->
+
+        </div> <!-- end of #wrap-container -->
+
+        <footer id="footer">Footer</footer>
+    </div>
+</body>
+</html>

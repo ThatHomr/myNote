@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>File01 - One True Layout</title>
+        <link rel="stylesheet" href="../../css/reset.css">
+        <style>
+            /* 레이아웃의 모든 구성들을 포함하고 크기와 위치를 결정하는 요소 */
+            #container {
+                /* 모든 영역의 너비를 고정 */
+                width: 1080px;
+                /* 브라우저 중앙에 배치 */
+                margin: 0 auto;
+
+                background-color: darkgray;
+
+                font-size: 2em;
+                font-weight: bold;
+                text-align: center;
+                line-height: 2.5;
+            }
+
+            /* 헤더 영역 */
+            #header {background-color: #faa;}
+
+            /* 네비게이션 영역 */
+            #nav {background-color: #afa;}
+
+            /* 사이드바 + 컨텐츠 영역 */
+            #wrap {background-color: #aaf;}
+
+            /* #sidebar 요소와 #content 요소에 float 속성이 설정되면서 */
+            /* #wrap 요소의 높이가 0 이 된다. */
+            #wrap::after {content: ""; display: block; clear: both;}
+
+            /* 사이드바 영역 */
+            #sidebar {
+                /* #content 요소와 나란히 배치 */
+                float: left;
+
+                width: 200px;
+                height: 500px;
+
+                background-color: #ffa;
+            }
+
+            /* 컨텐츠 영역 */
+            #content {
+                /* #sidebar 요소와 나란히 배치 */
+                float: left;
+
+                width: 880px;
+                height: 500px;
+
+                background-color: #faf;
+            }
+
+            /* 푸터 영역 */
+            #footer {
+                background-color: #aff;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- 고정 폭 레이아웃(One True Layout) -->
+        <!--  - 레이아웃의 폭이 고정이며, 브라우저 중앙에 배치되는 레이아웃 -->
+        <!--  - 레이아웃 내의 모든 구성들의 크기를 고정 -->
+
+        <!-- 레이아웃의 모든 구성들을 포함하는 요소 -->
+        <div id="container"><!-- 레이아웃의 크기와 위치를 결정 -->
+        
+            <!-- 헤더 영역 -->
+            <header id="header">Header</header>
+
+            <!-- 네비케이션 영역 -->
+            <nav id="nav">Navigation</nav>
+
+            <!-- 사이드바 영역 + 컨텐츠 영역 -->
+            <!--  - 두 영역을 한 행에 나란히 배치하기 위해 -->
+            <!--    두 영역을 하나로 묶는 요소를 추가 -->
+            <div id="wrap">
+                <!-- 사이드바 영역 -->
+                <aside id="sidebar">Side Bar</aside>
+                <!-- 컨텐츠 영역 -->
+                <article id="content">Content</article>
+            </div> <!-- end of #wrap-->
+
+            <!-- 푸터 영역 -->
+            <footer id="footer">Footer</footer>
+        </div> <!-- end of #container, /#container-->
+    </body>
+</html>
