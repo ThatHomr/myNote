@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Example01 - rolling</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/dark.css">
+    <style>
+        #news-ticker {
+            width: 600px;
+            border: 10px solid gold;
+            margin: 0 auto;
+
+            /* #news-ticker 요소의 영역에 하나의 문구(li)만 */
+            /* 표시될 수 있도록 높이를 설정 */
+            height: 2em;
+
+            /* #news-ticker 요소의 영역에 표시된 li 요소를 */
+            /* 제외한 다른 요소들은 화면에 표시되지 않도록 */
+            /* 영역을 벗어난 부분을 숨겨야한다. */
+            overflow: hidden;
+        }
+        #news-ticker > ul {
+            position: relative;
+            top: 0;
+        }
+        #news-ticker > ul > li {
+            /* #news-ticker 요소의 영역에 하나의 요소만 보여질 수 있도록 */
+            /* #news-ticker 요소의 높이와 동일하게 설정 */
+            height: 2em;
+            line-height: 2em;
+            padding-left: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="gray-box">
+        <div id="news-ticker">
+            <ul>
+                <li>1. Time is gold.</li>
+                <li>2. No sweat, no sweet.</li>
+                <li>3. Asking costs nothing.</li>
+                <li>4. Step by step goes a long way.</li>
+                <li>5. You will never know until you try.</li>
+            </ul>
+        </div>
+    </div>
+    <script>
+
+        // 0. 요소 탐색 변수 선언
+        // 1. 일정 시간 마다(2초 마다)
+        // 2. #news-ticker 요소 내의 ul 요소를
+        //    #news-ticker 요소의 높이만큼 위로 이동
+        // 3. 마지막 문구가 보여지고 다시 첫 번째 문구부터
+        //    보여질 수 있도록 변수를 설정
+        //--------------------------------------------
+        
+        // 0. 요소 탐색 변수 선언
+        var newsComments = document.querySelector("#news-ticker > ul");
+        var commentCount = document.querySelectorAll("#news-ticker > ul > li").length;
+
+
+        var i = 0; // 인덱스 변수
+
+        // 1. 일정 시간 마다(2초 마다)
+        window.setInterval(function() { 
+
+            // 요소의 위치 이동
+            //  a. margin 속성
+            //  b. positoin 속성과 위치 속성
+            //  c. transform 속성의 translate 함수
+
+            // 2. #news-ticker 요소 내의 ul 요소를
+            //    #news-ticker 요소의 높이만큼 위로 이동
+            // margin-top : -2em, -4em, -6em, -8em, 0, -2em, -4em .... 
+            // newsComments.style.marginTop = (i * -2) + "em";
+            // newsComments.style.transform = "translateY(" + (i * -2) + "em";
+
+            // top : -100%, -200%, -300% -400%, 0, -100% ...
+            newsComments.style.top = (i * -100) + "%";
+
+            // 다음 문구가 보열질 수 있도록 인덱스를 증가
+            i++;
+
+            // 3. 마지막 문구가 보여지고 다시 첫 번째 문구부터
+            //    보여질 수 있도록 변수를 설정
+            // if(i >= commentCount) i = 0;
+            if (i >= newsComments.childElementCount) i = 0;
+            
+        }, 2000);
+
+
+    </script>
+</body>
+</html>

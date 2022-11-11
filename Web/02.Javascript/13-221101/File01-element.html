@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <title>JavaScript - element</title>
+        <link rel="stylesheet" href="../../css/reset.css">
+        <link rel="stylesheet" href="../../css/dark.css">
+        
+    </head>
+    <body>
+        <div id="container" class="gray-box"></div>
+        <script>
+            // HTML 요소의 생성과 연결(추가)
+
+            // 노드를 생성하기 위한 메서드
+            //  - document.createElement(tagName)   : 요소 노드를 생성
+            //  - document.createTextNode(text)     : 텍스트 노드를 생성
+            //  → 노드를 JavaScript 상에서만 생성할 뿐 화면에 바로 보여지지 않는다.
+            //    화면에 보여지려면 DOM(document object model)에 연결 되어야한다.
+
+            // 요소를 연결(추가)하기 위한 메서드
+            //  - element.appendChild(node) : element 객체의 마지막 자식 노드를 추가
+
+            // 요소를 추가하기 위한 다른 방법
+            //  document.writeln()
+            //   → 메서드가 호출된 시점에서 추가되기 때문에 특정 위치에 추가하기가 힘들다.
+            //  element.innerHTML = "<i>...</i>"
+            //   → 추가될 요소를 조작하기가 힘들다.
+            //----------------------------------------------------------------------
+            // #container 요소에 새로운 i 요소를 추가
+            
+            // 새로운 i 요소를 생성
+            var node = document.createElement("i");
+
+            // 텍스트 노드를 생성
+            var text = document.createTextNode("Hello Wolrd!");
+
+            // 새로운 i 요소 내에 텍스트 노드를 추가
+            node.appendChild(text);
+            node.style.fontSize = "italic";
+            node.style.color = "orange";
+
+            console.log(node);
+            
+            // #container 요소 내에 새로운 i 요소를 추가
+            var container = document.getElementById("container");
+            container.appendChild(node);
+
+            window.setTimeout (function() {
+                node.style.color = "yellowgreen";
+            }, 1000);
+
+            //------------------------------------------------------------
+            // HTML 요소의 복제(복사)
+            //  - element 객체를 복제하여 새로운 element 객체를 생성
+            //  - 복제된 요소는 새로운 요소이기 때문에 화면에 보여지지 않는다.
+
+            // 요소를 복제하기 위한 메서드
+            //  - element.cloneNode(deep)
+            //      deep : 하위 노드의 복제 여부
+            //          true  = 해당 노드, 속성, 하위 노드를 복제
+            //          false = 해당 노드, 속성을 복제(기본값)
+
+            var cloneNode = node.cloneNode();   // == false
+            var cloneNode = node.cloneNode(true);
+            console.log(cloneNode);
+
+            cloneNode.innerHTML += "/clone";
+
+            container.appendChild(cloneNode);
+            //---------------------------------------------------------------
+            // HTML 요소의 삭제
+            //  - element 객체 내의 자식 노드를 제거
+
+            // 요소를 삭제하기 위한 메서드
+            //  - element.removeChild(node)
+
+            container.removeChild(node);
+            
+
+        </script>
+    </body>
+</html>

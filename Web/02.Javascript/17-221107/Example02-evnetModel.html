@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <title>Example02 - event model</title>
+        <link rel="stylesheet" href="../../css/reset.css">
+        <link rel="stylesheet" href="../../css/dark.css">
+        <script>
+
+            window.addEventListener("load", function() {
+                // window 객체의 load 이벤트 핸들러
+
+                var hello = document.getElementById("hello");
+
+                window.addEventListener("click", function() { 
+                    // #hello 요소의 click 이벤트 핸들러
+
+                    this.style.opacity = 0;
+                    this.style.visibility = "hidden";
+                    this.style.transitionDuration = "1s";
+                    
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <!-- #hello 요소를 클릭하면 1초에 걸쳐 서서히 사라지도록 작성 -->
+        <!--  → head 태그 내에서 표준 이벤트 모델 방식으로 구현 -->
+        <h1 id="hello" class="gray-box">Hello World!</h1>
+
+    </body>
+</html>

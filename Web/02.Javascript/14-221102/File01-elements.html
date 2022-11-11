@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript - element</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/dark.css">
+    <style>
+        #list1 > li {
+            width: 100px;
+            height: 100px;
+            margin: 10px auto;
+            background-color: yellowgreen;
+            color: navy;
+            font-size: 2em;
+            text-align: center;
+            line-height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <ul id="list1" class="gray-box">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+
+    <script>
+        // HTML 요소의 이동
+        //  - 화면에 보여지는 요소(DOM 에 연결된 요소)를
+        //    특정 요소의 마지막 자식 요소로 이동
+        //  - 이동시킬 요소를 탐색하여
+        //    특정 요소의 마지막 자식 요소로 추가
+        //  → 추가될 때 탐색된 요소가 새롭게 생성되는 것이 아니라
+        //    마지막 자식 요소로 이동하게 된다.
+        //      ex) 강의실의 맨 앞에 있는 의자를 맨 뒤에 배치!
+        
+        // #list1 요소
+        var list1 = document.getElementById("list1");
+        
+        // #list1 요소의 첫 번째 자식 요소
+        var first = document.querySelector("#list1 > li:first-child");
+        
+        // 2초 뒤에 #list1 요소의 첫 번째 자식 요소를
+        // #list1 요소의 마지막 자식 요소로 이동
+        window.setTimeout(function() { 
+
+            list1.appendChild( first );
+
+        }, 2000);
+    </script>
+</body>
+</html>

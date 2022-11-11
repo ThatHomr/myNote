@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <title></title>
+        <link rel="stylesheet" href="../../css/reset.css">
+        <link rel="stylesheet" href="../../css/dark.css">
+        <style>
+            
+        </style>
+    </head>
+    <body>
+        <pre><script>
+            var kindOfDrink = ["Americano"];
+            kindOfDrink.push("Cafe Latte");
+            kindOfDrink.push("Cold brew");
+            kindOfDrink.push("Iced tea");
+            kindOfDrink.push("Milk tea");
+            kindOfDrink.push("Lemon tea");
+            kindOfDrink.push("Lemon ade");
+            kindOfDrink.push("Grapefruit ade");
+
+            var selected = 3;   // 사용자가 선택한 번호
+            document.writeln("tirth drink = " + kindOfDrink[selected - 1]);
+            // → 실 생활에서 사용되는 번호와 인덱스의 오차가 1이기 때문에
+            //   이를 맞춰야한다.
+
+            var selected = kindOfDrink.length;
+            document.writeln("last drink  = " + kindOfDrink[selected - 1]);
+
+        </script></pre>
+
+        <!-- li 요소와 같이 동일한 요소들을 JavaScript 에서 -->
+        <!-- 한 번에 다루기 위해 배열을 다룬다. -->
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <title>Example01</title>
+        <link rel="stylesheet" href="../../css/reset.css">
+        <link rel="stylesheet" href="../../css/dark.css">
+        <style>
+            
+        </style>
+    </head>
+    <body>
+        <pre><script>
+            // 자신의 나이가 20살 이상이고 25살 미만인지 출력
+            var age = 26;
+
+            document.writeln("20 <= age < 25 → " + ((age >= 20) && (age < 25)));
+            
+        </script></pre>
+
+        <pre><script>
+            // 변수 n1 의 값이 3의 배수인지 출력
+            var n1 = 13121;
+            var n1_1 = ((n1 % 3) == 0 ? "true" : "false"); 
+            document.writeln("n1이 3의 배수인가? >>> " + n1_1);
+
+        </script></pre>
+
+        <pre><script>
+            // 변수 n2 의 값이 50보다 큰 7의 배수인지 출력
+            var n2 = 77129;
+            var n2_1 = ((n2 > 50) && ((n2 % 7) == 0)) ? "true" : "false";
+            document.writeln("n2는 50보다 큰 7의 배수인가? >>> " + n2_1);
+
+        </script></pre>
+    </body>
+</html>

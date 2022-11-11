@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <title>Example - objext</title>
+        <link rel="stylesheet" href="../../css/reset.css">
+        <link rel="stylesheet" href="../../css/dark.css">
+        <style>
+            
+        </style>
+    </head>
+    <body>
+        <pre><script>
+            // 너비가 13, 높이 8 인 직사각형(rect)을 객체로 표현하고
+            // 객체에 넓이를 계산하여 반환하는 메서드를 추가
+
+            // 객체 : 특정 사물이나 대상을 표현하는 데이터 타입
+            
+            var rect = {
+                // 속성(property)
+                //  key : value
+                width : 13,
+                height : 8,
+
+                // 메서드(method)
+                //  - 익명 함수를 변수에 대입하여 사용하는 것처럼
+                //    익명 함수를 키(key)에 대입하여 함수처럼 사용
+                //  key : function() { }
+                getArea : function() {
+                    // 직사각형의 넓이를 구하여 반환
+
+                    // return width *height;
+                    // → 메서드에서 식별자만 작성되면 객체 내의 키(key)가 아닌
+                    //   객체 밨ㄲ의 식별자로 지정된다.
+
+                    // return rect.width *rect.height;
+                    // → 객체의 식별자를 통해 속성에 접근
+
+                    return this.width * this.height;
+                    // → this 키워드를 통해 해당 객체의 속성에 접근
+                    // → 식별자가 바뀌든, 사라지든 해당 객체의 속성에 접근하기 때문에
+                    //   가장 많이 사용되는 키워드
+
+                }
+            };
+
+            // rect.width = 13;
+            // rect.height = 8;
+
+            // rect.area = function(width, height) {
+            //     this.width = width;
+            //     this.height = height;
+            //     return (this.width * this.height);
+            // }
+
+            // rect.area = function() {
+            //     return (this.width * this.height);
+            // }
+
+            // document.writeln("width = " + rect.width);
+            // document.writeln("height = " + rect.height);
+            // document.writeln("area = " + rect.area());
+
+            document.writeln("area = " + getArea());
+        </script></pre>
+
+        <pre><script>
+            // 반지름이 9인 원(circle)을 객체로 생성
+            // 원의 둘레를 반환하는 메서드(getCircumference)와
+            // 원의 넓이를 반환하는 메서드(getArea)를 작성하고 출력
+
+            var circle = {
+                radious: 9,
+                PI : 3.14,
+
+                getCircumference : function () {
+                    return (2 * this.radious * this.PI)
+                },
+
+                getArea : function () {
+                    return (this.PI * this.radious)
+                }
+            };
+
+            document.writeln("원의 반지름 = " + circle.radious);
+            document.writeln("원의 둘레   = " + circle.getCircumference());
+            document.writeln("원의 넓이   = " + circle.getArea());
+        </script></pre>
+    </body>
+</html>

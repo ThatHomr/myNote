@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript - Event</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/dark.css">
+    <style>
+        #hello {margin-top: 1200px;}
+    </style>
+    <script>
+        window.addEventListener("load", function() {
+
+            // 브라우저에서 스크롤 이동이 되어지면
+            window.addEventListener("scroll", function() {
+                // 한 번 스크롤이 이동되면 
+                // 많은 scroll 이벤트가 발생한다.
+                console.log("scroll event!!");
+
+                // 브라우저의 스크롤된 값
+                console.log("scrollY : " +  this.scrollY);
+            });
+
+            // 스크롤된 값이 #hello 요소의 위치보다
+            // 크거나 같으면 배경 색을 'yellowgreen' 으로 설정
+            var hello = document.getElementById("hello");
+
+            // #hello 요소의 수직 위치
+            // var helloOffsetTop = hello.offsetTop;
+
+            window.addEventListener("scroll", function() {
+                // hello.offsetTop = #hello 요소의 수직 위치
+                /*
+                if(this.scrollY >= hello.offsetTop) {
+                    hello.style.backgroundColor = "yellowgreen";
+                    hello.style.color= "navy";
+                }
+                else {
+                    hello.removeAttribute("style");
+                }
+                */
+                //-------------------------------------------------
+                if(this.scrollY + this.innerHeight > hello.offsetTop + hello.offsetHeight) {
+                    hello.style.opacity = "1";
+                    hello.style.visibility = "visible";
+                    hello.style.transitionDuration = "1000ms";
+                }
+                else {
+                    hello.style.opacity = "0";
+                    hello.style.visibility = "hidden";
+                    hello.style.transitionDuration = "1000ms";
+                }
+            });
+
+
+            var loginForm = document.getElementById("login-form");
+            var account = document.getElementById("account");
+
+            account.addEventListener("blur", function() {
+                // 입력된 값 = value 속성
+                var length = this.value.length; // 입력된 값의 길이
+
+                if(length == 0) {
+                    this.style.border = "3px solid red";
+                }
+                else {
+                    this.style.border = "3px solid green";
+                }
+            });
+
+            loginForm.addEventListener("submit", function(event){
+                // form 요소 내에서 submit 버튼을 눌렀을 때 발생
+                //  form 요소의 기본 이벤트
+                //   - 요소 내의 입력된 값을 action 경로의 파일로 전달
+
+                var length = account.value.length;
+
+                if(length <= 6) { // 6글자 이하인 경우
+                    window.alert("계정의 길이가 짧습니다.");
+                    // 기본 이벤트를 제거
+                    event.preventDefault();
+                }
+            });
+
+        });
+    </script>
+</head>
+<body>
+    <h1 id="hello" class="gray-box">Hello World!</h1>
+    <div class="gray-box">
+        <form action="../" id="login-form">
+            <input type="text" name="account" id="account" placeholder="account" autocomplete="off">
+            <button type="submit">LOG IN</button>
+        </form>
+    </div>
+</body>
+</html>

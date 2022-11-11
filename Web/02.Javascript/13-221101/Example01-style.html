@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <title>Example01 - style</title>
+        <link rel="stylesheet" href="../../css/reset.css">
+        <link rel="stylesheet" href="../../css/dark.css">
+        <style>
+            
+        </style>
+    </head>
+    <body>
+        
+        <ul id="favorites" class="gray-box">
+            <li>Coffee</li> <!-- 2초 뒤에 글자 색을 빨간색 -->
+            <li>Milk</li>   <!-- 4초 뒤에 글자 색을 파란색 -->
+            <li>Juice</li>  <!-- 6초 뒤에 글자 색을 초록색 -->
+        </ul>
+        <script>
+            // #favorites 요소 내의 li 요소를 탐색
+            var favorites = document.querySelectorAll("#favorites > li");
+            // 각 요소마다 설정할 글자 색을 저장한 배열
+            var colors = ["red", "bule", "green"];
+            // 타이머 함수 내에서 사용할 인덱스 변수
+            var i = 0;
+
+            // 2초 마다 동작하는 타이머를 등록
+            var timerId = window.setInterval(function() {
+
+                // 요소의 글자 색을 설정
+                // → 배열에는 style 속성(property)이 없기 때문에
+                //   인덱스를 통해 요소에 접근하여 스타일을 조작
+                favorites[i].style.colors = colors[i];
+                // = i 번째 요소의 스타일 속성 중 color 속성의 값을 설정
+
+                // 다음 요소의 글자 색을 다음 색으로 
+                // 설정될 수 있도록 인덱스를 증가
+                i++;
+
+                // 요소의 글자 색을 설정하는 타이머이기 때문에
+                // 요소의 수 만큼만 동작하면 된다.
+                // 따라서 요소의 수만큼 동작하고
+                // 타이머가 해제될 수 있도록 해야한다.
+                if (i >= favorites.length)
+                    window.clearInterval(timerId);
+
+            }, 2000);
+        </script>
+
+        <h1 id="time" class="gray-box">Time is gold.</h1>
+        <script>
+            // 3초 뒤에 #time 요소가 화면에 보여지지 않도록
+            // 코드를 작성
+
+            // #time 요소 탐색
+            var time = document.getElementById("time");
+
+            // 3초 뒤에 동작하는 타이머를 등록
+            window.setTimeout(function() {
+
+                // #time 요소가 화면에 보이지 않도록 설정
+                //  1. display 속성
+                //      : 요소가 화면에 표시되는 형식을 설정
+                //  2. visibility 속성
+                //      : 요소의 가시성을 설정
+                //  3. opacity 속성
+                //      : 요소의 투명도를 설정
+                //  4. 크기 관련 속성
+                //      : 요소의 크기 또는 영역의 크기를 설정
+
+                // time.style.display = "none";
+                //----------------------------------------
+                time.style.visibility = "hidden";
+                //----------------------------------------
+                // time.style.opacity = 0;
+                //----------------------------------------
+                // time.style.width = 0;
+                // time.style.height = 0;
+                // time.style.padding = 0;
+                // time.style.margin = 0;
+                // time.style.fontSize = 0;
+
+            }, 3000);
+
+        </script>
+        <h1 id="cost" class="gray-box">Asking costs nothing.</h1>
+        <script>
+            // 3초 뒤에 #cost 요소가 1초에 걸쳐 화면에서
+            // 점점 흐려지면서 사라지도록 코드를 작성
+
+            // #cost 요소 탐색
+            var cost = document.getElementById("cost");
+
+            // 요소가 서서히 사라질 수 있도록
+            // 스타일 속성을 설정하기 위한 객체
+            var fadeOut = {
+                visibility: "hidden",
+                opacity: 0,
+                transitionDuration: "1s"
+            }
+
+            // 3초 뒤에 동작할 타이머를 등록
+            window.setTimeout(function() {
+
+                // cost.style.visibility = "hidden";
+                // cost.style.opacity = 0;
+                // cost.style.transitionDuration = "1s";
+                //--------------------------------------
+                // style 속성 내에 정의된 스타일 속성을
+                // 인덱스 연산자를 통해 지정할 수 있다.
+                // cost.style["visibility"] = "hidden";
+                // cost.style["opacity"] = 0;
+                // cost.style["transitionDuration"] = "1s";
+                //--------------------------------------
+                // 선언된 객체를 통해 스타일을 조작
+                for(var property in fadeOut) {
+                    // 객체 fadeOut 에 선언된 키(key) 값이
+                    // 변수 property 에 문자열 형식으로 대입
+                    cost.style[property] = fadeOut[property];
+                    // cost.style["visibility"] = fadeOut["visibility"];
+                    // cost.style["opacity"] = fadeOut["opacity"];
+                    // cost.style["transitionDuration"] = fadeOut["transitionDuration"];
+                    
+                }
+
+            }, 3000);
+
+            
+        </script>
+    </body>
+</html>

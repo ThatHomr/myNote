@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <title>JavaScript - Condition</title>
+        <link rel="stylesheet" href="../../css/reset.css">
+        <link rel="stylesheet" href="../../css/dark.css">
+        <style>
+            
+        </style>
+    </head>
+    <body>
+        <pre><script>
+            // 조건 연산자(Conditional Operator)
+            //  - 조건식의 결과(true, false)에 따른 표현식을 반환하는 연산자
+            //  - 항이 3개인 삼항 연산자
+            //  - 표현식
+            //      조건식 ? true 일 때 반환할 표현식 : false 일 때 반환할 표현식
+            
+            // 시험 점수의 컷트라인이 80점이다.
+            // 한 학생이 통과했는지 출력
+            //  score >= 80  → true, false
+            //               → Pass, Fail
+
+            var score = 75;
+            var isPass = score >= 80;
+            document.writeln("Pass Status : " + isPass);
+
+            // true  → "Pass"
+            // false → "Fail"
+            var passStatus = (score >= 80) ? "Pass" : "Fail";
+            document.writeln("Pass status : " + passStatus);
+
+        </script></pre>
+
+        <pre><script>
+            // n1 의 값이 짝수이면 "even number" 를 출력하고
+            // 그렇지 않으면 "odd number" 를 출력
+
+            var n1 = 0;
+
+            var result1 = (n1 % 2 == 0) ? "even number" : "odd number";
+
+            document.writeln("n1 is " + result1 + ".");
+        </script></pre>
+
+        <pre><script>
+            // n2 의 값이 3의 배수이거나 7의 배수이면 "Wonderful Day!"를 출력하고
+            // 그렇지 않으면 "Beatiful Day!" 를 출력
+
+            var n2 = 2;
+
+            var result2 = ((n2 % 3 == 0) || (n2 % 7 == 0)) ? "Wonderful Day!" : "Beautiful Day!";
+
+            document.writeln("result >>> " + result2 + ".");
+        </script></pre>
+
+        <pre><script>
+            // 제어 문(Control Statement)
+            //  - 프로그램의 흐름을 제어하는 구문
+            //  - 일반적으로 프로그램의 흐름은 작성된 코드대로 실행
+            //  - 종류
+            //      조건 문 : 조건에 따라 흐름을 제어
+            //      반복 문 : 횟수, 조건에 따라 반복 제어
+            //  - 제어문 뒤에는 제어할 명령어 또는 블록 하나만 작성
+            //    제어할 명령어가 2개 이상이면 블록으로 작성
+            //      → 블록 = 다수의 명령어를 감싸는 영역(중괄호, {})
+            //--------------------------------------------------------
+
+            // 조건 문(Conditional Statement)
+            //  - 조건에 따라 코드가 수행되도록 제어하는 구문
+            //  - 종류
+            //      단순 if 문
+            //      if - else 문
+            //      if - else if 문
+            //      switch 문
+            //---------------------------------------------------------
+
+            // 단순 if 문
+            //  - 특정 조건을 만족하는 경우에만 코드를 수행시킬 때 사용
+            //  - 조건을 만족하지 않으면 코드를 수행하지 않고 넘어간다.
+
+            var a = 10;
+
+            // 만약 a 가 10 보다 크면 "a 가 10 보다 큽니다. " 를 출력
+            if (a > 10) {
+                // if 의 조건식이 true 일 때 수행하는 블록(영역)
+                document.writeln("a = " + a);
+                document.writeln("a 가 10보다 큽니다.");
+            }
+            
+            document.write("<hr>");
+
+            // if - else 문
+            //  - 조건의 결과에 따라 수행할 코드를 수행시킬 때 사용
+            //  - 단순 if 문에서 else 구문이 추가된 형태이며
+            //    else 구문은 반드시 if 문 다음에 작성이 되어야한다.
+            //  - else 구문에는 절대 조건식을 작성하지 않는다.
+            //      → 위의 if 문의 조건식의 결과가 false 일 때 수행되는 구문이기 때문
+            //  - 조건 연산자와의 차이점
+            //      조건 연산자 : 조건 결과에 따라 값(표현식)을 결정
+            //      조건 문     : 조건 결과에 따라 수행할 명령어를 결정
+
+            // 만약 a 가 10 보다 크면 "a 가 10 보다 큽니다. " 를 출력
+            // 그렇지 않으면 "a 가 10 보다 크지 않습니다."
+            if (a > 10) {
+                document.writeln("a 가 10 보다 큽니다.")
+            }
+            else {
+                // 위의 if 문의 조건이 false 일 때 수행
+                document.writeln("a 가 10 보다 크지 않습니다.")
+            }
+
+            document.write("<hr>");
+
+            // if - else if 문
+            //  - 다수의 조건의 결과에 따라 코드를 수행하기 위해 사용
+            //  - 조건식을 작성할 수 없는 else 구문에
+            //    조건식을 작성하기 위해 if 구문을 추가한 형태
+            //      → else + if()
+            //  - else if 문의 제한 수는 없다.
+            //  - 마지막에는 else 구문을 선택적으로 작성할 수 있다.
+            //      → else 구문의 역할 = 모든 조건이 false 인 경우
+
+            // a 가 10 보다 크면 "a 가 10 보다 큽니다. " 를 출력
+            // a 가 10 보다 작으면 "a 가 10 보다 작습니다. " 를 출력
+            // a 가 10 과 같으면 "a 가 10 과 같습니다." 를 출력
+            if (a > 10) {   // a 가 10 보다 크면
+                document.writeln("a 가 10 보다 큽니다.");
+            }
+            else if (a < 10) {  // 그렇지 않고 a 가 10 보다 작으면
+                document.writeln("a 가 10 보다 작습니다.");
+            }
+            else {  // a 가 10 과 같으면
+                document.writeln("a 가 10 과 같습니다.");
+            }
+
+
+        </script></pre>
+
+        <pre><script>
+            // n3 의 값이 짝수인지 홀수인지 if 문으로 출력
+
+            var n3 = 11;
+
+            if (n3 % 2 == 0) document.writeln("n3 is even number!");
+            else document.writeln("n3 is odd number!");
+
+        </script></pre>
+
+        <pre><script>
+            // n4 의 값이 10 미만이거나 50 이상이면 "Have a nice day!" 를 출력하고
+            // 그렇지 않으면 "Nice to meet you!" 를 출력되도록 조건문을 작성
+
+            var n4 = 40;
+
+            if ((n4 < 10) || (n4 >= 50)) document.writeln("Have a nice day!");
+            else document.writeln("Nice to meet you!");
+
+        </script></pre>
+
+        <pre><script>
+            // n5 의 값이 양수인지 음수인지 0 인지 출력
+            //  양수(Positive number) : 0 보다 큰 수
+            //  음수(Nagative number) : 0 보다 작은 수
+
+            var n5 = 0;
+
+            if (n5 > 0) {
+                document.writeln("n5 is Positive number!");
+            }
+            else if (n5 < 0) {
+                document.writeln("n5 is Nagative number!");
+            }
+            else {  // 0 보다 크지도 작지도 않으면 같은 경우 뿐이다.
+                // = else if (n5 == 0)
+                document.writeln("n5 is Zero!");
+            }
+
+        </script></pre>
+    </body>
+</html>

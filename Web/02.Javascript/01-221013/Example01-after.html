@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <title></title>
+        <link rel="stylesheet" href="../../css/reset.css">
+        <style>
+            /* 가상 요소 */
+            /*  문서에 작성되지 않은 가상의 요소 */
+            
+            /* before, after 선택자 */
+            /*  - 요소의 컨텐츠를 만들기 위한 요소 */
+            /*  - 기본 형식 = inline */
+            
+            #container::before {
+                content: "Before";
+            }
+            #container::after {
+                content: "After";
+            }
+        </style>
+    </head>
+    <body>
+        <div id="container">
+
+            Container
+
+        </div>
+    </body>
+</html>

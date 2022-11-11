@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <title>JavaScript - window</title>
+        <link rel="stylesheet" href="../../css/reset.css">
+        <link rel="stylesheet" href="../../css/dark.css">
+        <style>
+            
+        </style>
+    </head>
+    <body>
+        <pre><script>
+            // window 객체
+            //  - 브라우저 객체 모델(Browser Object Medel; BOM)에서 최상위 객체
+            //  - 브라우저를 표현한 객체
+            
+            // window 객체의 속성
+            document.writeln("window.innerWidth  = " + window.innerWidth);
+            document.writeln("window.innerHeight = " + window.innerHeight);
+            document.writeln("window.outerWidth  = " + window.outerWidth);
+            document.writeln("window.outerHeight = " + window.outerHeight);
+            document.writeln("window.scrollY = " + window.scrollY);
+        </script></pre>
+
+        <script>
+            // window 객체의 타이머 관련 메서드
+            
+            // 타이머 등록 메서드
+            //  - setTimeout(function, mills)
+            //      : 일정 시간 '뒤에' 지정된 기능을 수행하는 타이머를 등록
+            //      : 메서드의 결과 값은 등록된 타이머의 ID(type:number)
+            //  - setInterval(function, mills)
+            //      : 일정 시간 '마다' 지정된 기능을 수행하는 타이머를 등록
+            //      : 메서드의 결과 값은 등록된 타이머의 ID(type:number)
+
+            // 타이머 해제 메서드
+            //  - clearTimeout(timerID)
+            //      : setTimeout() 메서드로 등록된 타이머를 해제
+            //  - clearInterval(timerID)
+            //      : setInterval() 메서드로 등록된 타이머를 해제
+            //--------------------------------------------------------------
+
+            // 타이머에 의해 수행될 함수
+            function timerHandler() {
+                console.log("Timer: Hello World!");
+            }
+
+            console.log("BEFORE : setTimeout()");
+            
+            // setTimeout 메서드
+            //  - 일정 시간 뒤에 기능을 딱 한 번 수행하는 타이머를 등록 
+            window.setTimeout(timerHandler, 2000);
+            // = 2초(2000ms) 뒤에 timerHandler 함수를 수행하는 타이머를 등록
+            // → 타이머가 수행할 함수의 코드를 넘겨야하기 때문에
+            //   함수의 식별자만 작성을 해야한다.
+            // → 해당 메서드는 타이머를 등록만 할 뿐이기 때문에
+            //   기능을 수행할 때 까지 멈추는 것이 아니라
+            //   그 다음 명령어들을 바로 수행한다.
+            
+            console.log("AFTER : setTimeout()");
+            </script>
+
+        <script>
+            function timerHandler2() {
+                console.log("Timer: Have a nice day!");
+            }
+
+            console.log("BEFORE : setTimeout()");
+
+            // setInterval 메서드
+            //  - 일정 시간 마다 기능을 반복적으로 실행하는 타이머를 등록
+            // window.setInterval(timerHandler2, 2000);
+            // = 2초(2000ms) 마다 timerHandler2 함수를 수행하는 타이머를 등록
+
+            console.log("AFTER : setTimeout()");
+        </script>
+
+        <script>
+
+            var value = 1;
+
+            function printValue() {
+                // 함수 내에서는 함수 밖에 선언된 변수에 접근이 가능하며
+                // 다른 값으로 설정할 수 도 있다.
+                console.log("Timer: value = " + value);
+                value += 2; // value = value + 2
+            }
+
+            // 2초 마다 printValue 함수를 수행하는 타이머를 등록
+            // window.setInterval(printValue, 2000);
+
+            // 타이머에 등록할 함수를 미리 선언하여 등록시킬 수 있지만
+            // 타이머에서만 사용된다면 불필요한 과정이다.
+            // 타이머에서만 사용되는 함수라면 익명 함수로 
+            // 바로 전달시켜서 사용 할 수 있다.
+            // window.setInterval(function() { } , 2000);
+            // → 타이머 등록 메서드의 첫번째 매개변수에 함수의 코드가 전달 된다.
+            // → 매개변수로 함수를 호출하기 때문에 함수의 식별자가 필요없다.
+
+            // 2초마다 변수 value 의 값을 출력하고 1씩 증가시키는 타이머를 등록
+            window.setInterval(function() { 
+                // 2초 마다 수행하는 함수
+                console.log("New Timer: value = " + value);
+                value++;
+            }, 2000);
+
+            console.log("Default: value = " + value);
+        </script>
+
+        <script>
+            // clearInterval 메서드
+            //  - setInterval 메서드로 등록된 타이머를 해제
+            //  - 해제할 타이머의 ID 가 필요
+            //      → 타이머의 ID = 타이머를 등록할 때 반환되는 값
+            
+            var count = 0;
+
+            // 타이머를 등록하고 타이머의 ID를 반환받아 저장
+
+            var timerID = window.setInterval(function() { 
+
+                console.log(count + " : Nice to meet you!");
+
+                count++;
+
+                // 변수 count 의 값이 바뀔 때마다 검사하여
+                // 조건을 만족하는 경우에 타이머를 해제
+                if (count == 5) 
+                    window.clearInterval(timerID);
+                
+            }, 2000);
+
+            console.log("timerID = " + timerID);
+
+            // window.clearInterval(timerID);
+            // → 해제할 타이머의 ID 를 매개변수로 전달
+            // → 등록하자마자 해제되기 때문에 한 번도 실행하지 않게 된다.
+
+            // 위의 타이머가 다섯 번 실행하고 종료가 될 수 있도록 코드를 작성
+
+            if (count > 5) {
+                window.clearInterval(timerID);
+            }
+        </script>
+    </body>
+</html>

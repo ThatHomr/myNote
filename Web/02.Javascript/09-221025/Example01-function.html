@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <title>Example01 - function</title>
+        <link rel="stylesheet" href="../../css/reset.css">
+        <link rel="stylesheet" href="../../css/dark.css">
+        <style>
+            
+        </style>
+    </head>
+    <body>
+        <pre><script>
+            // 두 수를 매개변수로 받아 
+            // 평균을 계산해 반환하는 함수 선언
+            function getAverage(score1, score2) {
+                return (score1 + score2) / 2;
+            }
+
+            var avg1 = getAverage(10, 40);
+            document.writeln("avg1 = " + avg1);
+            
+            var avg2 = getAverage(33, 20);
+            document.writeln("avg2 = " + avg2);
+
+        </script></pre>
+
+        <pre><script>
+            // 두 수를 매개변수로 받아서
+            // 두 수 중에서 큰 값을 반환하는 함수를 정의
+
+            function max(n1, n2) {
+                return n1 > n2 ? n1 : n2;
+            }
+
+            document.writeln("max = " + max(10, 20));
+            document.writeln("max = " + max(30, 20));
+
+        </script></pre>
+    </body>
+</html>

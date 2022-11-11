@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript - element</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/dark.css">
+</head>
+<body>
+    <h1 id="hello" class="gray-box header">Hello World!</h1>
+    <script>
+        // HTML 요소  = HTML element
+        // HTML 속성  = HTML attribute
+        // CSS 속성   = CSS property
+        // 객체의 속성 = property of object
+
+        // HTML 요소의 속성 조작
+        //  - HTML 요소의 속성을 반환하거나 설정
+        //  - 종류
+        //      element.getAttribute(attrName)
+        //        : HTML 속성 값을 반환하는 메서드
+        //      element.setAttribute(attrName, value)
+        //        : HTML 속성 값을 설정하는 메서드
+
+
+        // #hello 요소 탐색
+        var hello = document.getElementById("hello");
+
+        // #hello 요소의 class 속성 값을 반환
+        var className = hello.getAttribute("class");
+        console.log("className of #hello : " + className);
+
+        // #hello 요소의 title 속성을 "Header Tag 1" 로 설정
+        hello.setAttribute("title", "Header Tag 1");
+
+        // style 속성(attribute)을 통해 인라인 스타일을 설정
+        hello.setAttribute("style", "color:yellowgreen;");
+    </script>
+
+    <div class="gray-box">
+        <a href="https://www.google.com" id="search-engine">Search Engine</a>
+    </div>
+    <script>
+        // #search-engine 요소의 href 속성의 값을
+        // "https://www.naver.com" 로 변경되도록 코드를 작성
+
+        // 1. #search-engine 요소 탐색
+        var searchEngine = document.getElementById("search-engine");
+
+        // 2. #search-engine 요소의 href 속성 값을 설정
+        searchEngine.setAttribute("href", "https://www.naver.com");
+    </script>
+    <hr>
+
+    <h1 id="hello2" class="gray-box">Hello JavaScript!</h1>
+    <script>
+        // HTML 요소의 스타일 조작
+        //  - setAttribute() 메서드를 통해 인라인 스타일을 조작하는데는 한계가 있다.
+        //  - element 객체의 style 속성(property) 을 이용하여
+        //    HTML 요소의 style 속성(attribute)을 조작
+        //     → element.style 을 통해 요소의 인라인 스타일을 조작
+        //     → 스타일 시트는 조작할 수 없다. 즉, 반환과 설정이 불가능하다.
+        //  - element.style 내에는 스타일 속성들이 이미 정의가 되어있으며
+        //    해당 스타일 속성을 통해 인라인 스타일을 설정
+
+        // #hello2 요소 탐색
+        var hello2 = document.getElementById("hello2");
+
+        // #hello2 요소의 글자 색을 "yellowgreen" 으로 설정
+        hello2.style.color = "yellowgreen";
+
+        // #hello2 요소의 배경 색을 "navy" 로 설정
+        //  - CSS 속성 중 하이픈(-)을 포함한 속성은
+        //    JavaScript 의 식별자 형태로 작성
+        hello2.style.backgroundColor = "navy";
+    </script>
+
+    <h1 id="nice" class="gray-box">Nice to meet you!</h1>
+    <script>
+        // 3초 뒤에 #nice 요소의 글자 색을 "navy"로 설정하고
+        // 배경색을 "yellowgreen" 으로 설정되도록 작성
+
+        // #nice 요소를 탐색
+        var nice = document.getElementById("nice");
+
+        // 3초 뒤에 동작하는 타이머를 등록
+        window.setTimeout(function() { 
+
+            // #nice 요소의 글자색을 설정
+            nice.style.color = "navy";
+
+            // #nice 요소의 배경색을 설정
+            nice.style.backgroundColor = "yellowgreen";
+
+        }, 3000);
+    </script>
+
+    <h1 id="time" class="gray-box">Time is gold.</h1>
+    <script>
+        // #time 요소의 글자 색상을 2초 마다
+        //  빨강(red), 파랑(navy), 초록(yellowgreen), 노랑(gold)
+        // 순으로 반복적으로 바뀌도록 작성
+        //  2s = 빨강
+        //  4s = 파랑
+        //  6s = 초록
+        //  8s = 노랑
+        // 10s = 빨강
+        // 12s = 파랑
+        // ... 
+
+        // #time 요소 탐색
+        var time = document.getElementById("time");
+
+        // 요소의 글자 색으로 설정할 속성 값들을 저장한 배열
+        var colors = ["red", "navy", "yellowgreen", "gold"];
+
+        // 인덱스 변수
+        var i = 0;
+
+        // 2초 마다 동작하는 타이머를 등록
+        window.setInterval(function() { 
+
+            // #time 요소의 글자 색을 설정
+            time.style.color = colors[i];
+
+            // 다음 함수에서 다음 색상이 설정될 수 있도록
+            // 인덱스를 증가
+            i++;
+
+            // 마지막 색상을 설정한 다음
+            // 다시 첫 번째 색상부터 설정될 수 있도록
+            // 인덱스를 0 으로 설정
+            if(i >= colors.length) i = 0;
+        }, 2000);
+    </script>
+
+    <ul id="list1" class="gray-box">
+        <li class="item">Item A</li>
+        <li class="item">Item B</li>
+        <li class="item">Item C</li>
+        <li class="item">Item D</li>
+    </ul>
+    <ul id="list2" class="gray-box">
+        <li class="item">Item E</li>
+    </ul>
+    <script>
+        // 다수의 요소들의 스타일 조작
+
+        // 다수의 요소들을 탐색하기 위해서는
+        //  속성(attribute), 태그를 기준으로 탐색하는 메서드와
+        //  선택자를 통해 탐색하는 메서드
+
+        // class 속성 값이 'item' 인 요소
+        var items = document.getElementsByClassName("item");
+
+        // #list1 요소 내의 li 요소
+        var items = document.querySelectorAll("#list1 > li");
+
+        // 다수의 요소들을 탐색하는 메서드들은
+        // 다수의 요소(element)들을 포함하는 배열로 반환
+        //  element 객체를 포함하는 배열과 element 객체는 전혀 다른 데이터
+        //  element 객체를 포함하는 배열에는 style 속성(property)이 없다.
+        //   → items.style.color = "red"; // 적용되지 않는다.
+     
+        // 각 요소의 스타일을 조작하려면
+        // 배열에 저장된 요소에 각각 접근해야한다.
+        // → 각 요소에 접근하기 위해 인덱스를 이용
+        items[0].style.color = "red";
+
+        for(var j = 0; j < items.length; j++) {
+            items[j].style.color="yellowgreen";
+        }
+        
+        window.setTimeout(function() { 
+            for(var j = 0; j < items.length; j++) {
+                items[j].style.color = "gold";
+            }
+        }, 2000);
+
+
+    </script>
+
+</body>
+</html>

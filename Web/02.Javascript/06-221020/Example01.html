@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <title></title>
+        <link rel="stylesheet" href="../../css/reset.css">
+        <link rel="stylesheet" href="../../css/dark.css">
+        <style>
+            
+        </style>
+    </head>
+    <body>
+        <pre><script>
+            // n1 과 n2 에 저장된 값 중 큰 값과 작은 값을 각각 출력
+            
+            var n1 = 15;
+            var n2 = 20;
+
+            // var max = (n1 > n2) ? n1 : n2;
+            // var min = (n1 < n2) ? n1 : n2;
+            var max = 0;
+            var min = 0;
+
+            if (n1 > n2) {
+                max = n1;
+                min = n2;
+            }
+            else {
+                max = n2;
+                min = n1;
+            }
+
+            document.writeln("n1 = " + n1 + ", n2 = " + n2);
+            document.writeln("max = " + max);
+            document.writeln("min = " + min);
+            
+            
+        </script></pre>
+
+        <pre><script>
+            // n3 의 값이 짝수인지 홀수인지 0 인지 출력
+
+            var n3 = 0;
+
+            if (n3 == 0) {
+                document.writeln("n3 is zero");
+            }
+            else if (n3 % 2 == 0) {
+                document.writeln("n3 is even number!");
+            }
+            else {
+                document.writeln("n3 is odd number!");
+            }
+        </script></pre>
+
+        <pre><script>
+            // n4 의 값을 3 으로 나눈 나머지가
+            //  0 이면 "color::yellowgreen;" 을 출력
+            //  1 이면 "clor:buleviolet;" 을 출력
+            //  2 이면 "color:orange;" 를 출력하는
+            // 프로그램 작성
+
+            var n4 = 7;
+            var style;
+            if (n4 % 3 == 0) {
+                document.writeln("color:yellowgreen;");
+                style = "color:yellowgreen;";
+            }
+            else if (n4 % 3 == 1) {
+                document.writeln("color:buleviolet;");
+                style = "color:blueviolet;";
+            }
+            else if (n4 % 3 == 2) {
+                document.writeln("color:orange;");
+                style = "color:orange;";
+            }
+
+            document.write("<hr>");
+            document.writeln("<span style = '" + style + "''>Hello JavaScript!</span>");
+        </script></pre>
+
+        <pre><script>
+            // n5 의 값이
+            //  3의 배수이면 "Fizz"
+            //  5의 배수이면 "Buzz"
+            //  3의 배수이면서 5의 배수이면 "FizzBuzz"
+            //  그 외의 수이면 n5 의 값을 출력
+
+            var n5 = 11;
+
+            if ((n5 % 3 == 0) && (n5 % 5 == 0)) {
+                document.writeln("FizzBuzz");
+            }
+            else if (n5 % 3 == 0) {
+                document.writeln("Fizz");
+            }
+            else if (n5 % 5 == 0) {
+                document.writeln("Buzz");
+            }
+            else {
+                document.writeln(n5);
+            }
+            
+        </script></pre>
+    </body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <title>JavaScript - Event Model</title>
+        <link rel="stylesheet" href="../../css/reset.css">
+        <link rel="stylesheet" href="../../css/dark.css">
+        <style>
+            
+        </style>
+        <script>
+            // 이벤트 모델
+            //  - 이벤트가 발생 가능한 객체와 이벤트가 발생했을 때 수행될 함수(핸들러)를
+            //    연결하기 위한 방식을 의미
+            //  - 이벤트 모델의 종류
+            //      - 고전 이벤트 모델
+            //          : 객체의 이벤트 속성(property)에 이벤트 핸들러를 대입하는 방식
+            //          : 이벤트 속성은 하나이기 때문에 하나의 핸들러만 대입된다.
+            //      - 인라인 이벤트 모델
+            //          : HTML 요소에 이벤트 속성(attribute)에 이벤트 핸들러를 호출하는 방식
+            //      - 표준 이벤트 모델
+            //          : 웹 표준을 만드는 W3C 에서 공식적으로 지정한 이벤트 모델
+            //          : 객체의 메서드를 통해 이벤트 리스너를 연결하는 방식
+            //          : 이벤트 갭처링(capturing)을 지원
+            //          : 이벤트 리스터(Event Listener)
+            //              → 특정 이벤트가 발생했을 때 수행될 함수를 연결시키기 위한 매개체
+            //              → 객체에 이벤트 리스너를 추가하고 객체에 이벤트가 발생하면
+            //                이벤트 리스너 내에 있는 함수가 수행된다.
+            //              → 동일한 이벤트에 다수의 핸들러가 연결될 수 있기 때문에
+            //                동일한 이벤트더라도 여러 함수가 수행될 수 있다.
+            //          : 관련 메서드
+            //              - 이벤트 리스너 연결 메서드
+            //                  object.addEventListener(eventName, handler [, useCapture])
+            //              - 이벤트 리스너 해제 메서드
+            //                  object.removeEventListener(enventName, handler [, useCapture])
+            //              - 매개변수
+            //                  evnetName   : 이벤트의 이름(type:string)
+            //                  handler     : 이벤트의 핸들러(type:function)
+            //                  useCapture  : 캡처링 적용 여부(type:bool)
+            //----------------------------------------------------------------------------------------
+
+            function inlineEventHandler() {
+                console.log("Event Handler Call!!!");
+                // this.style.color = "red"; 오류 발생
+            }
+            //-----------------------------------------------------------
+            // 고전 이벤트 모델
+            window.onload = function() { }
+            
+            // 표준 이벤트 모델
+            window.addEventListener("load", function() {
+                // window 객체의 load 이벤트 핸들러
+                var hello2 = document.getElementById("hello2");
+
+                hello2.addEventListener("click", function() {
+                    // this = 자기 자신 = 이벤트가 발생한 객체
+                    this.style.color = "red";
+                });
+
+                // 동일한 이벤트 핸들러를 여러 개 추가할 수 있다.
+                hello2.addEventListener("click", function() {
+                    this.style.backgroundColor = "yellowgreen";
+                });
+
+                hello2.addEventListener("mouseenter", function() { 
+                    // #hello2 요소의 영역에 마우스 포인터가
+                    // 들어갔을 때 발생하는 이벤트
+
+                    this.style.color = "yellowgreen";
+                });
+
+                hello2.addEventListener("mouseleave", function() { 
+                    // #hello2 요소의 영역에 마우스 포인터가
+                    // 빠져나왔을 때 발생하는 이벤트
+
+                    this.removeAttribute("style");
+                });
+
+            })
+
+
+        </script>
+    </head>
+    <body>
+        <!-- 인라인 이벤트 모델 -->
+        <h1 id="hello1" class="gray-box" onclick="inlineEventHandler">Hello World!</h1>
+
+        <h1 id="hello2" class="gray-box">Hello JavaScript</h1>
+    </body>
+</html>

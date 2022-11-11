@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Example01 - document, element</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/dark.css">
+</head>
+<body>
+    <h1 id="hello" class="gray-box">Hello World!</h1>
+    <script>
+        // 3초 뒤에 #hello 요소의 내부 문자에
+        // " Hello JavaScript!" 가 추가되도록 작성
+        // <h1 id="hello" class="gray-box">Hello World! Hello JavaScript!</h1>
+
+        // 1. 요소 탐색 및 변수 선언
+
+        //  - HTML 속성, 태그를 통해 탐색하는 메서드
+        var hello = document.getElementById("hello");
+
+        //  - 선택자를 통해 탐색하는 메서드
+        var hello = document.querySelector("#hello");
+
+        // 2. 3초 뒤에 동작하는 타이머를 등록
+        window.setTimeout(function() {   // → 3초 뒤에 동작하는 함수
+        //window.setInterval(function() {     // → 3초 마다 동작하는 함수
+
+            // 2-1. #hello 요소의 내부 문자에 새로운 내부 문자를 추가
+            //      = 기존 내부 문자 + 새로운 내부 문자
+            //hello.innerHTML = hello.innerHTML + "<br>Hello JavaScript!";
+            // → 대입 연산자와 연결 연산자의 좌측 피 연산자가 같기 때문에
+            //   복합 대입 연산자로 작성할 수 있다.
+            hello.innerHTML += "<br>Hello JavaScript!";
+            // → 복합 대입 연산자를 통해 기존 내부 문자 다음에
+            //   새로운 내부 문자를 추가할 수 있다.
+
+
+        }, 3000);
+
+    </script>
+</body>
+</html>

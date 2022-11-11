@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <title>Example01 - element</title>
+        <link rel="stylesheet" href="../../css/reset.css">
+        <link rel="stylesheet" href="../../css/dark.css">
+        <style>
+            
+        </style>
+        <script>
+            // 클릭한 항목의 글자 색을 빨간색으로 변경
+            // 클릭한 항목의 이전 항목의 글자 색을 초록으로 변경
+            // 클릭한 항목의 다음 항목의 글자 색을 파랑으로 변경
+            // 이전 형제 요소 : previousElementSibling
+            // 다음 형제 요소 : nextElementSibling
+
+            // head 태그 내에서 요소를 바로 탐색하고 조작할 수 없다.
+            // → 아직 body 요소 내의 요소들이 DOM 에 생성되지 않았다.
+
+            window.onload = function() {
+                // window 객체의 load 이벤트 핸들러
+                //  → 브라우저가 HTML 문서를 모두 읽었을 때 발생하는 이벤트
+                //  → 브라우저가 HTML 문서를 모두 읽었기 때문에
+                //    모든 요소가 DOM 에 생성되어 구축이 끝난 시점이다.
+                //  → DOM 의 구축이 끝났으니 문서의 모든 요소에 접근할 수 있다.
+                //------------------------------------------------------------
+
+                // #courses 요소 내의 li 요소들 탐색
+                var courses = document.querySelectorAll("#courses > li");
+                // → li 요소들이 저장되어있는 배열
+                // → 이벤트 속성은 객체에 정의되어있기 때문에
+                //   배열로는 바로 설정이 불가능하다.
+                //      courses.onclick = fuction() { }; // 설정 불가능
+                // → 배열 내에 원소에 접근하여 이벤트 속성을 사용
+                //      courses[0].onclick = function() { };
+
+                function clickEventHandler () {
+
+
+                    // this = 자기자신 = 이벤트가 발생한 요소
+
+                    // 클릭된 항목의 내부 문자
+                    console.log("clicked : " + this.innerHTML);
+
+                    // 클릭된 항목의 스타일을 설정하기 전에
+                    // 기존에 클릭된 항목의 스타일을 제거하기 위해
+                    // 모든 항목의 style 속성을 제거
+                    for (var i = 0; i <courses.length; i++) {
+                        courses[i].removeAttribute("style");
+                    }
+
+
+                    // 클릭된 항목의 클자 색상을 빨강으로
+                    this.style.color = "red";
+
+                    // 클릭된 항목의 이전 항목의 클자 색상을 초록으로
+                    var prev = this.previousElementSibling; // 이전 형제 요소
+
+                    // 첫 번째 항목을 클릭한 경우 이전 항목이 없기 때문에
+                    // 스타일 조작을 할 수 없다.
+                    if(prev) prev.style.color = "yellowgreen";
+                    // → prev 에 저장된 요소가 있으면 true 이기 때문에 스타일이 설정되고
+                    //   prev 에 저장된 요소가 없으면 false 이기 때문에 코
+                    else courses[courses.length - 1].style.color = "yellowgreen";
+
+                    // 클릭된 항목의 다음 항목의 글자 색상을 파랑으로 설정
+                    var next = this.nextElementSibling;     // 다음 형제 요소
+                    if(next) next.style.color = "blue";
+                    else courses[0].style.color = "blue";
+                }
+
+                for(var i = 0; i < courses.length; i++) {
+                    courses[i].onclick = clickEventHandler;
+                }
+            }
+
+        </script>
+    </head>
+    <body>
+        <div class="gray-box">
+            <ul id="courses">
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
+                <li>jQuery</li>
+                <li>Portfolio</li>
+            </ul>
+        </div>
+    </body>
+</html>

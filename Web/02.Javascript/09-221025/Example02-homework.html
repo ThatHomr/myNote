@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <title>Example - objext</title>
+        <link rel="stylesheet" href="../../css/reset.css">
+        <link rel="stylesheet" href="../../css/dark.css">
+        <style>
+            
+        </style>
+    </head>
+    <body>
+        <pre><script>
+            // 너비가 13, 높이 8 인 직사각형(rect)을 객체로 표현하고
+            // 객체에 넓이를 계산하여 반환하는 메서드를 추가
+            var rect = {};
+
+            rect.width = 13;
+            rect.height = 8;
+
+            rect.area = function(width, height) {
+                this.width = width;
+                this.height = height;
+                return (this.width * this.height);
+            }
+
+            rect.area = function() {
+                return (this.width * this.height);
+            }
+
+            document.writeln("rect.area() = " + rect.area());
+        </script></pre>
+    </body>
+</html>

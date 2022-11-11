@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <title>JavaScript - fonction</title>
+        <link rel="stylesheet" href="../../css/reset.css">
+        <link rel="stylesheet" href="../../css/dark.css">
+        <style>
+            
+        </style>
+    </head>
+    <body>
+        <pre><script>
+            // 일반 함수와 익명 함수
+
+            printHello();
+
+            // 일반 함수
+            //  - 일반 함수로 선언된 함수는 어디서든 호출이 가능
+            //  - 즉, 함수 정의 전에도 호출이 가능
+            function printHello() {
+                document.writeln("Hello World!");
+            }
+            // 함수의 식별자와 함수 호출 연산자를 통해
+            // 함수를 호출
+            printHello();
+
+            // 익명 함수(anonymous function)
+            //  - 함수의 식별자가 없는 함수
+            //  - 함수의 식별자가 없기 때문에 호출이 불가능
+            //  → 변수(또는 매개변수)에 대입해서 사용
+            //  → 함수의 매개변수에 전달할 때 or 객체의 메서드로 정의할 때
+            
+            // 익명 함수는 애초에 변수에 저장되기 때문에
+            // 변수 선언전에는 사용할 수 없다.
+            // printNice();
+
+            var printNice = function () {
+                document.writeln("Have a nice day!");
+            }
+
+            // 변수 식별자와 함수 호출 연산자를 통해
+            // 함수를 호출
+            printNice();
+
+        </script></pre>
+
+        <pre><script>
+            // 일반 변수와 함수 내에 선언된 변수
+
+            // 함수 밖에 선언된 변수
+            var value1 = 10;
+            var value2 = 10;
+            var value3 = 10;
+
+            function printValue() {
+                // 함수 내에서 함수 밖에 선언된 변수를 사용
+                document.writeln("inside value1 = " + value1);
+
+                // 함수 내에서 함수 밖에 선언된 변수를 사용할 수 있기 때문에
+                // 다른 값으로 설정이 가능
+                value2 = 300;
+                document.writeln("inside value2 = " + value2);
+
+                // 함수 밖에 선언된 변수와 동일한 식별자로 변수를 선언
+                //  - 함수 내에서 변수를 선언하면 해당 함수에서만
+                //    사용할 수 있는 변수가 생성된다.
+                //  - 함수 밖의 변수에는 영향이 없다.
+                var value3 = 500;
+                document.writeln("inside value3 = " + value3);
+                
+                // 함수 내에서만 선언된 변수
+                //  - 함수 내에서만 선언된 변수의 식별자이므로
+                //    함수 밖에서는 사용할 수 없다.
+                var value4 = 400;
+                document.writeln("inside value4 = " + value4);
+
+            }
+
+            // printValue();
+
+            value1 = 200;
+            printValue();
+            document.write("<hr>");
+            document.writeln("outside value2 = " + value2);
+            document.writeln("outside value3 = " + value3);
+            // document.writeln("outside value4 = " + value4);
+            // → 선언된 변수가 없으므로 오류가 발생
+            
+
+        </script></pre>
+    </body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <title>JavaScript - function</title>
+        <link rel="stylesheet" href="../../css/reset.css">
+        <link rel="stylesheet" href="../../css/dark.css">
+        <style>
+            
+        </style>
+    </head>
+    <body>
+        <pre><script>
+            // 함수(function)
+            //  - 입력을 받아 연산/처리를 하고 결과를 반환하는 코드들의 집합
+            //  - 여러 군데에서 중복된 코드(기능)을 하나의 집합으로 표현
+            //  - 관련 용어
+            //      함수 정의(function definition)
+            //          : 프로그램에서 사용할 함수를 정의(선언)하는 것
+            //          : function 키워드를 통해 함수를 작성
+            //      함수 이름(dunction name, 식별자)
+            //          : 함수의 기능을 표현하기 위한 이름
+            //          :  function 키워드 다음 작성
+            //      매개변수(parameter)
+            //          : 함수에 전달되는 값(인자 값)을 저장하기 위한 변수
+            //          : 함수에 전달될 값의 개수에 따라 매개변수의 개수도 정해진다.
+            //      인자(argument)
+            //          : 함수를 호출(사용)할 때 전달되는 값
+            //      반환 값(return value)
+            //          : 함수의 결과 값
+            //          : 함수가 종료되고 호출한 곳으로 되돌아갈 때 전달되는 값
+            //          : return 키워드 다음에 작성
+            //      함수 호출(function call)
+            //          : 정의된 함수를 사용하는 것을 의미
+            //          : 함수의 식별자와 함께 함수 호출 연산자(소괄호)를 지정하고
+            //            매개변수의 개수에 따라 인자 값을 작성
+            //          : 함수를 호출하면 프로그램의 흐름이 함수가 정의된 곳으로 이동
+            //            함수가 끝나면 함수를 호출한 곳으로 되돌아간다.(return)
+            
+
+            // 함수 정의
+            //  - "Hello World!" 를 출력하는 함수
+            function hello(){
+                document.writeln("Hello World!");
+            }
+
+            // document.writeln("Hello World!");
+            hello();    // 함수 호출
+
+            //...
+
+            // 함수의 재호출
+            //  - 반복문은 유사한 로직을 연달아서 실행할 때 사용
+            //  - 함수는 필요한 곳마다 여러 군데에서 실행할 때 사용
+            // document.writeln("Hello World!");
+            hello();    // 함수 호출
+
+            //...
+
+            // 함수 호출 연산자 없이 함수 식별자만 있으면
+            // 함수는 실행하지 않는다.
+            hello;
+
+            document.writeln( hello );
+
+        </script></pre>
+
+        <pre><script>
+            // 자신의 이름을 출력하는 printName 함수를 정의하고
+            // printName 함수를 호출하여 이름을 출력
+            
+            // 함수 정의
+            function printName() {
+                document.writeln("my name is 박성준.");
+            }
+
+            // 함수 호출
+            printName();
+
+        </script></pre>
+
+        <pre><script>
+            // // "김철수" 를 출력하는 함수
+            // function printName2 () {
+            //     document.writeln("my name is 김철수.");
+            // }
+            // printName2();
+
+            // // "이영수" 를 출력하는 함수
+            // function printName3 () {
+            //     document.writeln("my name is 이영수.");
+            // }
+            // printName3();
+
+            // 매개변수(parameter)와 인자(argument)
+            //  매개변수
+            //    - 함수에 필요한 데이터를 전달 받기 위한 변수
+            //    - 함수를 정의할 때 식별자 다음에 작성
+            //    - 필요한 데이터의 수만큼 쉼표를 구분으로 나열
+            //  인자
+            //    - 함수를 호출할 때 전달되는 값
+            //    - 매개변수의 개수에 맞춰 작성
+            //    - 매개변수의 순서와 인자의 순서에 맞게 작성
+
+            function printName(name) {
+                // 매개변수 name
+                //  - 외부로부터 이름을 받아 오기 위한 매개변수
+
+                document.writeln("my name is " + name + ".");
+            }
+
+            function printNameAndAge(name, age) {
+                document.writeln("my name is " + name + ".");
+                document.writeln("my age is " + age + ".");
+            }
+
+            printName("김철수");
+            printName("이영수");
+            printNameAndAge("홍길동", 21);
+
+        </script></pre>
+
+        <pre><script>
+            // 함수의 반환 값(return value)
+            //  - 함수의 결과 값
+            //  - 함수가 종료되면서 호출한 곳으로 되돌아갈 때 전달되는 값
+            //  - 함수 호출 표현식의 결과 값으로 사용된다.
+
+            // f(x) = x + 10
+            function f(x) {
+                return x + 10;
+                // → 연산자를 포함한 표현식을 작성할 수 있다.
+                // → 표현셕의 결과 값이 전달된다.
+            }
+
+            var value = f(10);
+            // var value = 20;
+            document.writeln("value = " + value);
+            
+            document.writeln("f(5) = " + f(5));
+            // document.writeln("f(5) = " + 15);
+            // document.writeln("f(5) = 15");
+
+            document.writeln("f(7) + f(11) = " + (f(7) + f(11)));
+            // document.writeln("f(7) + f(11) = " + (17 + 21));
+            // document.writeln("f(7) + f(11) = " + (38));
+            // document.writeln("f(7) + f(11) = 38");
+
+        </script></pre>
+
+        <pre><script>
+            // 두 수를 매개변수로 받아 평균을 계산해 반환하는 함수 선언
+            function getAverage(score1, score2) {
+                return (score1 + score2) / 2;
+            }
+
+            var avg1 = getAverage(10, 40);
+            var avg2 = getAverage(33, 20);
+
+            document.writeln(avg1);
+            document.writeln(avg2);
+        </script></pre>
+    </body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <title>JavaScript - break, continue</title>
+        <link rel="stylesheet" href="../../css/reset.css">
+        <link rel="stylesheet" href="../../css/dark.css">
+        <style>
+            
+        </style>
+    </head>
+    <body>
+        <pre><script>
+            // 반복문의 흐름을 제어하는 제어문
+            //  - 기존의 제어문과 달리 반복문의 흐름을 제어
+            //  - 반복문은 조건을 만족하는 무조건 반복 수행
+            //      → 반복문 수행 도중에 원하는 결과를 얻어
+            //        더 이상 반복문을 수행할 필요가 없는 경우가 발생
+            //      → 조건을 검사하는 위치가 고정이기 때문에
+            //        원하는 흐름으로 코드를 작성하기가 깔끔하지 않다.
+            //  - 종류
+            //      break       : 반복문을 탈출(종료)
+            //      continue    : 반복 수행 중인 블록을 종료 = 블록 내에 남은 코드를 넘어간다.
+            //                  : 다음 반복으로 바로 넘어간다.
+
+            var numbers = [4, 30, 45, 12, 7, 17, 5, 3, 1, 16];
+
+            // 사용자가 입력한 값이 배열에 저장되어있는지 탐색을 하자!
+            var search = 7; // 가정 : 사용자가 입력한 값
+
+            for (var i = 0; i < numbers.length && search != numbers[i-1]; i++) {
+                document.writeln("searching...");
+
+                if(search == numbers[i]) {
+                    document.writeln("Complete");
+                    document.writeln("index of " + search + " = " + i);
+                }
+            }
+            document.write("<hr>");
+            for (var i = 0; i < numbers.length; i++) {
+                document.writeln("searching...");
+
+                if(search == numbers[i]) {
+                    document.writeln("Complete");
+                    document.writeln("index of " + search + " = " + i);
+
+                    // 반복문의 목표를 이뤘기 때문에 더 이상 반복문을 수행할 필요가 없다.
+                    // 따라서 반복문을 즉시 종료
+                    break;  // 반복문을 종료
+                }
+
+
+            }
+
+            document.write("<hr>");
+
+            for (var i = 0; i < numbers.length; i++) {
+                document.writeln("searching...");
+
+                // 찾고자하는 값이 다르면 바로 다음 값이랑 비교하기 위해
+                // 다음 반복으로 넘어가자!
+                if(search != numbers[i]) 
+                    continue;   // 반복 후 작업으로 넘어간다.
+                
+                document.writeln("Complete");
+                document.writeln("index of " + search + " = " + i);
+    
+                // 반복문의 목표를 이뤘기 때문에 더 이상 반복문을 수행할 필요가 없다.
+                // 따라서 반복문을 즉시 종료
+                break;  // 반복문을 종료
+            }
+
+        </script></pre>
+    </body>
+</html>

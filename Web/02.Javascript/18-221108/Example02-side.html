@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exapmle02 - slide</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/dark.css">
+    <style>
+        #container {
+            /* 하나의 이미지가 보여지도록 크기를 설정 */
+            /* 높이는 해상도에 맞춰 설정하기 위해 지정 X */
+            width: 1000px;
+            border: 10px solid white;
+            margin: 0 auto;
+
+            overflow: hidden;
+        }
+
+        #container > ul {
+            /* float 속성을 가진 모든 li 요소들이 */
+            /* 나열 될 수 있도록 충분한 너비를 설정 */
+
+            /* (화면에 보여질 이미지의 너비) * (이미지의 수) */
+            /*  = 800px * 5 */
+            width: 4000px;
+
+            /* width 속성의 백분율 기준 = 상위 요소의 크기 */
+            /*  상위 요소의 너비의 다섯 배 */
+            width: 500%;
+
+            position: relative;
+            top: 0;
+            left: 0;
+        }
+
+        #container > ul > li {
+            /* 모든 항목들이 나열 될 수 있도록 float 속성을 설정 */
+            float: left;
+
+            /* img 요소는 기본적으로 이미지 원본의 크기를 가지며 */
+            /* float 속성이 설정된 요소는 컨텐츠 만큼의 크기를 갖는다. */
+
+            /* ul 요소 내에 모든 li 요소들이니 나란히 배치될 수 있도록 */
+            /* 너비를 균등하게 설정 */
+            /*   100% / (이미지의 수) */
+            width: 20%; 
+        }
+
+        #container > ul > li > img {
+            /* 이미지의 원본 크기로 보여지기 때문에 */
+            /* #container 요소의 맞춰 출력되지 않는다. */
+
+            /* 상위 요소인 li 요소의 너비에 맞춰 설정 */
+            width: 100%;
+
+            /* inline-block 형식인 img 요소를 */
+            /* block 형식으로 설정 */
+            display: block;
+        }
+    </style>
+    <script>
+
+        window.addEventListener("load", function() {
+            // window 객체의 load 이벤트 핸들러
+
+            // 0. 요소 탐색 및 변수 선언
+            // 1. 일정 시간 마다
+            // 2. #container 요소 내의 ul 요소를
+            //    #container 요소의 너비만큼 왼쪽으로 천천히 이동
+            // 3. ul 요소의 움직임이 끝나면
+            // 3-1. ul 요소의 첫 번째 자식 요소를
+            //      ul 요소의 마지막 자식 요소로 이동
+            // 3-2. ul 요소의 style 속성 제거
+            // 4. #container 요소의 영역에 마우스 포인터가 들어가면
+            // 4-1. ul 요소가 움직이지 않도록 한다.
+            // 5. #container 요소의 영역에서 마우스 포인터가 빠져나오면
+            // 5-1. ul 요소가 다시 움직이도록 한다.
+            //-----------------------------------------------------------
+            // 0. 요소 탐색 및 변수 선언
+            var container = document.getElementById("container");
+            var imgList = document.querySelector("#container > ul");
+            var delay = 3000;
+            var duration = 800;
+            var timerId = 0;
+
+            function nextImageSlide() {
+                // 2. #container 요소 내의 ul 요소를
+                //    #container 요소의 너비만큼 왼쪽으로 천천히 이동
+                imgList.style.left="-100%";
+                imgList.style.transitionDuration = duration+"ms";
+
+                // 3. ul 요소의 움직임이 끝나면
+                window.setTimeout(function() { 
+                    // 3-1. ul 요소의 첫 번째 자식 요소를
+                    //      ul 요소의 마지막 자식 요소로 이동
+                    imgList.appendChild(imgList.firstElementChild);
+                    
+                    // 3-2. ul 요소의 style 속성 제거
+                    imgList.removeAttribute("style");
+
+                }, duration);
+            }
+
+            // 1. 일정 시간 마다
+            timerId = window.setInterval(nextImageSlide, delay);
+           
+            // 4. #container 요소의 영역에 마우스 포인터가 들어가면
+            container.addEventListener("mouseenter", function() {
+                // 4-1. ul 요소가 움직이지 않도록 한다.
+                window.clearInterval(timerId);
+            });
+
+            // 5. #container 요소의 영역에서 마우스 포인터가 빠져나오면
+            container.addEventListener("mouseleave", function() {
+                // 5-1. ul 요소가 다시 움직이도록 한다.
+                timerId = window.setInterval(nextImageSlide, delay);
+            });
+
+        });
+
+    </script>
+</head>
+<body>
+    <div class="gray-box">
+        <div id="container">
+            <ul>
+                <li><img src="../../images/slide-11.png" alt="photo"></li>
+                <li><img src="../../images/slide-12.png" alt="photo"></li>
+                <li><img src="../../images/slide-13.png" alt="photo"></li>
+                <li><img src="../../images/slide-14.png" alt="photo"></li>
+                <li><img src="../../images/slide-15.png" alt="photo"></li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

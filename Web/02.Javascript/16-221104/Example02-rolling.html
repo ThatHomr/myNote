@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <title>Example02 - rolling</title>
+        <link rel="stylesheet" href="../../css/reset.css">
+        <link rel="stylesheet" href="../../css/dark.css">
+        <style>
+        #news-ticker {
+            width: 600px;
+            height: 2em;
+            border: 10px solid gold;
+            margin: 0 auto;
+
+            overflow: hidden;
+        }
+
+        #news-ticker > ul {
+            /* 모든 li 요소들이 나란히 배치될 수 있도록 */
+            /* 충분한 너비를 설정 */
+            width: 500%; 
+
+            position: relative;
+            top: 0;
+            left: 0;
+        }
+
+        #news-ticker > ul > li {
+            /* 모든 li 요소들을 나란히 나열하여 배치*/ 
+            float: left;
+
+            /* 모든 li 요소들이 균등한 너비를 */
+            /* 가질 수 있도록 설정 */
+            width: 600px;
+            width: 20%;
+            height: 2em;
+            line-height: 2em;
+            padding: 0 1rem;
+            box-sizing: border-box;
+
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        </style>
+    </head>
+    <body>
+        <div class="gray-box">
+            <div id="news-ticker">
+                <ul>
+                    <li>1. Donec euismod sapien vel ante congue posuere.</li>
+                    <li>2. Duis euismod quam et erat pharetra dictum.</li>
+                    <li>3. Maecenas sed nibh posuere, eleifend sem sit amet, eleifend augue.</li>
+                    <li>4. Mauris et tellus ac sem facilisis faucibus rutrum nec neque.</li>
+                    <li>5. In sed arcu sit amet odio tempus rhoncus ac a turpis.</li>
+                </ul>
+            </div> <!-- end of #news-ticker -->
+        </div> <!-- end of .gray-box -->
+        <script>
+            // 0. 요소 탐색 및 변수 선언
+        // 1. #news-ticker 요소를 클릭하면
+        // 2. #news-ticker 요소 내의 ul 요소를
+        //    #news-ticker 요소의 높이만큼 위로 이동
+        // 3. ul 요소의 움직임이 끝나면
+        // 3-1. ul 요소의 첫번째 자식 요소를
+        //      ul 요소의 마지막 자식 요소로 이동
+        // 3-2. ul 요소를 원래 위치로 이동시키기 위해
+        //      style 속성 제거
+        //--------------------------------------------
+        // 0. 요소 탐색 및 변수 선언
+        var newsTicker = document.getElementById("news-ticker");
+        var newsComments = document.querySelector("#news-ticker > ul");
+        var duration = 600;
+
+        // 1. #news-ticker 요소를 클릭하면
+        newsTicker.onclick = function() {
+            // #news-ticker 요소의 클릭 이벤트의 핸들러
+            //  → #news-ticker 요소를 클릭했을 때 수행하는 함수
+
+            // 2. #news-ticker 요소 내의 ul 요소를
+            //    #news-ticker 요소의 높이만큼 위로 이동
+            newsComments.style.left ="-100%";
+            newsComments.style.transitionDuration = duration+"ms";
+
+            // 3. ul 요소의 움직임이 끝나면
+            window.setTimeout(function() { 
+                // 3-1. ul 요소의 첫번째 자식 요소를
+                //      ul 요소의 마지막 자식 요소로 이동
+                newsComments.appendChild(newsComments.firstElementChild);
+                // 3-2. ul 요소를 원래 위치로 이동시키기 위해
+                //      style 속성 제거
+                newsComments.removeAttribute("style");
+            }, duration);
+        }
+        
+        </script>
+    </body>
+</html>

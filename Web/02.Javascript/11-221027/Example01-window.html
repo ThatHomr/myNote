@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Example01 - window</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/dark.css">
+</head>
+
+<body>
+    <!-- 
+    <script>
+
+        // 5개의 문구를 console 창에 2초 마다 하나씩 출력하는 타이머를 등록
+        // 이때 마지막 문구를 출력하고 첫 번째 문구부터 출력되도록 작성
+
+        // 5개의 문구를 저장하는 배열
+        var message = [
+            "Time is gold.",
+            "No sweat, no sweet.",
+            "Asking costs nothing.",
+            "Step by step goes a long way.",
+            "You will never know until you try."
+        ];
+
+        //---------------------------------------------------------------
+        /*
+        // 반복문은 명령어(코드)를 연속해서 반복 수행하기 위한 제어문
+        for(var i = 0; i < message.length; i++) {
+            console.log((i + 1) + ". " + message[i]);
+        }
+        
+        //---------------------------------------------------------------
+        // 타이머의 함수는 2초마다 호출되어 실행하고
+        // 함수 내의 반복문을 함수가 호출될 때마다 5번 반복 수행하게된다.
+        // → 2초마다 1~5번 문구를 한 번에 출력
+        window.setInterval(function() { 
+            
+            for(var i = 0; i < message.length; i++) {
+                console.log((i + 1) + ". " + message[i]);
+            }
+            
+        }, 2000);
+        
+        //---------------------------------------------------------------
+        // setInerval() 와 setTimeout() 는 타이머를 등록하는 메서드이며
+        // 반복문 내에 작성하게 되면 한 번에 다수의 타이머가 등록된다.
+        // → 만약 모두 동일한 시간을 지정하게되면 모두 동일한 시간대에 동작된다.
+        for (var i = 0; i < message.length; i++) {
+
+            // 2초 마다 5개의 타이머가 동시에 수행하게된다.
+            // 이때 같은 경우에는 setInterval() 메서드는 맞지는 않다.
+            // window.setInterval(function() { }, 2000);
+
+            // 1. 2초 뒤에 5개의 타이머가 동시에 수행하게 된다.
+            // 2. 반복문의 변수 i 를 타이머의 함수 내에서 사용할 경우
+            //    코드 상의 값이 아니라 함수가 실행하는 당시의 변수에 저장된 값을 사용
+            window.setTimeout(function() { 
+
+                console.log((i + 1) + ". " + message[i]);
+
+            }, 2000);
+        }
+        */
+        //---------------------------------------------------------------
+        var i = 0;
+
+        window.setInterval(function() { 
+            // i 번째 문구 출력
+            console.log((i+1) + ". " + message[i]);
+
+            // 그 다음 문구를 출력하기 위해 i 의 값을 증가
+            i++;
+
+            // 마지막 문구를 출력하고 다시 첫 번째 문구부터
+            // 출력될 수 있도록 변수 i 의 값을 검사하고 재 설정
+            if(i == message.length) i = 0;
+        }, 2000);
+
+    </script>
+     -->
+
+    <script>
+        // 5개의 문구를 console 창에 2초 마다 하나씩 출력하는 타이머를 등록
+        // 마지막 문구를 출력하고 타이머가 해제되도록 작성
+
+        // 5개의 문구를 저장하는 배열
+        var message = [
+            "Time is gold.",
+            "No sweat, no sweet.",
+            "Asking costs nothing.",
+            "Step by step goes a long way.",
+            "You will never know until you try."
+        ];
+
+        var i = 0;
+        var timerId = window.setInterval(function() { 
+            console.log((i + 1) + ". " + message[i]);
+
+            i++;
+
+            // 마지막 문구까지 출력하고 더 이상 출력되지 않도록
+            // 타이머를 해제
+            // → 타이머를 해제하기 위해서는 해제할 타어머의 ID 가 필요
+            // → 타이머 등록 메서드의 반환 값
+            if(i == message.length) 
+                window.clearInterval(timerId);
+        }, 2000);
+    </script>
+</body>
+
+</html>

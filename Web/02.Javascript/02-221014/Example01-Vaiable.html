@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <title>Example01 - Variable</title>
+        <link rel="stylesheet" href="../../css/reset.css">
+        <link rel="stylesheet" href="../../css/dark.css">
+        
+    </head>
+    <body>
+        <pre><script>
+            // 반지름이 9인 원의 둘레와 넓이를 구한 다음
+            // 출력하는 JavaScript 프로그램을 작성
+            //  - 반지름, 둘레, 넓이를 저장하는 변수를 이용
+            
+            // 반지름을 저장하기 위한 변수
+            var radious = 9;
+
+            // 원주율을 저장하기 위한 상수
+            const PI = 3.14;
+            
+            // 원의 둘레를 저장하기 위한 변수
+            var circumference = 2 * radious * PI;
+
+            // 원의 넓이를 저장하기 위한 변수
+            var area = radious * radious * PI;
+
+            //출력
+            document.writeln("radious = " + radious);
+            document.writeln("circumference = " + circumference);
+            document.writeln("area = " + area);
+            
+            document.write("<hr>");
+            
+            // 반지름의 값을 다른 값으로 설정
+            //  → 반지름이 바뀌더라도 둘레와 넓이는 이미 저장된 값이기 때문에
+            //    기존 값에서 다른 값으로 바뀌지 않는다.
+            //  → 반지름을 통해 연산을 한 둘레와 넓이는
+            //    반지름이 다른 값으로 설정 됐다면 다시 연산하여 저장해야한다.
+            radius = 5;
+
+            //바뀐 반지름을 통해 둘레와 넓이를 연산
+            circumference = 2 * radious * PI;
+            area = radious * radious * PI;
+            
+            document.writeln("radious = " + radious);
+            document.writeln("circumference = " + circumference.toFixed(2));
+            // .toFixed(2) → 소수 둘째자리까지 반올림
+            document.writeln("area = " + area);
+
+        </script></pre>
+    </body>
+</html>

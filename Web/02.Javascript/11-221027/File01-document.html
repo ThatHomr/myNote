@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript - document, element</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/dark.css">
+    <style>
+        i { font-style: italic; }
+    </style>
+</head>
+<body>
+    <!-- JavaScript 에서 조작할 요소(element) -->
+    <h1 id="hello" class="gray-box">Hello World!</h1>
+    <h1 id="nice" class="gray-box">Nice to meet you!</h1>
+
+    <script>
+        // id 속성이 "hello" 인 요소(#hello)의 내부 문자를
+        // "Hello JavaScript!" 로 설정
+        // → 1. DOM 내의 요소(element)를 조작하려면 
+        //      가장 먼저 탐색부터 해야한다.
+        //   2. 탐색한 element 객체의 innerHTML 속성을 통해
+        //      내부 문자를 설정
+
+        // 1. id 속성을 통해 element 객체를 탐색하여 반환
+        var hello = document.getElementById("hello");
+        // = 변수 hello 에는 #hello 요소를 표현하는
+        //   element 객체가 저장된다.
+
+        // #hello 요소를 출력
+        console.log(hello);
+
+        // #hello 요소의 내부 문자를 출력
+        console.log("hello.innerHTML = " + hello.innerHTML);
+        
+        // #hello 요소의 내부 문자를 설정
+        // 이때 내부 문자를 HTML 형식으로 마크업하기 때문에
+        // 태그를 추가할 수 있다.
+        hello.innerHTML = "<i>Hello JavaScript!</i>";
+        console.log("hello.innerHTML = " + hello.innerHTML);
+
+
+        // 2. class 속성을 통해 element 객체가 저장된 배열을 탐색
+        //   → class 속성은 다수의 요소에 중복으로 설정이 가능하기 때문에
+        //     다수의 요소가 탐색될 수 있다.
+        //   → 따라서 다수의 요소를 반환하기 위해 배열로 저장해서 반환
+        var grayBox = document.getElementsByClassName("gray-box");
+
+        // .gray-box 요소 출력
+        //  → 배열로 반환되기 때문에 배열로 출력된다.
+        //  → element 객체가 배열 안에 저장되기 때문에
+        //    요소를 조작하려면 인덱스를 지정하거나,
+        //    요소의 id 속성을 지정하면 된다.
+        console.log(grayBox);
+        console.log(grayBox[0]);        // 인덱스가 0에 위치한 element 객체
+        console.log(grayBox["hello"]);  // id 속성이 "hello" 인 element 객체
+
+        // 내부 문자 출력
+        console.log("grayBox[0].innerHTML = " + grayBox[0].innerHTML);
+
+        // 내부 문자 설정
+        grayBox[0].innerHTML = "<i>Have a nice day!</i>";
+    </script>
+
+</body>
+</html>

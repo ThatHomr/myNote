@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <title>JavaScript - Operator</title>
+        <link rel="stylesheet" href="../../css/reset.css">
+        <link rel="stylesheet" href="../../css/dark.css">
+        <style>
+            
+        </style>
+    </head>
+    <body>
+        <pre><script>
+            // 연산자(Operator)
+            //  - 연산을 나타내기 위한 문자(기호)
+            //  - 값을 만들어내는 표현식을 만들 때 사용
+            //  - 연산자마다의 표현식(문법)이 있다.
+            //      더하기 연산자(+)의 표현식 : 숫자 + 숫자
+
+            // 산술 연산자
+            //  - 사칙 연산을 하기 위한 연산자
+            //  - 종류
+            //      + : 덧셈 연산자
+            //      - : 뺄셈 연산자
+            //      * : 곱셈 연산자
+            //      / : 나눗셈 연산자
+            //      % : 나머지 연산자
+
+            var n1 = 10, n2 = 7;
+            document.writeln("n1 + n2 = " + (n1 + n2));
+            document.writeln("n1 - n2 = " + (n1 - n2));
+            document.writeln("n1 * n2 = " + (n1 * n2));
+            document.writeln("n1 / n2 = " + (n1 / n2)); // 실수
+            // = 1.4285714285714286
+            document.writeln("n1 / n2 = " + parseInt(n1 / n2)); // 정수
+            // = 1
+            // - parseInt() 함수 = 정수형 데이터로 변환시키는 함수
+            document.writeln("n1 % n2 = " + (n1 % n2));
+
+            // 나누기 관련 연산자의 활용
+            //  - 단위 변환
+            //      : 1521g → 1.521kg or 1kg 521g
+            //      : 이 외에, 길이, 속도, 환율, 시간 등....
+            //  - 배수 확인
+            //      : n 의 배수 = n*1, n*2, n*3 .....
+            //                 = n 으로 나누어 떨어지는 수
+            //                 = n 으로 나누었을 때 나머지가 0 인 수
+            //  - 그룹 관리
+            //      : 152개의 글을 게시판 테이블에 출력할 때
+            //        한 페이지에 10개의 글을 출력한다면
+            //        총 페이지 수와 마지막 페이지의 글 수
+        </script></pre>
+
+        <pre><script>
+            // 대입 연산자
+            //  - 저장 공간에 데이터를 저장하기 위한 연산자
+            //  - 종류
+            //      대입 연산자
+            //          : 저장 공간에 데이터를 저장하는 연산자
+            //      복합 대입 연산자
+            //          : 대입 연산자와 다른 연산자를 합친 연산자
+            //          : 대입 연산과 다른 연산을 같이 수행
+            //          : 대입 연산자의 좌측 변수와 다른 연산자의 좌측 변수가
+            //            동일한 변수일 때만 복합 대입 연산자로 작성할 수 있다.
+            //              뺄셈, 나눗셈, 나머지 연산자는 항의 위치에 따라
+            //              값이 달라지기 때문에 주의 해야한다.
+            //          : 산술 연산자 모두 복합 대입 연산자로 사용 가능하다.
+
+            document.writeln("대입 연산자 / 복합 대입 연산자");
+
+            var n3 = 0;
+            document.writeln("n3 = " + n3);
+            // n3 의 값을 5만큼 증가
+            n3 = n3 + 5;
+            // n3 = 0 + 5;
+            // n3 = 5;
+            document.writeln("n3 = " + n3);
+            
+            // n3 = n3 + 5;
+            n3 += 5;    // n3 의 값을 5 만큼 증가
+            document.writeln("n3 = " + n3);
+
+            n3 += 5;
+            document.writeln("n3 = " + n3);
+
+            </script></pre>
+
+            <pre><script>
+                // 증감 연산자
+                //  - 저장 공간에 저장된 값을 1 만큼 증가 또는 감소시키는 연산자
+                //  - 저장 공간만 지정하면 되기 때문에 항이 하나만 있으면 된다.
+                //      = 단항 연산자
+                //  - 연산자의 종류
+                //      ++ 연산자 : 1 만큼 증가
+                //      -- 연산자 : 1 만큼 감소
+                //  - 표현식
+                //      - 전위 증감(prefix) : ++a, --a
+                //      - 후위 증감(prefix) : a++, a--
+                //      → 공통점 : 저장 공간에 저장된 값을 1 만큼 증가 또는 감소
+                //      → 차이점 : 연산된 결과 값이 다르다.
+                //          - 전위 : 결과 값이 증감된 값
+                //          - 후위 : 결과 값이 증감되기 전의 값, 즉 기존 값
+                document.writeln("증감 연산자");
+
+                var n4 = 0, n5 = 0;
+                document.writeln("n4 = " + n4);
+                document.writeln("n5 = " + n5);
+
+                var pre = ++n4;   // 전위, 1 만큼 증가, 증감된 값을 반환
+                var post = n5++;   // 후위, 1 만큼 증가, 증감되기 전의 값을 반환
+
+                
+                document.writeln("++n4 = " + pre);
+                document.writeln("n5++ = " + post);
+                
+                document.writeln("n4 = " + n4);
+                document.writeln("n5 = " + n5);
+                
+                document.writeln("증감 연산자");
+                
+                var result1 = (n4++) * 2;   // 2 * 2
+                var result2 = (++n4) * 2;   // 1 * 2
+                document.writeln("result1 = " + result1);
+                document.writeln("result2 = " + result2);
+                document.writeln("n4 = " + n4);
+                document.writeln("n5 = " + n5);
+            </script></pre>
+
+            <pre><script>
+                // 관계 연산자(또는 비교 연산자)
+                //  - 두 개의 값을 비교하여 참(true) 또는 거짓(false)으로 표현하는 연산자
+                //  - 관계 연산자는 하나의 조건식을 표현할 때 사용된다.
+                //      - 점수가 80점 이상인 경우, 나이가 14살 이상인 경우, 학년이 3학년인 경우
+                //  - 종류
+                //      비교 연산자
+                //          : 두 값의 대소 관계를 비교하는 연산자
+                //      상등 비교 연산자
+                //          : 두 값이 일치하는지 비교하는 연산자
+
+                document.writeln("관계 연산자");
+
+                // 비교 연산자
+                var n6 = 10;
+                // n6 가 5보다 크다.            // 5 초과
+                document.writeln("n6 > 5 → " + (n6 > 5));
+                // n6 가 5 보다 크거나 같다.    // 5 이상
+                document.writeln("n6 >= 5 → " + (n6 >= 5));
+                // n6 가 5 보다 작다.           // 5 미만
+                document.writeln("n6 < 5 → " + (n6 < 5));
+                // n6 가 5 보다 작거나 같다.    // 5 이하
+                document.writeln("n6 <= 5 → " + (n6 <= 5));
+
+                // 상등 비교 연산자
+                // n6 가 5와 같다.
+                document.writeln("n6 == 5 → " + (n6 == 5));
+                // n6 가 5 와 다르다.
+                document.writeln("n6 != 5 → " + (n6 != 5));
+                // n6 가 5와 같다.      → 데이터의 값과 타입까지 일치
+                document.writeln("n6 === 5 → " + (n6 === 5));
+                // n6 가 5 와 다르다.   → 데이터의 값 또는 타입이 불일치
+                document.writeln("n6 !== 5 → " + (n6 !== 5));
+
+                document.write("<hr>");
+                // 관계 연산자는 두 항을 비교할 때 
+                // 데이터의 타입까지 비교할 수 있다.
+                //  - 이때 대부분의 관계 연산자는 타입 상관 없이
+                //    데이터의 의미를 비교한다.
+                //  - true → 1, false → 0
+                //      → true == 1 == "1"
+                //      → false == 0 == "0"
+                n6 = 5; // 숫자
+                document.writeln("n6 > \"5\" → " + (n6 > "5"));
+                document.writeln("n6 > \"5\" → " + (n6 < "5"));
+                // → 문자열 "5" 를 숫자 5 처럼 사용
+                document.writeln("n6 == \"5\" → " + (n6 == "5"));
+                document.writeln("n6 != \"5\" → " + (n6 != "5"));
+                // → 숫자 5와 문자열 "5" 는 같은 의미다.
+                document.writeln("n6 === \"5\" → " + (n6 === "5"));
+                // → 숫자 5 와 문자열 "5" 는 다른 타입이기 때문에 false
+                document.writeln("n6 !== \"5\" → " + (n6 !== "5"));
+
+                document.write("<hr>");
+                // 수학에서의 범위 표현식 : 0 <= x < 10
+                //  → JavaScript 에서는 비교 연산자만으로 범위를 표현할 수 없다.
+                //  → 비교 연산을 한 번에 연산하지 못하고 순차적으로 비교 연산을 한다.
+                var x = 90;
+                document.writeln("0 <= x < 10 → " + (0 <= x < 10));
+                // document.writeln("0 <= x < 10 → " + (0 <= 50 < 10));
+                // document.writeln("0 <= x < 10 → " + (true < 10));
+                // document.writeln("0 <= x < 10 → " + (1 < 10));
+                // document.writeln("0 <= x < 10 → " + (true));
+            </script></pre>
+
+            <pre><script>
+                // 논리 연산자
+                //  - 논리 값(true, false)을 연산하기 위한 연산자
+                //  - 일반적으로 두 개의 논리식(조건식)을 하나의 논리 값으로
+                //    연산할 때 사용된다.
+                //  - 종류
+                //      && 연산자 : AND 연산자, 두 논리 값이 true 이면 true
+                //      || 연산자 : OR  연산자, 두 논리 값 중 하나라도 true 이면 true
+                //       ! 연산자 : NOT 연산지, 논리 값의 반대 값
+
+                // && 연산자(AND 연산자)
+                //  - 두 논리 값을 모두 만족해야하는 경우에 사용
+                //  - A 그리고 B, A 이고 B, A 이면서 B ....
+                document.writeln("true && true → " + (true && true));
+                document.writeln("true && false → " + (true && false));
+                
+                // || 연산자(OR 연산자)
+                //  - 두 논리 값 중 하나라도 만족해야하는 경우에 사용
+                //  - A 또는 B, A 이거나 B ....
+                document.writeln("true || true → " + (true || true));
+                document.writeln("true || false → " + (true || false));
+
+                // ! 연산자(NOT 연산자)
+                //  - 논리 값의 반대 값을 사용해야하는 경우에 사용
+                document.writeln("!true → " + (!true));
+                document.writeln("!false → " + (!false));
+                
+                document.writeln("논리 연산자");
+
+                document.write("<hr");
+                // 논리 연산자의 예시
+
+                // 수학에서의 범위
+                //  - 0 <= y < 10
+                //  → y 의 값이 0 이상이고 10 미만이다.
+                var y = 5;
+                var result = (y >= 0) && (y < 10);
+                // var result = (5 >= 0) && (5 < 10);
+                // var result = (true) && (true);
+                // var result = (true);
+                document.writeln("0 <= y < 10 → " + result);
+
+                y = 50;
+                result = (y >= 0) && (y < 10);
+                document.writeln("0 <= y < 10 → " + result);
+
+                document.writeln("<hr>");
+                // 비교 연산자에서는 논리 값을 숫자로 취급했다면
+                // 논리 연산자에서는 숫자를 논리 값으로 취급한다.
+                //  - false → 0, true → 1
+                //  - 0 → false, 0 외의 숫자 → true
+                document.writeln("!3 → " + (!3));
+                // document.writeln("!3 → " + (!true));
+                // document.writeln("!3 → " + (false));
+                document.writeln("!0 → " + (!0));
+                // document.writeln("!0 → " + (!false));
+                // document.writeln("!0 → " + (true));
+
+            </script></pre>
+
+            
+    </body>
+</html>
