@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <title></title>
+        <link rel="stylesheet" href="../../css/reset.css">
+        <link rel="stylesheet" href="../../css/dark.css">
+        <!-- jQuery CDN -->
+        <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <!-- → 파일의 용량을 최소화하기 위해 공백과 식별자를 모두 최소화한 파일 -->
+        <!--    → jQuery 파일을 보거나 수정할 일이 없기 때문에 최소화한 파일을 이용 -->
+
+        <!-- <style src = "../../js/jquery.js"></style> -->
+        <!-- -------------------------------------------------------------- -->
+        <script>
+            // jQuery 시작
+            //  - jQuery 라이브러리를 이용하여 JavaScript 프로그램을 작성
+            //      → 'jQuery 객체의 메서드를 이용'하여 프로그램을 작성
+            //      → jQuery 객체의 메서드를 이용하기 위해 'jQuery 객체를 생성/반환'
+            //      → jQuery 객체를 생성/반환하기 위해 'jQuery 함수에 객체 또는 선택자를 전달'
+            //  → jQuery 함수를 통해 jQuery 객체를 생성/반환하여 문서 객체를 조작
+
+            // jQuery 라이브러리를 이용하여 JavaScript 프로그램을 작성할 때
+            // 기존에 사용하던 window 객체의 load 이벤트가 아닌
+            // 비슷한 document 객체의 ready 이벤트를 이용
+            //  → 앞으로는 document 객체의 ready 이벤트 핸들러를 작성
+
+            // document.addEventListener("ready", function() { });
+
+            // jQuery 함수를 이용하여 document 객체를 표현한 jQuery 객체를 반환
+            //  JavaScript 에서 이벤트를 연결하기 위한 addEventListener() 메서드가
+            //  jQuery 에서는 on() 메서드로 사용된다.
+            // jQuery(document).on("ready", function() { });
+
+            // jQuery 라이브러리를 이용하여 프로그램을 만들다보면
+            // jQuery 함수를 많이 사용하게 된다.
+            //  → jQuery 함수의 식별자 대신 '$' 기호를 별명(alias)으로 사용한다.
+            $(document).on("ready", function() { });
+
+            // 일반적으로 head 태그 내에서 모든 요소를 탐색/조작하며
+            // 매번 document 객체의 ready 이벤트 핸들러를 연결한다.
+            // → jQuery 함수의 인자로 함수를 전달하면
+            //   전달된 함수를 document 객체의 ready 이벤트 핸들러로 연결
+            $( function() { });
+
+            //-----------------------------------------------------------------
+            // jQuery 함수
+            //  반환 값 : jQuery 객체
+            //  인자
+            //      - 객체(object)
+            //          : window, document, element 객체 등
+            //          : 기존의 객체를 jQuery 객체로 변환
+            //      - 선택자 형식의 문자열(string)
+            //          : DOM 에서 요소를 탐색
+            //      - 함수(function)
+            //          : document 객체의 ready 이벤트 핸들러
+            //      - HTML 형식의 문자열(string)
+            //          : 새로운 요소를 표현한 jQuery 객체를 생성
+            //          : "<h1></h1>", "<li></li>"
+        </script>
+        <script>
+            $( function() { 
+                // document 객체의 ready 이벤트 핸들러
+                //  → HTML 문서를 읽은 다음 DOM 구축을 끝낸 이후에 발생하는 이벤트
+                //  → window 객체의 load 이벤트와 비슷한 시기에 발생하는 이벤트
+                //--------------------------------------------------------------
+
+                // jQuery 의 사용 예시
+
+                //  1. 요소 탐색
+                //   JavaScript
+                var hello = document.querySelector("#hello");
+                var hello = document.getElementById("hello");
+                console.log("hello element");
+                console.log(hello);
+                
+                //  jQuery
+                var $hello = $("#hello");
+                // → #hello 요소를 표현한 jQuery 객체로 반환
+                // → elment 객체의 식별자와 구분하기 위해
+                //   jQuery 객체의 식별자 앞에 '$'를 붙여 구분
+                console.log("hello element");
+                console.log($hello);
+
+                // 2. 다수의 요소 탐색
+                //  JavaScript
+                var list = document.querySelectorAll("#list > li");
+                console.log("list element array");
+                console.log(list);
+                // → element 객체를 포함한 배열
+
+                //  jQuery
+                var $list = $("#list > li");
+                // → #list 요소 내의 li 요소들을 표현한 jQuery 객체
+
+                console.log("list jQuery");
+                console.log($list);
+                // → jQuery 객체 내에는 요소들을 저장하기 위한 배열이 별도로 있기 때문에
+                //   하나의 요소를 탐색하든, 다수의 요소를 탐색하든 동일한 jQuery 객체로 반환
+                // → jQuery 객체 = element 객체의 배열 + 메서드
+
+                // 3. jQuery 객체 변환
+                //      jQuery 라이브러리의 기능을 사용하려면
+                //      jQuery 객체로 변환해야한다.
+                var $hello = $( hello ); // element 객체 → jQuery 객체 변환
+
+                // 4. 요소의 스타일 조작
+                //  JavaScript
+                hello.style.color = "red";
+                for (var i = 0; i < list.length; i++) {
+                    list[i].style.color = "red";
+                }
+
+                //  jQuery
+                //      css() 메서드 : 요소의 스타일을 설정/반환하는 메서드
+                $hello.css("backgroundColor", "yellowgreen");
+                $list.css("backgroundColor", "yellowgreen");
+                $list.css({ // 설정할 스타일 속성들을 가진 객체
+                    marginBottom : "10px",
+                    paddingLeft: "10px"
+                });
+                // 인덱스가 2인 요소
+                var $itemC = $list.eq(2);
+                $itemC.css("fontStyle", "italic");
+
+                // 5. 요소의 이벤트 연결
+                //  JavaScript
+                hello.addEventListener("click", function() { 
+                    // this = 자기 자신 = 이벤트가 발생한 요소
+                    this.style.color = "navy";
+                });
+                for (var i = 0; i < list.length; i++) {
+                    list[i].addEventListener("click", function() { 
+                        this.style.color = "navy";
+                    });
+                }
+
+                //  jQuery
+                $hello.on("click", function() { 
+                    // this = 자기 자신 = 이벤트가 발생한 요소(element 객체)
+                    // this.css("fontWidth", "bold");
+                    //  → 오류 발생
+                    //  → jQuery 객체의 이벤트 핸들러에서 this 키워드는
+                    //    jQuery 객체 내의 요소(element) 객체이기 때문에
+                    //    jQuery 객체의 기능을 사용할 수 없다.
+                    console.log(this);
+
+                    // this.style.fontWidth = "bold";
+
+                    // jQuery 객체의 기능을 사용하려면
+                    // jQuery 객체로 변환해야한다.
+                    var $this = $(this);
+                    $this.css("fontWidth", "bold");
+
+                });
+
+                $list.on("click", function() { 
+                    var $this = $(this);
+                    $this.css("fontWidth", "bold");
+                });
+
+                //--------------------------------------------------------
+                // jQuery 에서의 코딩 스타일
+                //  - jquery 의 기능을 사용하려면 jQuery 객체를 이용
+                //  - jQuery 함수를 통해 탐색/변환을 하는 것 외에도
+                //    jQuery 객체의 대부분의 메서드의 반환 값도 jQuery 객체
+                //  - 대부분의 메서드가 jQuery 객체를 반환하기 때문에
+                //    다른 메서드를 연속해서 호출이 가능하다.
+                //  → 메서드 체이닝(Method Chaining)
+                //      : 메서드를 체인처럼 연결하여 차례대로 호출하는 방식
+
+                // var $nice = $("#nice");
+                // $nice.css("color", "red");
+                // $nice.on("click", function() { 
+                //     var $this = $(this);
+                //     $this.css("backgroundColor", "yellowgreen");
+                // });
+                $("#nice")  // → 메서드 체이닝
+                    .css("color", "white")      // 스타일 설정
+                    .on("click", function() {   // 이벤트 연결
+                        $(this).css("backgroundColor", "blueviolet");
+                    });
+
+                //-------------------------------------------------------
+                // jQuery 객체의 기능을 사용하기 위해 jQuery 객체를 생성/반환
+                // jQuery 객체의 기능이 아닌 기존에 배웠던 기능을 사용하려면
+                // 기존 방식 그대로를 이용해야한다.
+                //  → 타이머 기능
+                window.setTimeout( function () { 
+                    $("#nice").css({ 
+                        backgroundColor:"yellowgreen",
+                        color : "navy"
+                    });
+                }, 2000);
+                
+            });
+        </script>
+
+    </head>
+    <body>
+        <div id="hello" class="gray-box">Hello World!</div>
+        <ul id="list" class="gray-box">
+            <li>Item A</li>
+            <li>Item B</li>
+            <li>Item C</li>
+            <li>Item D</li>
+        </ul>
+        <h1 id="nice" class="gray-box">Nice to meet ypu!</h1>
+    </body>
+</html>

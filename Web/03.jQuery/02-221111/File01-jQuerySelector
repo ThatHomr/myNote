@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+        <title>jQuery - Selector</title>
+        <link rel="stylesheet" href="../../css/reset.css">
+        <link rel="stylesheet" href="../../css/dark.css">
+        <!-- jQuery CDN-->
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <style>
+            
+        </style>
+        <script>
+
+            $(function() { 
+                // document 객체의 ready 이벤트 핸들러
+                //  → HTML 문서를 읽은 다음 DOM 구축을 끝낸 이후에 발생하는 이벤트
+                //  → DOM 구축이 끝난 시점이기 때문에 모든 요소에 접근할 수 있다.
+                //---------------------------------------------------------------
+
+                // 선택자(Selector)
+                //  - CSS 에서 사용했던 선택자 모두 사용 가능
+                //  - jQuery 에서 추가된 필터 선택자가 있다.
+
+                // 필터 선택자(Filter Selectop
+                //  - ':' 문자로 시작하는 선택자
+                //  - 앞에 작성된 선택자에 의해 선택된 
+                //    모든 요소들을 기준으로 필터링하는 선택자
+                //  - 번호를 지정하는 선택자 같은 경우
+                //    시작 번호가 0 이다. (= 인덱스 번호)
+
+                //  - 필터 선택자의 종류
+                //      1. 입력 양식 필터 선택자
+                //          : 입력 양식과 관련된 선택자
+                //      2. 함수 필터 선택자
+                //          : 함수 형태의 선택자
+                //      3. 위치 필터 선택자
+                //          : 위치와 관련된 선택자
+
+                //------------------------------------------------------------
+
+                // #list1 요소 내의 li 요소 탐색
+                var $list1 = $("#list1 > li");
+                console.log("#list1");
+                console.log($list1);
+
+                // 필터 선택자와 구조 선택자의 차이
+                //  필터 선택자
+                //   - 선택된 요소들 중에서 요소를 필터링 하여 선택
+                //  구조 선택자
+                //   - 형제 요소들 중에서 지정된 위치에 있는 요소를 선택
+
+                // 구조 선택자
+                var $nthItem = $("#list1 > li:nth-child(2");
+                console.log("#list1 > li:nth-child(2");
+                console.log($nthItem);
+                // →  두 번째 형재 요소가 선택
+
+                var $nthItem2 = $("#list1 > #item2:nth-child(2");
+                console.log("#list1 > #item2:nth-child(2)");
+                console.log($nthItem2);
+                // → id 속성이 'item3' 이고 형제 요소들 중 두 번째 인 요소
+
+                console.log("============================================");
+                // 필터 선택자
+                var $eqItem = $("#list1 > li:eq2");
+                console.log("#list1 > li:eq2");
+                console.log($eqItem);
+                // 선택된 li 요소들 중 인덱스가 2 인 요소를 선택
+                
+                var $eqItem2 = $("#list1 > #item3:eq2");
+                console.log("#list1 > #item3:eq2");
+                console.log($eqItem2);
+                // → 선택된 요소는 '#item3' 요소가 하나이며 인덱스는 최대 0이기 때문에
+                //   인덱스 2 에 해당하는 요소가 없어 선택된 요소가 없다.
+
+                console.log("============================================");
+                var $list2 = $(".list > li");
+                console.log(".list > li");
+                console.log($list2);
+
+                // 구조 선택자
+                var $nthItem3 = $(".list > li:nth-child(2)");
+                console.log(".list > li:nth-child(2)");
+                console.log($nthItem3);
+                // → 형재 요소들 중 두 번째 li 요소를 선택
+
+                // 필터 선택자
+                var $eqItem3 = $(".list > li:eq(2)");
+                console.log(".list > li:eq(2)");
+                console.log($eqItem3);
+                // → 모든 li 요소들 중 인덱스가 2인 요소를 선택
+                //----------------------------------------------------
+
+                // 첫 번째 요소
+                $(".list > li:first").css("color", "red");
+                // 마지막 요소
+                $(".list > li:last").css("color", "red");
+
+                // n 번째 이전 요소
+                $(".list > li:lt(3)").css("backgroundColor", "navy");
+                
+                // n 번째 이후 요소
+                $(".list > li:gt(3)").css("backgroundColor", "buleviolet");
+                
+                // 홀수 번째 요소
+                $(".list > li:odd").css("paddingLeft", "20px");
+
+                //===---------------------------------------------------------
+                // :eq(), :lt(), :gt() 선택자에 인덱스를 지정할 때 음수도 지원한다.
+                // 음수를 지정할 경우 뒤에서 n 번째 요소를 선택한다.
+
+                // 음수를 포함한 인덱스 범위
+                //   -length <= index < length
+
+                $("#list3 > li:eq(-1)").css("color", "red");
+                // 뒤에서 부터 3번째 요소
+                $("#list3 > li:lt(-1)").css("color", "yellowgreen");
+                $("#list3 > li:gt(-1)").css("color", "gold");
+
+                
+            });
+        </script>
+    </head>
+    <body>
+        <ul id="list1" class="gray-box list">
+            <li id="item1">Item 1 </li>
+            <li id="item2">Item 2 </li>
+            <li id="item3">Item 3 </li>
+            <li id="item4">Item 4 </li>
+            <li id="item5">Item 5 </li>
+        </ul>
+        <ul id="list2" class="gray-box list">
+            <li id="item6">Item 1 </li> 
+            <li id="item7">Item 2 </li> 
+            <li id="item8">Item 3 </li> 
+            <li id="item9">Item 4 </li> 
+            <li id="item10">Item 5 </li> 
+        </ul>
+
+        <ul id="list3" class="gray-box">
+            <li>Item A </li> <!-- index: 0, -5 -->
+            <li>Item B </li> <!-- index: 1, -4 -->
+            <li>Item C </li> <!-- index: 2, -3 -->
+            <li>Item D </li> <!-- index: 3, -2 -->
+            <li>Item E </li> <!-- index: 4, -1 -->
+        </ul>
+    </body>
+</html>

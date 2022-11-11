@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+        <title>Example01 - selector</title>
+        <link rel="stylesheet" href="../../css/reset.css">
+        <link rel="stylesheet" href="../../css/dark.css">
+        <!-- jQuery CDN-->
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <style>
+            
+        </style>
+        <script>
+            // 3초 뒤에
+            // #list 요소 내의 li 요소들 중
+            // 세 번째 요소의 글자 색을 "yellowgreen" 으로 설정
+            // 세 번째 이전 요소의 글자 색을 "blueviolet" 으로 설정
+            // 세 번째 이후 요소의 글자 색을 "gold" 으로 설정
+
+            // var $list = $("#list > li");
+
+            // window.setTimeout( function () { 
+            //     $(".list > li:eq(2)").css("color", "yellowgreen");
+            //     $(".list > li:lt(2)").css("color", "blueviolet");
+            //     $(".list > li:gt(2)").css("color", "gold");
+            // }, 3000);
+
+            $(function() { 
+                // document 객체의 ready 이벤트 핸틀러
+
+                // 인덱스 변수
+                var n = 2;
+
+                // 3초 뒤에
+                window.setTimeout( function () { 
+
+                    $("#list > li:eq(" + n + ")").css("color", "yellowgreen");
+                    $("#list > li:lt(" + n + ")").css("color", "blueviolet");
+                    $("#list > li:gt(" + n + ")").css("color", "gold");
+                    
+                }, 3000);
+            });
+            
+            
+
+
+
+
+        </script>
+    </head>
+    <body>
+        <ul id="list">
+            <li>Item A</li>
+            <li>Item B</li>
+            <li>Item C</li>
+            <li>Item D</li>
+            <li>Item E</li>
+        </ul>
+    </body>
+</html>
