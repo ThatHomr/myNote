@@ -2,42 +2,41 @@ import java.util.Scanner;
 
 public class Main {
 	public static void main(String[] args)  {
-		Scanner sc = new Scanner(System.in);
-		
-		int[] numbers = {3, 30, 34, 5, 9};
-		String answer = "";
-		
-		int length = numbers.length;
-		int[] numbers2 = new int[length];
-		int[] numbers3 = new int[length];
-		
-		for (int i = 0; i < length; i++) {
-			String n = String.valueOf(numbers[i]);
-			char ch = n.charAt(0);
-			n = "";
-			n += ch;
-			int k = Integer.parseInt(n);
-			numbers[i] = k;
+		String s = "1 2 3 Z Z";
+		int answer = 0;
+
+		String[] str = s.split(" ");
+
+		int length = str.length;
+		int[] arr = new int[length];
+
+		s = str[0];
+		if (!(s.equals("Z"))) {
+			arr[0] = Integer.parseInt(s);
 		}
-		int count = 0;
-		int j = 0;
-		for (int i = 9; i >= 0; i--) {
-			for (int j = 0;)
-			if (i == numbers2[j]) {
-				numbers3[j] = count;
-				count++;
-				j++;
+		else {
+			arr[0] = 0;
+		}
+		answer += arr[0];
+		String s2 = "";
+
+		for (int i = 1; i < length; i++) {
+			s = str[i];
+			s2 = str[i-1];
+
+			if (s.equals("Z")) {
+				arr[i] = -(arr[i-1]);
 			}
+			else if (s2.equals("Z") && s.equals("Z")) {
+				arr[i] = 0;
+			}
+			else {
+				arr[i] = Integer.parseInt(s);
+			}
+
+			answer += arr[i];
 		}
-		
-		for (int)
-		
-		
-	
-		System.out.println(answer);
-		
-		
-		sc.close();
+
 	}
 		
 }
