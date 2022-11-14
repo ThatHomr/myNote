@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+        <title></title>
+        <link rel="stylesheet" href="../../css/reset.css">
+        <link rel="stylesheet" href="../../css/dark.css">
+        <!-- jQuery CDN-->
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <style>
+            
+        </style>
+        <script>
+            $(function() { 
+                // document 객체의 ready 이벤트 핸들러
+
+                // 문서 객체 탐색 메서드
+
+                // jQuery 함수를 통해 DOM 에서 요소를 탐색
+                $("#list1").css("backgroundColor", "navy");
+                
+                // #list1 요소의 하위 요소들을 탐색하여 조작
+                $("#list1 > li").css("color", "orange");
+                $("#list1 > li:even").css("border", "5px solid yellowgreen");
+                $("#list1 > li:odd").css("border", "5px solid yellow");
+
+                // jQuery 함수만 이용할 경우
+                // 매 번 DOM 전체에서 탐색을 하게 된다.
+                //--------------------------------------------------------------
+
+                // .filter() 메서드
+                //  - jQuery 객체에서 특정 요소를 선택하기 위한 메서드
+                $("#list2").css("backgroundColor", "navy");
+
+                // $("#list2 >li").css("Color", "oranger");
+                // → .filter() 메서드는 jQuery 객체 내에 있는 요소들 중
+                //   조건에 맞는 요소들만 선택하기 위한 메서드이므로
+                //   #list2 요소를 기준으로 하위 요소를 탐색할 수 없다.
+                //    → 하위 요소를 탐색하는 메서드는 이후에 배울 예정
+                // $("#list > li").filter(":even").css("border", "5px solid yellowgreen");
+                // $("#list > li").filter(":odd").css("border", "5px solid yellow");
+
+                // 동일한 선택자로 DOM 에서 탐색되기 때문에
+                // 탐색한 jQuery 객체를 변수에 저장하여 요소들을 조작
+                var $items2 = $("#list > li");
+
+                // $items2.css("color", "orange");
+                // $items2.filter(":even").css("border", "5px solid yellowgreen");
+                // $items2.filter(":odd").css("border", "5px solid yellow");
+                
+                // jQuery 에서는 메서드 체이닝 기법을 통해 프로그램을 작성
+                // 이때, jQuery 객체의 메서드들 중 값을 반환하는 메서드를 제외하고는
+                // 대부분의 매서드들이 jQuery 객체를 그래로 반환
+                
+                $items2                                         // = #list2 > li
+                    .css("color", "orange")                     // = #list2 > li
+                    .filter(":even")                            // = #list2 > li:even
+                        .css("border", "5px solid yellowgreen") // = #list2 > li:even
+                    .filter(":odd")                             // = #list2 > li:even:odd
+                        .css("border", "5px solid yellow");     // = #list2 > li:even:odd
+                // → 메서드 체이닝을 통해 하나의 명령어로 다수의 요소들을 조작할 수 있다.
+                //   다만 .filter() 메서드를 통해 계속해서 탐색이 이뤄질 때
+                //   흐름을 파악할 수 있어야 한다.
+                
+                // .end() 메서드
+                //  - 탐색 메서드에 의해 탐색되기 전의 jQuery 객체를 반환하는 메서드
+                //      = 되돌리기
+
+                // .eq() 메서드
+                //  - jQuery 객체 내에 특정 위치에 있는 요소를 선택하기 위한 메서드
+                // .first() 메서드
+                //  - jQuery 객체 내에 처음에 있는 요소를 선택하기 위한 메서드
+                // .last() 메서드
+                //  - jQuery 객체 내에 마지막에 있는 요소를 선택하기 위한 메서드
+
+                // .add() 메서드
+                //  - 기존 jQuery 객체에 다른 요소를 추가하기 위한 메서드
+
+                $items2                                         // = #list2 > li
+                    .css("color", "orange")                     // = #list2 > li
+                    .filter(":even")                            // = #list2 > li:even
+                        .css("border", "5px solid yellowgreen") // = #list2 > li:even
+                        .end()                                  // = #list2 > li
+                    .filter(":odd")                             // = #list2 > li:odd
+                        .css("border", "5px solid yellow")      // = #list2 > li:odd
+                        .end()                                  // = #list2 > li
+                    .first()                                    // = #list2 > li:first
+                        .css("fontStyle", "italic")             // = #list2 > li:first
+                        .end()                                  // = #list2 > li
+                    .last()                                     // = #list2 > li:last
+                        .css("fontStyle", "italic")             // = #list2 > li:last
+                        .end()                                  // = #list2 > li
+                    .eq(1)                                      // = #list2 > li:eq(1)
+                        .css("fontWeight", "bold")              // = #list2 > li:eq(1)
+                        .end()                                  // = #list2 > li
+                    .eq(-2)                                     // = #list2 > li:eq(-2)
+                        .css("fontWeight", "bold")              // = #list2 > li:eq(-2)
+                        .end()                                  // = #list2 > li
+                    .add("#list1 > li")                         // = #list2 > li, #list1 > li
+                        .css("margin", "16px")                  // = #list2 > li, #list1 > li
+
+
+                // .is() 메서드
+                //  - jQuery 객체의 요소를 판별/검사하기 위한 메서드
+                console.log("#list2.gray-box >>> " + $("#list2").is(".gray-box"));
+                console.log("#list2.list-box >>> " + $("#list2").is(".list-box"));
+                console.log("#list2 > li.item >>> " + $items2.is(".item"));
+                // → 반환 값이 하나이기 때문에 하나라도 만족하는 요소가 있다면
+                //   반환 값으로 true 를 반환
+                // → 일반적으로는 하나의 요소를 검사하기 위해 사용
+                //      → 각 요소마다 검사할 때
+                //      → 이벤트 핸들러 내에서 검사할 때
+                //-------------------------------------------------------------------------------------
+
+                $("#list3")                                     // = #list3
+                    .css("backgroundColor", "navy")             // = #list3
+                    .children("li")                             // = #list3 > li
+                        .css("color", "orange")                 // = #list3 > li
+                    .filter(":even")                            // = #list3 > li:even
+                        .css("border", "5px solid yellowgreen") // = #list3 > li:even
+                        .end()                                  // = #list3 > li
+                    .filter(":odd")                             // = #list3 > li:odd
+                        .css("border", "5px solid yellow")      // = #list3 > li:odd
+                        .end();                                  // = #list3 > li
+
+                var $list3 = $("#list3");
+                // #list3 요소의 자식 요소의 수
+                var length = $list3.children().length;
+
+                //-------------------------------------------------------------------------------
+                //  :lt, :gt 선택자와 .prevAll(), .nextAll() 메서드
+
+                // :lt, :gt 선택자
+                //  - 탐색된 요소들을 기준으로 특정 위치의 이전, 이후 요소를 선택
+                //  - 형제 요소 외의 다른 요소들 까지 탐색된 요소에 포함되어있으면
+                //    같이 선택될 수 있다.
+                //  - :lt 선택자는 맨 첫번째 요소부터 지정된 위치 전까지의 요소를 선택
+                //  - :gt 선택자는 지정된 위치 부터 마지막 요소까지를 선택
+
+                // .prevAll(), .nextAll()
+                //  - 탐색된 요소들의 DOM 을 기준으로 이전 형제, 다음 형제 요소를 탐색
+                //  - .prevAll() 메서드는 기준 요소부터 이전 형제 요소를 선택
+                //  - .nextAll() 메서드는 기준 요소부터 다음 형제 요소를 선택
+
+                var $list4 = $("#list4 > li");
+
+                var $lt = $list4.filter(":lt(2)").css("color", "yellow");
+                var $prev = $list4.filter(":eq(2)").prevAll().css("fontWeight", "bold");
+
+                console.log("$lt");
+                console.log($lt);
+
+                console.log("$prev");
+                console.log($prev);
+
+
+            });
+        </script>
+    </head>
+    <body>
+        <ul id="list1" class="gray-box">
+            <li>Item 1 (index = 0)</li>
+            <li>Item 2 (index = 1)</li>
+            <li>Item 3 (index = 2)</li>
+            <li>Item 4 (index = 3)</li>
+            <li>Item 5 (index = 4)</li>
+        </ul>
+
+        <ul id="list2" class="gray-box">
+            <li>Item 1 (index = 0)</li>
+            <li>Item 2 (index = 1)</li>
+            <li class="item">Item 3 (index = 2)</li>
+            <li class="item">Item 4 (index = 3)</li>
+            <li>Item 5 (index = 4)</li>
+        </ul>
+        <ul id="list3" class="gray-box">
+            <li>Item 1 (index = 0)</li>
+            <li>Item 2 (index = 1)</li>
+            <li>Item 3 (index = 2)</li>
+            <li>Item 4 (index = 3)</li>
+            <li>Item 5 (index = 4)</li>
+        </ul>
+        <ul id="list4" class="gray-box">
+            <li id="itme1">Item 1 (index = 0)</li>
+            <li id="item2">Item 2 (index = 1)</li>
+            <li>Item 3 (index = 2)</li>
+            <li>Item 4 (index = 3)</li>
+            <li>Item 5 (index = 4)</li>
+        </ul>
+    </body>
+</html>
