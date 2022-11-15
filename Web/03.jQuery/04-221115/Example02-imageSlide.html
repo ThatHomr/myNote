@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+        <title>Example01 - Image Slide</title>
+        <link rel="stylesheet" href="../../css/reset.css">
+        <link rel="stylesheet" href="../../css/dark.css">
+        <!-- jQuery CDN-->
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <style>
+            #container {
+                /* 하나의 이미지가 보여질 크기를 설정 */
+                /* 이때, 높이는 이미지 해상도에 맞춰지도록 */
+                /* 크기 설정을 하지 않는다 */
+                width: 800px;
+                height: 500px;
+                border: 5px solid white;
+                margin: 0 auto;
+
+                overflow: hidden;
+            }
+            #container > ul {
+                /* 모든 li 요소들이 나열 될 수 있도록 */
+                /* 충분한 너비를 설정 */
+                width: 500%;
+
+                position: relative;
+                top: 0;
+                left: 0;
+            }
+            #container > ul > li {
+                /* 모든 li 요소들을 나란히 나열 */
+                float: left;
+
+                /* 모든 li 요소들이 나란히 나열 될 수 있도록 */
+                /* 균등한 너비를 설정 */
+                width: 20%;
+
+            }
+
+            #container > ul > li >img {
+                display: block;
+                /* li 요소의 크기에 맞춰지도록 너비를 설정 */
+                width: 100%;
+                height: 100%;
+                
+            }
+        </style>
+        <script>
+            $(function() { 
+                // document 객체의 ready 이벤트 핸들러
+
+                // 0. 요소 탐색 및 변수 선언
+                // 1. 일정 시간 마다
+                // 1-1. #container 요소 내의 ul 요소를
+                //      #container 요소의 너비만큼 왼쪽으로 이동
+                // 1-2. 마지막 이미지가 보여지도록 다시 첫 번째 이미지가
+                //      보여질 수 있도록 인덱스 변수를 설정
+                //---------------------------------------------------------
+                // 0. 요소 탐색 및 변수 선언
+                var $imgList = $("#container > ul");
+                var delay = 2000;
+                var i = 1;  // 2초 뒤에 다음 문구가 보여질 수 있도록 '1' 로 초기화
+
+                // 문구의 수 ul 요소의 자식 요소의 수
+                var imgCount = $imgList.children("li").length;
+
+                // 1. 일정 시간 마다
+                window.setInterval(function() { 
+                    // 1-1. #news-ticker 요소 내의 ul 요소를
+                    //      #news-ticker 요소의 높이만큼 위로 이동
+                    $imgList.css("left", (-100 * i) + "%");
+                    i++;
+
+                    // 1-2. 마지막 문구가 보여지도록 다시 첫 번째 문구가
+                    //      보여질 수 있도록 인덱스 변수를 설정
+                    // if (i == commentCount) i = 0;
+                    i %= imgCount;
+
+                }, delay);
+            });
+        </script>
+    </head>
+    <body>
+        <div class="gray-box">
+            <div id="container">
+                <ul>
+                    <li><img src="../../images/bg-dark-01.jpg" alt="photo"></li>
+                    <li><img src="../../images/bg-dark-02.jpg" alt="photo"></li>
+                    <li><img src="../../images/bg-dark-03.jpg" alt="photo"></li>
+                    <li><img src="../../images/bg-dark-04.jpg" alt="photo"></li>
+                    <li><img src="../../images/bg-dark-05.jpg" alt="photo"></li>       
+                </ul>
+            </div> <!-- /#news-ticker -->
+        </div><!-- /.gray-box -->
+    </body>
+</html>
