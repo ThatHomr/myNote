@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>jQuery - Attribute</title>
+        <link rel="stylesheet" href="../../css/reset.css">
+        <link rel="stylesheet" href="../../css/dark.css">
+        <!-- jQuery CDN-->
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <style>
+            #box1 {
+                width: 100px;
+                height: 100px;
+                padding: 50px;
+                border: 20px solid navy;
+
+                background-color: blueviolet;
+            }
+            #container {
+                position: relative;
+                height: 500px;
+            }
+
+            #box2 {
+                margin: 100px;
+                height: 100px;
+                background-color: yellowgreen;
+                margin: 50px;
+                position: relative;
+                top: 100%;
+            }
+        </style>
+        <script>
+            $(function() { 
+                // document 객체의 ready 이벤트 핸들러
+
+                // 문서 객체의 스타일 설정 / 반환
+                //  - css() 메서드
+                //      : 속성 명을 지정할 때는 CSS 스타일 속성 명 또는
+                //        카멜 케이싱(식별자 형식)으로도 작성이 가능하다.
+                //          "background-color" ↔ "backgroundColor"
+                //      : 속성 값 중 'px' 단위는 px 단위를 생략할 수 있다.
+                //          css("width", 100); ↔ width 속성에 100px 설정
+                //      : 속성 값 앞에 '+=', '-=' 을 붙일 수 있다.
+                //        기존 속성 값에서 더하거나 뺄 수 있다.
+                //      : 스타일 시트의 스타일 속성 값을 반환 받을 수 있다.
+                //        단, px 단위로 반환되기 때문에 오차가 발생할 수 있다.
+
+                // 문서 객체의 스타일 설정
+                //  .css(propName, value)
+                //  .css(propertes)     <property-value object>
+                //  .css(propName, function( [index [, value]] ) { ... })
+                // 문서 객체의 스타일 속성 반환
+                //  .css(propName)
+                //  .css(propertes)
+                //  → 다수의 스타일 속성을 지정하면 속성 값들을 배열로 반환
+
+                var colors = ["red", "yellowgreen", "orange", "navy"];
+                $("#list1").css("backgroundColor", "navy")
+                            .children().css({
+                                width : 100,        // = 100px
+                                height : "+=100",   // = 기존 높이 + 100px
+                            })
+                            .css("backgroudColor", function(index, value) {
+                                console.log("#" + index + "background color : " + value);
+                                return colors[index];
+                            });
+
+                //----------------------------------------------------------------------
+                // HTML 요소의 크기와 위치 관련 메서드
+                
+                // HTML 요소의 크기와 관련된 메서드
+                //  - width()
+                //      : 요소의 content 영역의 너비
+                //  - height()
+                //      : 요소의 content 영역의 높이
+                //  - innerWidth()
+                //      : 요소의 내부 영역(padding)의 너비
+                //  - innerHeight()
+                //      : 요소의 내부 영역(padding)의 높이
+                //  - outerWidth()
+                //      : 요소의 테두리 또는 외부 여백(margin)까지의 너비
+                //  - outerHeight()
+                //      : 요소의 테두리 또는 외부 여백(margin)까지의 높이
+                //      : outer~() 메서드는 인자 값으로 외부 여백까지 포함할 것인지
+                //        논리 값(true, false)를 전달할 수 있다.
+                //          → false : 테두리까지의 크기, 기본 값
+                //          → true  : 외부 여백까지의 크기
+
+                var $box1 = $("#box1");
+
+                console.log("width of #box1 = " + $box1.width());
+                console.log("height of #box1 = " + $box1.height());
+                console.log("innerWidth of #box1 = " + $box1.innerWidth());
+                console.log("innerHeight of #box1 = " + $box1.innerHeight());
+                console.log("outerWidth of #box1 = " + $box1.outerWidth());
+                console.log("outerHeight of #box1 = " + $box1.outerHeight());
+                console.log("outerWidth with margin of #box1 = " + $box1.outerWidth(true));
+                console.log("outerHeight with margin of #box1 = " + $box1.outerHeight(true));
+
+                $box1.outerWidth(350, true);    // 외부 여백까지의 크기를 350px 로 설정
+                $box1.outerWidth(250, true);    // 외부 여백까지의 크기를 250px 로 설정
+                // → 크기 관련 메서드를 통해 요소의 크기를 설정할 경우
+                //   컨텐츠 영역의 크기만 지정된 크기에 맞춰 설정된다.
+
+
+                // HTML 요소의 위치와 관련된 메서드
+                //  - offset()
+                //      : HTML 문서를 기준으로 한 위치 정보를 가진 객체를 반환
+                //      : offset().top, offset().left
+                //      : 요소의 테두리까지의 거리
+                //  - offsetParent()
+                //      : 요소의 첫 번째 부모 요소를 jQuery 객체로 반환
+                //      : position 속성의 값이 'relative' 또는 'absolute' 인 상위 요소
+                //  - position()
+                //      : 요소의 offsetParent()를 기준으로 한 위치 정보를 가진 객체를 반환
+                //      : position().top, position().left
+                //      : 요소의 외부 여백(margin)까지의 거리
+                
+                var $box2 = $("#box2");
+
+                console.log("offset top of #box2 = " + $box2.offset().top);
+                console.log("offset left of #box2 = " + $box2.offset().left);
+
+                console.log("position top of #box2 = " + $box2.position().top);
+                console.log("position left of #box2 = " + $box2.position().left);
+
+            });
+        </script>
+    </head>
+    <body>
+        <ul id="list1" class="gray-box">
+            <li>BOX 1</li>
+            <li>BOX 2</li>
+            <li>BOX 3</li>
+            <li>BOX 4</li>
+        </ul>
+
+        <div class="gray-box">
+            <div id="box1"></div>
+        </div>
+
+        <div id="container" class="gray-box">
+            <div id="box2"></div>
+        </div>
+    </body>
+</html>

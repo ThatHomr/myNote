@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title></title>
+        <link rel="stylesheet" href="../../css/reset.css">
+        <!-- jQuery CDN-->
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <style>
+            #header > h1 {
+                font-size: 2.4em;
+                font-weight: bold;
+                padding: 1em;
+                text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.4);
+            }
+            #nav {
+                background-color: #333;
+                box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.4);
+            }
+            #nav::after{content: "";display: block; clear: both;}
+            #nav > ul:first-child {float: left;}
+            #nav > ul:last-child {float: right;}
+            #nav > ul > li {
+                float: left;
+                /* .dropdown 요소의 기준 영역으로 만들기 위해 */
+                /* position 속성을 설정 */
+                position: relative;
+            }
+            #nav > ul > li > a {
+                display: block;
+                padding: 1.2em 2em;
+                color: white;
+                text-decoration: none;
+            }
+            #nav > ul > li > a:hover {
+                background-color: yellowgreen;
+                color: navy;
+            }
+            .dropdown {
+                /* 상위 요소인 li 요소를 기준으로 하단에 배치 */
+                position: absolute;
+                top: 103%;
+                left: 50%;
+                transform: translateX(-50%);
+
+                background-color: #333;
+                padding: 0.4em 1em;
+                border-radius: 6px;
+                box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.4);
+
+                display: none;
+            }
+            .dropdown > li > a {
+                display: block;
+                padding: 0.4em 1em;
+                color: white;
+                text-decoration: none;
+                text-align: center;
+            }
+
+            #wrap-container {overflow: hidden;}
+            #sidebar {
+                width: 200px;
+                float: left;
+                margin-top: 1em;
+            }
+            #sidebar > ul > li > a {
+                display: block;
+                padding: 1em;
+                color: black;
+                text-decoration: none;
+            }
+            #sidebar > ul > li > a:hover {
+                background-color: darkgray;
+                box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.4);
+            }
+
+            #wrap {
+                float: left;
+                width: 100%;
+                margin-right: -200px;
+            }
+            #content {
+                margin-right: 200px;
+                padding: 1em;
+                border-left: 1px solid #999;
+            }
+            #content > h2 {
+                font-size: 1.6em;
+                font-weight: bold;
+                margin-bottom: 0.7em;
+            }
+            #content > p {
+                line-height: 1.6;
+                margin-bottom: 1em;
+            }
+            #content > p:last-child { margin-bottom: 0;}
+            #footer {
+                height: 100px;
+                border-top: 1px solid #999;
+                position: relative;
+            }
+            #footer > .copyright {
+                position: absolute;
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+        </style>
+        <script>
+            $(function() { 
+                // document 객체의 ready 이벤트 핸들러
+                // 1. #nav 하위 요소인 a 요소를 클릭했을 때
+                // 2. 클릭한 요소의 드롭 다운 메뉴가 숨겨져 있으면
+                // 2-1. 다른 드롭 다운 메뉴가 보여지고 있으면 숨기고
+                // 2-2 클릭한 요소의 드롭 다운 메뉴를 보이게 한다.
+                // 3. 클릭한 요소의 드롭 다운 메뉴가 보여지고 있으면
+                // 3-1. 클릭한 요소의 드롭 다운 메뉴를 숨긴다.
+                //--------------------------------------------------------
+                // document 객체의 ready 이벤트 핸들러
+
+                // 0. 요소 탐색 및 변수 선언
+                var $navMenu = $("#nav > ul > li > a");
+                var $doropdowns = $(".dropdowns");
+
+                // 1. #nav 하위 요소인 a 요소를 클릭했을 때
+                $navMenu.on("click", function() { 
+
+                    // 클릭한 요소의 드롭다운 메뉴
+                    var $next = $(this).next(".dropdown");
+
+                    // 2. 클릭한 요소의 드롭 다운 메뉴가 숨겨져 있으면
+                    // if($next.is(":hiddwn")) {
+                    //     // 2-1. 다른 드롭 다운 메뉴가 보여지고 있으면 숨기고
+                    //     $doropdowns.filter(".on").removeClass("on");
+                    // }
+                    // // 2-2 클릭한 요소의 드롭 다운 메뉴를 보이게 한다.
+                    // $next.addClass("on");
+                    // // 3. 클릭한 요소의 드롭 다운 메뉴가 보여지고 있으면
+                    // else {
+                    //     // 3-1. 클릭한 요소의 드롭 다운 메뉴를 숨긴다.
+                    //     $next.removeClass("on");
+                    // }
+                    if($next.is(":hiddwn")) {
+                        // 2-1. 다른 드롭 다운 메뉴가 보여지고 있으면 숨기고
+                        $doropdowns.filter(".on").removeClass("on");
+                    }
+                    // 클릭한 요소의 드롭 다운 메뉴가 숨겨져 있으면 보이기
+                    // 클릭한 요소의 드롭 다운 메뉴가 보여지고 있으면 숨긴다.
+                    $next.toggleClass("on");
+                });
+
+            });
+        </script>
+    </head>
+    <body>
+        <header id="header">
+            <h1>Fluid Layout - Dropdown</h1>
+        </header>
+
+        <nav id="nav">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li>
+                    <a href="#html">HMTL</a>
+                    <!-- HTML 의 드롭 다운-->
+                    <ul class="dropdown">
+                        <li><a href="#html-tutorial">Tutorial</a></li>
+                        <li><a href="#html-reference">Reference</a></li>
+                        <li><a href="#html-examples">Examples</a></li>
+                        <li><a href="#html-faq">FAQ</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#css">CSS</a>
+                    <!-- CSS 의 드롭 다운-->
+                    <ul class="dropdown">
+                        <li><a href="#css-tutorial">Tutorial</a></li>
+                        <li><a href="#css-reference">Reference</a></li>
+                        <li><a href="#css-examples">Examples</a></li>
+                        <li><a href="#css-faq">FAQ</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#javascript">JavaScript</a>
+                    <!-- JavaScript의 드롭 다운-->
+                    <ul class="dropdown">
+                        <li><a href="#javascript-tutorial">Tutorial</a></li>
+                        <li><a href="#javascript-reference">Reference</a></li>
+                        <li><a href="#javascript-examples">Examples</a></li>
+                        <li><a href="#javascript-faq">FAQ</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#jquery">jQuery</a>
+                    <!-- jQuery의 드롭 다운-->
+                    <ul class="dropdown">
+                        <li><a href="#jquery-tutorial">Tutorial</a></li>
+                        <li><a href="#jquery-reference">Reference</a></li>
+                        <li><a href="#jquery-examples">Examples</a></li>
+                        <li><a href="#jquery-faq">FAQ</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+            <ul>
+                <li><a href="#login">Log in</a></li>
+                <li><a href="#signup">Sign up</a></li>
+            </ul>
+        </nav>
+
+        <div id="wrap-container">
+            <aside id="sidebar">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#html">HTML</a></li>
+                    <li><a href="#css">CSS</a></li>
+                    <li><a href="#javascript">JavaScript</a></li>
+                    <li><a href="#jquery">jQuery</a></li>
+                </ul>
+            </aside>
+
+            <div id="wrap">
+                <article id="content">
+                    <h2>What is Lorem Ipsum?</h2>
+                    <p>
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+                        when an unknown printer took a galley of type and scrambled it to make a 
+                        type specimen book. It has survived not only five centuries, but also the 
+                        leap into electronic typesetting, remaining essentially unchanged. It was 
+                        popularised in the 1960s with the release of Letraset sheets containing 
+                        Lorem Ipsum passages, and more recently with desktop publishing software 
+                        like Aldus PageMaker including versions of Lorem Ipsum.
+                    </p>
+                    <p>
+                        It is a long established fact that a reader will be distracted by the readable 
+                        content of a page when looking at its layout. The point of using Lorem Ipsum is 
+                        that it has a more-or-less normal distribution of letters, as opposed to using 
+                        'Content here, content here', making it look like readable English. Many desktop
+                        publishing packages and web page editors now use Lorem Ipsum as their default 
+                        model text, and a search for 'lorem ipsum' will uncover many web sites still in 
+                        their infancy. Various versions have evolved over the years, sometimes by accident, 
+                        sometimes on purpose (injected humour and the like).
+                    </p>
+                </article>
+            </div> <!-- /#wrap -->
+        </div><!-- /#wrap-container -->
+
+        <footer id="footer">
+            <div class="copyright">&copy; SBS Academy Gwangju</div>
+        </footer>
+    </body>
+</html>
