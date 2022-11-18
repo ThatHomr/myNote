@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title></title>
+        <link rel="stylesheet" href="../../css/reset.css">
+        <link rel="stylesheet" href="../../css/dark.css">
+        <!-- jQuery CDN-->
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <style>
+            .buttons {width: max-content; margin: 0 auto;}
+            .buttons > button { font-size: 1em;}
+            .gray-box > ul {
+                border: 5px solid yellowgreen;
+                margin: 10px 0;
+                border-radius:  8px;
+                color: white;
+            }
+            .gray-box > ul > li {
+                border: 3px solid white;
+                margin:  10px;
+                padding:  0 1em;
+            }
+            .gray-box > ul > li.prepend {
+                border: 3px solid orange;
+            }
+            .gray-box > ul > li.append {
+                border: 3px solid blueviolet;
+            }
+            .gray-box > .before {
+                border: 3px solid cyan;
+                padding: 10px;
+            }
+            .gray-box > .after {
+                border: 3px solid pink;
+                padding: 10px;
+            }
+
+        </style>
+        <script>
+            $(function() { 
+                // 문서 객체 조작
+                //  - 문서 객체 생성
+                //  - 문서 객체 제거
+                //  - 문서 객체 복사
+                //  - 문서 객체 삽입(추가)
+                //  - 문서 객체 이동
+
+                //--------------------------------------------------------------
+                
+                // 문서 객체 생성
+                //  - 새로운 문서 객체는 jQuery 함수를 통해서 생성할 수 있다.
+                //  - 새로운 문서 객체는 DOM 에 만들어지는 것이 아니기 때문에
+                //    화면에 보여지지 않는다.
+                //  - $(htmlString)
+                var $new = $("<h1>New Header</h1>")         // 새로운 h1 dyth todtjd
+                            .attr("title", "New Header!");  // 새로운 h1 요소에 title 속성 설정
+
+
+                // 문서 객체 제거
+                //  - remove([selector]) 메서드
+                //      : 선택된 문서 객체를 제거
+                //  - empty() 메서드
+                //      : 선택된 문서 객체의 내부(하위 요소, 내부 문자)를 제거
+
+                $("#list1 > li:first").remove();    // Item 1 제거
+                // → DOM 에서 제거
+                $("#list1 > li:last").empty();
+                // → 내부 문자만 제거, 요소는 그대로 남는다.
+                $("#list1 > li").remove(":first");  // Item 2 제거
+
+                // 문서 객체 복사
+                //  - clone([withDataAndEvents]) 메서드
+                //      - withDataAndEvents
+                //          : 요소에 저장된 데이터와 이벤트 핸들러의 복사 여부
+                //          : 기본 값 = false
+                //  - 복사된 요소는 DOM 에 바로 복사되는 것이 아니기 때문에
+                //    화면에 보여지지 않는다.
+
+                var $item3 = $("#list1 > li:first");
+
+                $item3.data("title", "Hot Item");
+
+                var $clone1 = $item3.clone();
+                // → 인자 값이 없거나 false 로 지정한 경우
+                //   데이터와 이벤트 핸들러는 복사되지 않는다.
+                var $clone2 = $item3.clone(true);
+                // → 인자 값을 true 로 지정한 경우
+                //   데이터와 이벤트 핸들러가 복사된다.
+
+                console.log("$clone1 = " + $clone1.html());
+                console.log("$clone1 title = " + $clone1.data("title"));
+                console.log("$clone1 index = " + $clone1.data("index"));
+                // → HTML 속성에 설정된 데이터 속성은
+                //   HTML 요소에 설정된 속성이기 때문에 동일하게 복사가 된다.
+
+                console.log("$clone2 = " + $clone2.html());
+                console.log("$clone2 title = " + $clone2.data("title"));
+                console.log("$clone2 index = " + $clone2.data("index"));
+                //---------------------------------------------------------------
+
+                // 문서 객체 삽입
+                //  - 문서 객체에 다른 문서 객체를 삽입하는 메서드
+                //  - 선택된 문서 객체의 기준에 따라 두 가지 형태로 나뉠 수 있다.
+                //      1. 선택한 문서 객체를 특정 요소에 삽입
+                //          ex) '사과'를 '바구니'에 담는다.
+                //      2. 선택한 문서 객체에 특정 요소를 삽입
+                //          ex) '바구니'에 '사과'를 담는다.
+                //      → 선택된 문서 객체가 무엇인지에 따라,
+                //        삽입 메서드 이후에 어떤 요소를 다루는지에 따라
+                //  - 삽입할 수 있는 위치는 총 네 곳이다.
+                //      1. prepend : 첫 번째 자식 요소
+                //      2. append  : 마지막 자식 요소
+                //      3. before  : 이전 형제 요소
+                //      4. after   : 다음 형제 요소
+
+                // 1. 선택한 문서 객체를 특정 요소에 삽입
+                //  - .prependTo(target)
+                //      : 선택된 요소를 target 의 첫 번째 자식 요소로 삽입
+                //  - .appendTo(target)
+                //      : 선택된 요소를 target 의 마지막 자식 요소로 삽입
+                //  - .insertBefore(target)
+                //      : 선택된 요소를 target 의 이전 형제 요소로 삽입
+                //  - .insertAfter(target)
+                //      : 선택된 요소를 target 의 다음 형제 요소로 삽입
+                //  → target : selector, selection(jQuery 객체), element, array, htmlString
+
+                // 2. 선택한 문서 객체에 특정 요소를 삽입
+                //  - .prepend(content)
+                //      : 선택된 요소의 첫 번째 자식 요소로 특정 요소를 삽입
+                //  - .append(content)
+                //      : 선택된 요소의 마지막 자식 요소로 특정 요소를 삽입
+                //  - .before(content)
+                //      : 선택된 요소의 이전 형제 요소로 특정 요소를 삽입
+                //  - .after(content)
+                //      : 선택된 요소의 다음 형제 요소로 특정 요소를 삽입
+                //  → content : htmlString, element, array, selection, text
+                //  → 인자 값으로 함수를 전달하여 각 선택된 요소마다 
+                //    다른 요소를 삽입할 수 있다.
+                //      ex) prepend(function([index [, html]]) { });
+
+
+                // 1. 선택된 문서 객체를 특정 요소에 삽입
+                var $target1 = $("#target1");
+                var num1 = 1;
+
+                // 첫 번째 자식 요소로 추가
+                $("#prependTo").on("click", function() { 
+                    var $newItem = $("<li></li>")
+                                        .html("prepend #" + num1)
+                                        .addClass("prepend");
+                    $newItem.prependTo($target1);
+                    num++;
+                });
+
+                // 마지막 자식 요소로 추가
+                $("#appendTo").on("click", function() { 
+                    $("<li></li>")                  // 새로운 li 요소 생성
+                        .html("append #" + num1)    // li 요소의 내부 문자 설정
+                        .addClass("append")         // li 요소에 class 속성 추가
+                        .appendTo($target1);        // li 요소를 target 의 마지막 자식 요소로 삽입
+
+                    num1++;
+                });
+
+                // 이전 형제 요소로 추가
+                $("#insertBefore").on("click", function() { 
+                    $("<ul></ul>")
+                        .html("before #" + num1)
+                        .addClass("before")
+                        .insertBefore("#target1");
+
+                    num1++;
+                });
+
+                // 다음 형제 요소로 추가
+                $("#insertAfter").on("click", function() { 
+                    $("<ul></ul>")
+                        .html("after #" + num1)
+                        .addClass("after")
+                        .insertAfter("#target1");
+
+                    num1++;
+                });
+
+                // 2. 선택된 문서 객체에 특정 요소를 삽입
+                var $target2 = $("#target2");
+                var num2 = 1;
+
+                $("#prepend").on("click", function() { 
+                    $target2.prepend("<li class ='prepend'>prepend #" + num2 + "</li>");
+                    num2++;
+                });
+
+                $("#append").on("click", function() { 
+                    $clone = $target2.children(":first").clone().html("append #" + num2);
+                    
+                    $target2.append($clone);
+                    num2++;
+                });
+
+                $("#before").on("click", function() { 
+                    var $newList = $("<ul></ul>")
+                                        .html("before #" + num2)
+                                        .addClass("before");
+                    
+                    $target2.before($newList);
+                    num2++;
+                });
+
+                $("#after").on("click", function() { 
+                    $target2.after( $("<ul></ul>").html("after #" + num2).addClass("after") );
+                    num2++;
+                });
+                //----------------------------------------------------------------------------
+                // 문서 객체 이동
+                //  - 삽입 메서드를 이용하여 요소를 다른 곳으로 이동
+                //  - DOM 에 배치된 요소를 삽입 메서드를 통해
+                //    다른 요소를 기준으로 이동 시킬 수 있다.
+                //  - 기존 요소를 삽입 메서드를 통해 이동 시킬 때
+                //    복사가 되어지는 것이 아니다.
+
+                // #list2 요소
+                var $list2 = $("#list2");
+
+                // #list2 요소의 첫번째 자식 요소
+                var $first = $list2.children(":first");
+                //  = Item 1 요소
+
+                // #list2 요소의 첫번째 자식 요소를
+                // #list2 요소의 마지막 자식 요소로 이동
+                $first.appendTo($list2);
+                //  = $list2.append($first)
+
+
+                $first.appendTo($list2);
+                //  → $first 에는 DOM 에서의 첫번째 자식 요소가 아닌
+                //    탐색되서 반환된 요소(Item 1)가 저장되어있다.
+                //  → 다음 첫 번째 자식 요소를 이동시키려면
+                //    다시 탐색해야한다.
+
+                $list2.children(":first").appendTo($list2);
+                // Item 2 가 마지막 자식 요소로 이동
+
+                // 2초 마다
+                //$list2 요소의 첫 번째 자식 요소를
+                // #list2 요소의 마지막 자식 요소로 이동
+                window.setInterval(function() {
+                    // $list2.children(":first").appendTo($list2);
+                    $list2.append($list2.children(":first"));
+                }, 2000);
+
+
+            });
+        </script>
+    </head>
+    <body>
+        <ul id="list1" class="gray-box">
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li data-index="2">Item 3</li>
+            <li>Item 4</li>
+        </ul>
+
+        <div class="gray-box">
+            <h1>1. 선택된 문서 객체를 특정 요소에 삽입</h1>
+            <div id="buttons">
+                <button id="prependTo">.prependTo(target)</button>
+                <button id="appendTo">.appendTo(target)</button>
+                <button id="insertBefore">.insertBefore(target)</button>
+                <button id="insertAfter">.insertAfter(target)</button>
+            </div>
+            <hr>
+
+            <!-- before                     : target1 의 이전 형제 요소 -->
+            <ul id="target1">
+                <!-- prepend                : target1 의 첫 번째 자식 요소 -->
+                <li>Base Line</li>
+                <!-- append                 : target1 의 마지막 자식 요소 -->
+            </ul>
+            <!-- after                      : target1 의 다음 형제 요소-->
+        </div>
+
+        <div class="gray-box">
+            <h1>2. 선택된 문서 객체에 특정 요소를 삽입</h1>
+            <div class="buttons">
+                <button id="prepend">.prepend(content)</button>
+                <button id="append">.append(content)</button>
+                <button id="before">.before(content)</button>
+                <button id="after">.after(content)</button>
+            </div>
+            <hr>
+
+            <!-- before                     : target2 의 이전 형제 요소 -->
+            <ul id="target2">
+                <!-- prepend                : target2 의 첫 번째 자식 요소 -->
+                <li>Base Line</li>
+                <!-- append                 : target2 의 마지막 자식 요소 -->
+            </ul>
+            <!-- after                      : target2 의 다음 형제 요소 -->
+        </div>
+
+        <ul id="list2">
+            <li class="gray-box">Item 1</li>
+            <li class="gray-box">Item 2</li>
+            <li class="gray-box">Item 3</li>
+        </ul>
+    </body>
+</html>
