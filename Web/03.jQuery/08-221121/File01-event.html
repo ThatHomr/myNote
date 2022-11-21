@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>jQuery - Event</title>
+        <link rel="stylesheet" href="../../css/reset.css">
+        <link rel="stylesheet" href="../../css/dark.css">
+        <!-- jQuery CDN-->
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <style>
+            .on {
+                background-color: yellowgreen;
+                color: navy;
+                font-weight: bold;
+            }
+            .highlight {
+                border: 10px solid pink;
+            }
+        </style>
+        <script>
+            $(function() { 
+                // document 객체의 ready 이벤트 핸들러
+
+                // jQuery 이벤트 연결
+                //  - 기본 이벤트 연결
+                //      : JavaScript 에서 사용하던 .addEventListener 와 같은 방식
+                //      : .on() 메서드를 통해 이벤트 이름과 핸들러를 지정하여 연결하는 방식
+                //  - 간단한 이벤트 연결
+                //      : 이벤트 이름으로 된 메서드를 통해 이벤트 핸들러를 연결하는 방식
+                //      ex) .click(function() { ... })
+                //  - 1회성 이벤트 연결
+                //      : 이벤트 이름과 이벤트 핸들러를 연결하고 한 번 수행한 다음
+                //        이벤트 핸들러를 제거하는 메서드
+                //      : .one(eventName, function() { ... })
+                //  - 마우스 관련 이벤트 연결
+                //      : mouseenter 이벤터와 mouseleave 이벤트의 핸들러를
+                //        연결하기 위한 메서드
+                //      : .hover(function() { }, function() { })
+                //          → 1. mouseenter 이벤트 핸들러
+                //          → 2. mouseleave 이벤트 핸들러
+                //      : .hover(function() { })
+                //          → mouseenter 이벤트와 mouseleave 이벤트 핸들러
+                //----------------------------------------------------------------------
+
+                // 이벤트 이름인 메서드를 통해 이벤트 핸들러를 연결
+                $("#hello1").click(function() {
+                    // #hello1 요소의 click 이벤트 핸들러
+                    $(this).css({
+                        backgroundColor:"navy",
+                        color:"yellow"
+                    });
+                });
+
+                $("#hello2").on("click", function() { 
+                    // #hello2 요소의 click 이벤트 핸들러
+                    $(this).css({
+                        backgroundColor:"navy",
+                        color:"yellow"
+                    });
+                });
+
+                // on() 메서드는 다수의 이벤트 핸들러를
+                // 한 번에 연결할 수 있다.
+                $("#hello2").on({ 
+                    mouseenter:function() { 
+                        $(this).css("border", "10px solid white");
+                    },
+                    mouseleave:function() { 
+                        $(this).removeAttr("style")
+                    }
+                });
+
+                // 1회성 이벤트 연결
+                //  - 이벤트 핸들러를 단 한 번 수행하고
+                //    이벤트 핸들러를 제거하는 메서드
+                $("#hello3").on("click", function() { 
+                    var innerHTML = $(this).html();
+
+                    window.alert(innerHTML);
+                });
+
+                // hover 기능을 위한 이벤트 연결
+                $("#hello4").hover(
+                    // mouseenter 이벤트의 핸들러
+                    function() {
+                        $(this).addClass("on");
+                    },
+                    // mouseleave 이벤트의 핸들러
+                    function() {
+                        $(this).removeClass("on");
+                    }
+                );
+
+                $("#hello4").hover(
+                    // mouseenter 이벤트와 mouseleave 이벤트의 핸들러
+                    function() {
+                        $(this).toggleClass("highlight");
+                    }
+                );
+
+
+            });
+        </script>
+    </head>
+    <body>
+        <h1 id="hello1" class="gray-box">Hello World!</h1>
+        <h1 id="hello2" class="gray-box">Hello World!</h1>
+        <h1 id="hello3" class="gray-box">Hello World!</h1>
+        <h1 id="hello4" class="gray-box">Hello World!</h1>
+    </body>
+</html>
