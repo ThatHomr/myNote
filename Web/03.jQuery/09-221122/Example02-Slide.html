@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Example02 - Slide</title>
+        <link rel="stylesheet" href="../../css/reset.css">
+        <link rel="stylesheet" href="../../css/dark.css">
+        <!-- jQuery CDN-->
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <style>
+            #container {
+                width: 960px;
+                height: 540px;
+
+                margin: 0 auto;
+                border: 10px solid white;
+
+                /* li 요소의 기준 영역으로 지정 */
+                position: relative;
+                overflow: hidden;
+            }
+
+            #container > ul > li {
+                /* #container 요소의 영역을 기준으로 배치 */
+                position: absolute;
+                top: 0;
+                left: 0;
+                /* #container 요소의 너비와 동일하게 설정 */
+                width: 100%;
+            }
+
+            /* 마크업한 순서와 보여지는 순서를 맞추기 위해 */
+            /* 레이어의 순서를 지정 */
+            /* 이때, 세 번째 이미지부터는 보여지지 않기 때문에 */
+            /* 첫 번째 이미지와 두 번째 이미지만 순서를 지정 */
+            #container > ul > li:nth-child(1) { z-index: 20;}
+            #container > ul > li:nth-child(2) { z-index: 10;}
+
+            #container > ul > li > img {
+                display: block;
+                width: 100%;
+            }
+        </style>
+        <script>
+            $(function() { 
+                
+                // 0. 요소 탐색 및 변수 선언
+                // 1. 일정 시간 마다
+                // 1-1. #container 요소 내의 첫 번째 li 요소를
+                //      #container 요소의 너비만큼 왼쪽으로 천천히 이동
+                // 1-2. li 요소의 움직임이 끝나면
+                // 1-2-1. 첫 번째 li 요소의 style 제거
+                // 1-2-2. ul 요소의 첫 번째 자식 요소를
+                //        ul 요소의 마지막 자식 요소로 이동
+                // 2. #container 요소의 영역에 마우스 포인터가 들어가면
+                // 2-1. li 요소가 움직이지 않도록 한다.
+                // 3. #container 요소의 영역에서 마우스 포인터가 빠져나오면
+                // 3-1. li 요소가 다시 움직이도록 한다.
+                //-----------------------------------------------------------------
+                // 0. 요소 탐색 및 변수 선언
+                var $container = $("#container");
+
+                // 첫번째 li 요소를 조작을 하지만
+                // 매 시간 마다
+                // li 요소의 상위 요소를 탐색
+                var $imageList = $container.children("ul");
+                var delay = 3000;
+                var duration = 800;
+                var timerId = 0;
+
+                function nextImageSlide() {
+                    // 1-1. #container 요소 내의 첫 번째 li 요소를
+                    //      #container 요소의 너비만큼 왼쪽으로 천천히 이동
+                    $imageList.children(":first").css({
+                        left:"-100%",
+                        transitionDuration:duration+"ms"
+                    });
+                    // 1-2. li 요소의 움직임이 끝나면
+                    window.setTimeout(function() {
+                        // 1-2-1. 첫 번째 li 요소의 style 제거
+                        // 1-2-2. ul 요소의 첫 번째 자식 요소를
+                        //        ul 요소의 마지막 자식 요소로 이동
+                        $imageList.children(":first").removeAttr("style")
+                                    .appendTo($imageList);
+                    }, duration);
+
+                }
+
+                // 1. 일정 시간 마다
+                timerId = window.setInterval(nextImageSlide, delay);
+
+                $container.hover(
+                    // 2. #container 요소의 영역에 마우스 포인터가 들어가면
+                    function() {
+                        // 2-1. li 요소가 움직이지 않도록 한다.
+                        window.clearInterval(timerId);
+                    },
+                    // 3. #container 요소의 영역에서 마우스 포인터가 빠져나오면
+                    function() {
+                        // 3-1. li 요소가 다시 움직이도록 한다.
+                        timerId = window.setInterval(nextImageSlide, delay);
+                    }
+
+                )
+            });
+        </script>
+    </head>
+    <body>
+        <div class="gray-box">
+            <ul id="container">
+                <li><img src="../../images/banner-11.png" alt="photo"></li>
+                <li><img src="../../images/banner-12.png" alt="photo"></li>
+                <li><img src="../../images/banner-13.png" alt="photo"></li>
+                <li><img src="../../images/banner-14.png" alt="photo"></li>
+                <li><img src="../../images/banner-15.png" alt="photo"></li>
+            </ul> <!-- /#container -->
+        </div> 
+    </body>
+</html>

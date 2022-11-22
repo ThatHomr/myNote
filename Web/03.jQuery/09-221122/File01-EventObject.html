@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>jQuery - Event Object</title>
+        <link rel="stylesheet" href="../../css/reset.css">
+        <link rel="stylesheet" href="../../css/dark.css">
+        <!-- jQuery CDN-->
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <style>
+            
+        </style>
+        <script>
+            $(function() {
+                // 이벤트 객체(Event Object)
+                //  - 이벤트가 발생했을 때 이벤트와 관련된 정보를 담고 있는 객체
+                //  - 이벤트 객체를 통해 이벤트의 상태와 이벤트 조작
+                //  - 단, jQuery 메서드 내에서 사용되는 이벤트 객체는
+                //    JavaScript 이벤트 객체의 속성들을 정리한 이벤트 객체
+                //    → JavaScript 에서 사용하던 이벤트 객체와
+                //      jQuery 에서 사용하는 이벤트 객체는 다르다.
+
+                // 이벤트 객체 속성
+                //  - event.type        발생한 이벤트 이름
+                //  - event.which       이벤트를 발생시킨 마우스 또는 키보드의 코드
+                //  - event.target      이벤트를 발생한 요소(type: element)
+                //  - event.pageX       브라우저 화면을 기준으로 한 X 좌표
+                //  - event.pageY       브라우저 화면을 기준으로 한 Y 좌표
+                //  - event.clientX     HTML 문서를 기준으로 한 X 좌표
+                //  - event.clientY     HTML 문서를 기준으로 한 Y 좌표
+                //  - event.screenX     모니터를 기준으로 한 X 좌표
+                //  - event.screenY     모니터를 기준으로 한 Y 좌표
+                //  - event.timestamp   페이지 로드 후 이벤트가 발생한 시간(ms)
+
+                // 이벤트 객체 메서드
+                //  - event.preventDefault()            기본 이벤트 제거
+                //  - event.stopPropagation()           이벤트 전달 제거
+                //  - event.stopImmediatePropagation()  모든 이벤트 전달 제거
+
+                $("#container").on("click", function() { 
+                    $(this).css("backgroundColor", "yellowgreen");
+                });
+                $("#link").on("click", function(event) { 
+                    // 이벤트 객체는 이벤트 핸들러의 매개변수로 전달
+                    // 이때 전달된 이벤트 객체는 JavaScript 에서의 이벤트 객체와 다르다.
+
+                    console.log(event);
+
+                    // 기본 이벤트 제거
+                    // event.preventDefault();
+
+                    // 이벤트 전달 제거
+                    //  - 발생한 이벤트를 다른 요소로 전달
+                    //  - 기본적으로 하위 요소에서 상위 요소로 전달
+                    // event.stopPropagation();
+
+                    // 모든 이벤트 전달 제거
+                    //  - 버블링, 캡처링 뿐만 아니라
+                    //    같은 이벤트의 핸들러를 호출하는 것 또한 막는다.
+                    //  - 같은 이벤트의 핸들러가 다수인 경우에는
+                    //    연결된 순서대로 핸들러가 호출된다.
+                    //  - 즉, 이후 수행될 모든 이벤트 핸들러를 수행시키지 않는다.
+                    // event.stopImmediatePropagation();
+
+                    // 기본 이벤트 전달 제거와 이벤트 전달 제거
+                    //  - 되도록이면 이벤트 객체의 메서드를 통해 명시하는 것이 좋다.
+                    return false;
+
+                })
+                .on("click", function() { 
+                    $(this).css({ 
+                        backgroundColor:"navy",
+                        color:"white"
+                    });
+                });
+
+            });
+        </script>
+    </head>
+    <body>
+        <div id="container1" class="gray-box">
+            <a href="https://www.naver.com" id="link">Naver</a>
+        </div>
+    </body>
+</html>
