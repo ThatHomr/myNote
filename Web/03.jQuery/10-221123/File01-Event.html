@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>jQuery - Event</title>
+        <link rel="stylesheet" href="../../css/reset.css">
+        <link rel="stylesheet" href="../../css/dark.css">
+        <!-- jQuery CDN-->
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <style>
+            
+        </style>
+        <script>
+            $(function() { 
+
+                // key 이벤트
+                var $remain = $("#remain");
+
+                $("#textarea1").on({ 
+                    // eventName : eventHandler
+                    keydown : function(event) {
+                        console.log("keydown event!");
+
+                        // 입력 요소의 입력된 값 = value 속성
+                        var value = $(this).val();
+                        console.log("value = " + value);
+
+                        // event 객체 내에 어떤 키를 눌렀는지 알려주는 속성
+                        //  event.keyCode = event.which
+                        console.log("keyCode = " + event.keyCode);
+
+                        switch(event.keyCode) {
+                            case 38 :   // 방향키 상
+                                console.log("arrow up!")
+                                break;
+                            case 40 :   // 방향키 하
+                                console.log("arrow down!")
+                                break;
+                            case 37 :   // 방향키 좌
+                                console.log("arrow left!")
+                                break;
+                            case 39 :   // 방향키 우
+                                console.log("arrow right!")
+                                break;
+                        }
+
+                        console.log("===============================");
+                    },
+                    keypress : function() {
+                        console.log("keypress event!");
+
+                        var value = $(this).val();
+                        console.log("value = " + value);
+
+                        console.log("===============================");
+                    },
+                    keyup : function() {
+                        console.log("keyup event!");
+
+                        var value = $(this).val();
+                        console.log("value = " + value);
+
+                        // 입력된 값의 길이
+                        //  = value.length
+                        $remain.html("Number of characters input : " + value.length + " / 150");    
+
+                        console.log("===============================");
+                    }
+                });
+
+                //------------------------------------------------------------------------------
+                // 입력 양식 이벤트
+                $("#check1").on("change", function() { 
+                    console.log("change log!");
+
+                    console.log(".attr(\"checked\") : " + $(this).attr("checked"));
+                    // → HTML 상의 속성(Attribute)을 반환하기 때문에
+                    //   현재 체크 상태를 확인할 수 없다.
+                    
+                    console.log(".prop(\"checked\") : " + $(this).prop("checked"));
+                    // → 객체의 속성(property)을 반환하기 때문에 
+                    //   현재 체크 상태를 확인할 수 있다.
+                    
+                    console.log(".is(\":checked\") : " + $(this).is(":checked"));
+
+                });
+                $("#check1").prop("checked", true);
+
+                $("#text1").on({ 
+                    // 포커싱 됐을 때
+                    focus : function() {
+                        $(this).removeAttr("style");
+                    },
+                    // 포커싱 해제 됐을 때
+                    blur : function() { 
+                        // 입력 값이 없을 때 해제되면
+                        // 빨간 테두리로 설정
+                        if( !$(this).val() ) { 
+                            $(this).css("border", "5px solid red");
+                        }
+                        else {
+                            $(this).css("border", "5px solid yellowgreen");
+                        }
+
+                    }
+                }).focus(); // 포커싱
+
+                $("#form1").on("submit", function(event) { 
+                    // #form1 요소 내에서 submit 버튼을 클릭했을 때 발생
+
+                    // 입력된 값이 있으면 서버에 전달시키기 위해
+                    // 이벤트 핸들러를 즉시 종료
+                    if($("#text1").val()) return;
+                    
+
+                    // 기본 이벤트 제거
+                    //  - form 요소는 기본 이벤트가 있으며
+                    //    입력된 값들을 서버에 전달한다.
+                    event.preventDefault();
+
+                    $("#text1").focus();
+
+                    window.alert("You must enter text!");
+
+
+                });
+
+            });
+        </script>
+    </head>
+    <body>
+        <div class="gray-box">
+            <p id="remain">Number of characters input : 0 / 150</p>
+            <textarea name="textarea1" id="textarea1" cols="30" rows="10" value = "value"></textarea>
+        </div>
+
+        <div class="gray-box">
+            <form action="server" id="form1">
+                <input type="checkbox" name="check1" id="check1">
+                <input type="text" name="text1" id="text1">
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+
+        
+    </body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Example01 - Log in</title>
+        <link rel="stylesheet" href="../../css/reset.css">
+        <link rel="stylesheet" href="../../css/dark.css">
+        <!-- jQuery CDN-->
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <style>
+            #login {
+                width: max-content;
+                margin: 0 auto;
+            }
+            #login > * {
+                height: 2em;
+                padding: 0 1em;
+            }
+            #login > button {
+                display: block;
+                width: 100px;
+                font-size: 1rem;
+                margin: 1em auto;
+            }
+
+            #alert {
+                font-size: 0.7rem;
+                color: red;
+            }
+
+        </style>
+        <script>
+            $(function() { 
+
+                var $account = $("#account");
+                var $password = $("#password");
+                $("#login").on("submit", function(event) { 
+
+                    // 둘 다 입력된 값이 있으면 정상적으로 동작되면
+                    // 되기 때문에 이벤트 핸들러를 즉시 종료
+                    if($account.val() && $password.val()) return;
+
+                    // 최소 둘 중 하나는 입력이 안됐기 때문에
+                    // 기본 이벤트를 제거
+                    event.preventDefault();
+                    var alertMassage;
+                    var $input;
+
+                    if(!$account.val()) {
+                        alertMassage = "You must enter an account!";
+                        $input = $account;
+                    }
+                    else {
+                        alertMassage = "You must enter a password!";
+                        $input = $account;
+                    }
+
+                    $input.focus();
+                    window.alert(alertMassage);
+                    // $("#alert").html(alertMassage);
+
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div class="gray-box">
+            <form action="login" id="login">
+                <input type="text" name="account" id="account" placeholder="Enter your account" autocapitalize="off">
+                <br>
+                <input type="password" name="password" id="password" placeholder="Enter your password">
+                <br>
+                <button type="submit">LOG IN</button>
+                <span id="alert"></span>
+            </form>
+        </div>
+    </body>
+</html>
