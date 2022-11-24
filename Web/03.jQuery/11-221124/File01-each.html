@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>jQuery - each</title>
+        <link rel="stylesheet" href="../../css/reset.css">
+        <link rel="stylesheet" href="../../css/dark.css">
+        <!-- jQuery CDN-->
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <style>
+            
+        </style>
+        <script>
+            $(function() { 
+
+                // jQuery 객체의 배열 관리
+                //  - jQuery 객체 내에는 다수의 요소를 포함하기 위한 배열이 있고
+                //    jQuery 객체의 메서드는 이 배열을 다루기 위한 로직이 이미 있다.
+                //    따라서, 하나의 메서드로 다수의 요소들을 조작할 수 있다.
+                //  - 각 요소마다 다른 값들로 조작할 때는 메서드의 인자로
+                //    함수를 전달하여 각 요소마다 수행시킬 수 있다.
+                //  → 이때, 다수의 메서드의 인자로 함수를 전달하게 되면
+                //    오히려 코드가 복잡해지고 관리하기가 힘들다.
+                //  → 각 요소마다 다루기 위한 기능이 많거나 복잡하다면
+                //    each() 메서드를 통해 각 요소마다 수행할 기능을 한 번에 작성
+
+                $("#list1 > li")
+                    .addClass("gray-box")
+                    .css("width", function(index, value) { 
+                        return (index + 1) * 200;
+                    }).html(function(index, innerHTML) { 
+                        return "[New] " + innerHTML;
+                    });
+                
+                // each() 메서드
+                //  - jQuery 객체 내의 다수의 요소의 수 만큼 함수를 반복 수행
+                //  - 각 요소마다 적용할 함수를 매개변수로 전달
+                $("#list2 > li").each(function(index, element) { 
+                    $(element)
+                        .addClass("gray-box")
+                        .css("width", (index+1) * 200)
+                        .html("[NEW] " + element.innerHTML);
+                });
+
+                $("#list3 > li").each(function(index, element) { 
+
+                    // 각 요소의 data-color 속성 값을 반환
+                    var color = $(element).data("color");
+                    $(element).css("color", color);
+
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <ul id="list1">
+            <li>Item A</li>
+            <li>Item B</li>
+            <li>Item C</li>
+            <li>Item D</li>
+        </ul>
+
+        <hr>
+
+        <ul id="list2">
+            <li>Item A</li>
+            <li>Item B</li>
+            <li>Item C</li>
+            <li>Item D</li>
+        </ul>
+
+        <hr>
+
+        <ul id="list3">
+            <li data-color = "red" class="gray-box">Item A</li>
+            <li data-color = "yellowgreen" class="gray-box">Item B</li>
+            <li data-color = "orange" class="gray-box">Item C</li>
+            <li data-color = "yellow" class="gray-box">Item D</li>
+        </ul>
+
+    </body>
+</html>
