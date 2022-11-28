@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>jQuery - Animation</title>
+        <link rel="stylesheet" href="../../css/reset.css">
+        <link rel="stylesheet" href="../../css/dark.css">
+        <!-- jQuery CDN-->
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <style>
+            .gray-box > h1 {
+                background-color: orange;
+                color: navy;
+                padding: 1em;
+                border-radius: 8px;
+
+                /* 시각 효과를 이용하는 요소들을 */
+                /* 숨길 때 display 속성을 통해야만 숨겨야한다. */
+                display: none;
+
+            }
+            .buttons {
+                width: max-content;
+                margin: 0 auto;
+            }
+            .buttons > button {
+                font-size: 0.8em;
+            }
+        </style>
+        <script>
+            $(function() { 
+
+                // 시각 효과 메서드의 매개 변수
+                //  - duration : 효과 진행 시간
+                //  - complete : 효과 진행이 끝난 다음 수행 시간()
+
+                var $hello1 = $("#hello1");
+                $("#show").on("click", function() { 
+                    // $hello1.show();
+
+                    // $hello1
+                    //     .show(1000)
+                    //     .css("border", "10px solid red");
+                    // 시각 효과를 진행하는 것과
+                    // 명령어를 수행하는 것은 별개이기 때문에
+                    // 테두리 설정이 거의 동시에 이뤄진다.
+
+                    // 만약 효과가 끝난 다음에 테두리를 설정하려면
+                    //  - 기존에는 진행 시간 뒤에 동작하는 타이머를 등록
+                    // $hello1.show(1000);
+                    // window.setTimeout(function() { 
+                    //     $hello1.css("border", "10px solid red");
+                    // }, 1000);
+                    //  - 시각 효과 메서드에 함수를 전달하는 방법도 있다.
+                    $hello1.show(1000, function() { 
+                        // 해당 요소의 시각 효과가 끝난 다음 수행할 함수
+                        // $hello1.css("border", "10px solid red");
+                        $(this).css("border", "10px solid red");
+                    });
+
+                });
+                $("#hide").on("click", function() { 
+                    // 진행 시간이 없으므로 css만 작성했음.
+                    $hello1.hide().css("border", "none");
+
+                });
+                $("#toggle").on("click", function() { 
+                    $hello1.toggle();
+                });
+
+
+                var $hello2 = $("#hello2");
+                $("#slideDown").on("click", function() { 
+                    $hello2.slideDown();
+                });
+                $("#slideUp").on("click", function() { 
+                    $hello2.slideUp();
+                });
+                $("#slideToggle").on("click", function() { 
+                    $hello2.slideToggle(3000);
+                });
+
+                var $hello3 = $("#hello3");
+                $("#fadeIn").on("click", function() { 
+                    $hello3.fadeIn();
+                });
+                $("#fadeOut").on("click", function() { 
+                    $hello3.fadeOut();
+                });
+                $("#fadeToggle").on("click", function() { 
+                    $hello3.fadeToggle(3000);
+                });
+                //----------------------------------------------------------
+                // 시각 효과 제어
+                //  - 시각 효과 메서드는 호출된 수 만큼 차례대로 수행된다.
+                //  - 시각 효과 메서드는 동시에 수행되지 않고 호출된 순서대로 수행
+                //  - 때문에 사용자가 원하지 않는 시잠에도 효과가 진행 중 일 때가 있다.
+                //  → 효과가 진행 중일 때 다른 시각 효과 메서드가 호출되 않도록 해야한다.
+                //      1. 흐름을 제어하기 위한 플래그 변수(flag) 변수를 이용     // 상세하고 세밀한 
+                //      2. ":animated" 선택자를 통해 검사                       // 간단한 방법
+
+                var $time = $("#time");
+
+                // 시각 효과의 흐름을 제어하기 위한 플래그 변수
+                //   true : 효과 진행 중
+                //  false : 정지 상태
+                var isAnumated = false;
+                $("#container1").on("click", function() { 
+
+                    // 효과가 진행 중이면 시각 효과 메서드가
+                    // 호출되지 않도록 핸들러를 즉시 종료
+                    if(isAnumated) return;
+
+                    // 시각 효과 메서드를 호출하기 때문에
+                    // 플래그 변수의 값을 true 로 설정
+                    isAnumate = true;
+
+                    // 시각 효과가 끝난 다음에는 
+                    // 플래그 변수의 값을 false 로 설정
+                    $time.slideToggle(3000, function() { 
+                        // 효과가 끝난 다음 수행할 함수
+                        isAnumated = false;
+                    });
+
+                    
+                });
+                
+                var $nice = $("#nice");
+                $("#container2").on("click", function() { 
+
+                    // #nice 요소가 효과 진행 중이면
+                    // 핸들러를 즉시 종료
+                    if($nice.is(":animated")) return;
+                    $nice.fadeToggle(3000);
+
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div class="gray-box">
+            <div class="buttons">
+                <button id="show">.show()</button>
+                <button id="hide">.hide()</button>
+                <button id="toggle">.toggle()</button>
+            </div>
+            <hr>
+            <h1 id="hello1">Hello World!</h1>
+        </div>
+        
+        <div class="gray-box">
+            <div class="buttons">
+                <button id="slideDown">.slideDown()</button>
+                <button id="slideUp">.slideUp()</button>
+                <button id="slideToggle">.slideToggle()</button>
+            </div>
+            <hr>
+            <h1 id="hello2">Hello World!</h1>
+        </div>
+        
+        <div class="gray-box">
+            <div class="buttons">
+                <button id="fadeIn">.fadeIn()</button>
+                <button id="fadeOut">.fadeOut()</button>
+                <button id="fadeToggle">.fadeToggle()</button>
+            </div>
+            <hr>
+            <h1 id="hello3">Hello World!</h1>
+        </div>
+        <hr>
+        <div id="container1" class="gray-box">
+            <h1 id="time">Time is gold.</h1>
+        </div>
+        <div id="container2" class="gray-box">
+            <h1 id="nice">Nice to meet you.</h1>
+        </div>
+
+    </body>
+</html>
