@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Example02 - wheel event</title>
+        <link rel="stylesheet" href="../../css/reset.css">
+        <link rel="stylesheet" href="../../css/dark.css">
+        <!-- jQuery CDN-->
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <style>
+            html, body {height: 100%;}
+            body { width:1000%}
+            .page { 
+                float: left;
+                width: 10%; 
+                height: 100%; 
+                position: relative;
+            }
+            .page:nth-child(even) { background-color:  #444;}
+            .page > h1 {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+
+                font-size: 22em;
+                font-weight: bold;
+                text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.4);
+            }
+
+        </style>
+        <script>
+            $(function() { 
+
+                var $html = $("html");
+                $html.animate({screenleft:0});
+
+                window.addEventListener("wheel", function(event) { 
+                    event.preventDefault();
+
+                    if($html.is(":animated")) return;
+
+                    var delta = event.deltaY;
+
+                    // 현재 스크롤된 위치를 기준으로
+                    // 이전/다음 페이지로 스크롤 이동
+
+                    // 현재 스크롤된 위치
+                    var currentScrollLeft = $(window).scrollLeft();
+                    // 페이지의 너비
+                    var pageWidth = $(window).width();
+
+                    var moveTo = 0;
+                    if(delta > 0) {
+                        moveTo = currentScrollLeft + pageWidth;
+                    }
+                    else {
+                        moveTo = currentScrollLeft - pageWidth;
+                    }
+
+                    $html.animate({scrollLeft:moveTo});
+
+                }, {passive:false});
+
+
+            });
+        </script>
+    </head>
+    <body>
+        <div class="page">
+            <h1>1</h1>
+        </div>
+        <div class="page">
+            <h1>2</h1>
+        </div>
+        <div class="page">
+            <h1>3</h1>
+        </div>
+        <div class="page">
+            <h1>4</h1>
+        </div>
+        <div class="page">
+            <h1>5</h1>
+        </div>
+        <div class="page">
+            <h1>6</h1>
+        </div>
+        <div class="page">
+            <h1>7</h1>
+        </div>
+        <div class="page">
+            <h1>8</h1>
+        </div>
+        <div class="page">
+            <h1>9</h1>
+        </div>
+        <div class="page">
+            <h1>10</h1>
+        </div>
+    </body>
+</html>

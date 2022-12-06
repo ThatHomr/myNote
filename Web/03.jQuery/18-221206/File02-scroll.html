@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>jQuery - scroll event</title>
+        <link rel="stylesheet" href="../../css/reset.css">
+        <link rel="stylesheet" href="../../css/dark.css">
+        <!-- jQuery CDN-->
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <style>
+            html, body {height: 100%;}
+            .page { height: 100%; position: relative;}
+            .page:first-child {
+                background: url("../../images/bg-dark-02.jpg") no-repeat center top / cover;
+                /* background-attachment: fixed; */
+            }
+            .page > h1 {
+                position: relative;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+
+                font-size: 6em;
+                font-weight: bold;
+                text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.4);
+            }
+        </style>
+        <script>
+            $(function() { 
+
+                // scroll 이벤트
+                //  - 브라우저 또는 요소의 스크롤이 이동될 때 발생하는 이벤트
+
+                $(window).on("scroll", function() { 
+                    // 스크롤 이벤트는 상당히 빈번히 발생하는 이벤트이므로
+                    // 다룰 때 주의 해야한다.
+                    // console.log("scroll event! : " + $(window).scrollTop());
+
+                });
+                //--------------------------------------------------------------
+                // Parallax Scrolling
+                //  - 원근감(시차)를 이용한 디자인 기법
+                //  - 배경과 컨텐츠의 스크롤 속도를 다르게 하여
+                //    거리감(원근감)을 주는 효과
+
+                $(window).on("scroll", function() { 
+
+                    // 배격이 아래로 이동할 거리
+                    var bgDist = $(window).scrollTop() / 2;
+
+                    $(".page:first").scc({backgroundPositionY: bgDist});
+
+
+                });
+
+
+
+            });
+        </script>
+    </head>
+    <body>
+        <div class="page">
+            <h1>My Dream</h1>
+        </div>
+        <div class="page">
+            <h1>My Work</h1>
+        </div>
+    </body>
+</html>

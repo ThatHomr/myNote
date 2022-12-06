@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Example01 - wheel event</title>
+        <link rel="stylesheet" href="../../css/reset.css">
+        <link rel="stylesheet" href="../../css/dark.css">
+        <!-- jQuery CDN-->
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <style>
+            html, body {height: 100%;}
+            .page { height: 100%; position: relative;}
+            .page:nth-child(even) { background-color:  #444;}
+            .page > h1 {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+
+                font-size: 22em;
+                font-weight: bold;
+                text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.4);
+            }
+        </style>
+        <script>
+            $(function() { 
+                var $html = $("html");
+
+                // 현재 보여지는 페이지
+                var pageNum = 1;
+
+                // 마지막 페이지 번호
+                var lastPageNum = $(".page").length;
+
+                var initScrollTop = (pageNum-1) * $(window).height();
+                $html.animate({scrollTop: initScrollTop});
+
+                // 마우스 휠을 통해 한 페이지씩 스크롤 이동이 되어지도록
+                // wheel 의 기본 이벤트를 제거
+                window.addEventListener("wheel", function(event) { 
+                    event.preventDefault();
+
+                    // 스크롤 이동 중에는 페이지 이동이 더 되지 않도록 해야한다.
+                    if($html.is(":animated")) return; 
+
+                    // 휠의 이동 방향
+                    var delta = event.deltaY;
+
+                    if(delta > 0) { // 휠을 아래로 굴린 경우
+                        // 마지막 페이지인 경우 이동할 페이지가 없기 때문에
+                        // 더 이상 핸들러를 수행할 필요가 없다.
+                        if(pageNum == lastPageNum) return;
+
+                        pageNum++;
+                    }
+                    else {  // 휠을 위로 굴린 경우
+                        // 첫 번째 페이지인 경우 이동할 페이지가 없기 때문에
+                        // 더 이상 핸들러를 수행할 필요가 없다.
+                        if(pageNum == 1) return;
+
+                        pageNum--;
+                    }
+
+                    var scrTop = $(window).height() * (pageNum-1);
+                    $html.animate({scrollTop:scrTop});
+
+                }, {passive:false});
+
+            });
+        </script>
+    </head>
+    <body>
+        <!-- (.page>h1{$}*10) -->
+        <div class="page">
+            <h1>1</h1>
+        </div>
+        <div class="page">
+            <h1>2</h1>
+        </div>
+        <div class="page">
+            <h1>3</h1>
+        </div>
+        <div class="page">
+            <h1>4</h1>
+        </div>
+        <div class="page">
+            <h1>5</h1>
+        </div>
+        <div class="page">
+            <h1>6</h1>
+        </div>
+        <div class="page">
+            <h1>7</h1>
+        </div>
+        <div class="page">
+            <h1>8</h1>
+        </div>
+        <div class="page">
+            <h1>9</h1>
+        </div>
+        <div class="page">
+            <h1>10</h1>
+        </div>
+    </body>
+</html>

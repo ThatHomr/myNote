@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>jQuery - wheel event</title>
+        <link rel="stylesheet" href="../../css/reset.css">
+        <link rel="stylesheet" href="../../css/dark.css">
+        <!-- jQuery CDN-->
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <style>
+            
+        </style>
+        <script>
+            $(function() { 
+
+                // wheel 이벤트
+                //  - 마우스 휠을 굴릴 때 발생하는 이벤트
+                //  - 기본 이벤트 = 스크롤
+                //  - wheel 자체가 스크롤을 하기 위한 하드웨어이기 때문에
+                //    스크롤 이벤트가 패시브 기능
+                //    → 따라서 기존의 방식으로는 기본 이벤트를 제거 할 수 없다.
+                //    → 제거하려면 패시브를 해제하고 제거해야한다.
+
+                // wheel 이벤트의 기본 이벤트를 제거하여 스크롤이 되지 않도록 한다.
+                // - 스크롤 자체를 막는 것은 아니다.
+                window.addEventListener("wheel", function(event) { 
+                    
+                    event.preventDefault();
+
+                }, {passive:false});
+
+
+                $(window).on("wheel", function(event) { 
+
+                    // 훨의 회전 방향을 알아내기 위해서는
+                    // JavaScript 에서의 이벤트 객체의 deltaY 속성을 반환
+                    //  JavaScript 에서의 이벤트 객체 = event.originalEvent
+                    console.log("delta = " + event.originalEvent.deltaY);
+                    // 양수 : 휠을 아래로 굴린 경우
+                    // 음수 : 휠을 위로 굴린 경우
+
+                    // 기본 이벤트 제거
+                    // event.preventDefault();
+
+                    if(event.originalEvent.deltaY > 0) { // 휠을 아래로 굴린 경우
+                        $("html").animate({scrollTop:"+=500"});
+                    }
+                    else {  // 휠을 위로 굴린 경우
+                        $("html").animate({scrollTop:"-=500"});
+                    }
+                });
+
+            });
+        </script>
+    </head>
+    <body>
+        
+    </body>
+</html>
