@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Example01 - wheel</title>
+        <link rel="stylesheet" href="../../css/reset.css">
+        <link rel="stylesheet" href="../../css/dark.css">
+        <!-- jQuery CDN-->
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <style>
+            html, body { height: 100%;}
+            .page { height: 100%; position: relative;}
+            .page:nth-child(even) {background-color: #444;}
+            .page > h1 {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+
+                font-size: 22em;
+                font-weight: bold;
+                text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.4);
+                line-height: 0.2em;
+            }
+        </style>
+        <script>
+            $(function() { 
+
+                // 현재 스크롤된 위치에서 마우스 휠을 굴리면
+                // 한 페이지씩 스크롤 이동이 되어지도록 작성
+
+                var $html = $("html");
+                var $window = $(window);
+
+                // 마우스 휠을 굴릴 때 한 페이지씩 스크롤 이동할 수 있도록
+                // 마우스 휠의 기본 이벤트를 제거
+                window.addEventListener("wheel", function(event) { 
+                    event.preventDefault();
+
+                    // 페이지가 한 번에 많이 넘어가지 않도록
+                    // 페이지가 이동 중이면 핸들러를 종료
+                    if($html.is(":animated")) return;
+
+                    // 휠을 굴린 방향을 알기 위한 속성
+                    var delta = event.deltaY;
+
+                    // 현재 스크롤된 위치
+                    var currentScrollTop = $window.scrollTop();
+                    // 한 페이지의 높이 = 퓨 포트의 높이
+                    var pageHeight = $window.height();
+                    // 이동할 스크롤 값
+                    var move = 0;
+
+                    if(delta > 0) {     // 마우스 휠을 아래로 굴린 경우
+                        // move = currentScrollTop % pageHeight;
+
+                        // 오버된 스크롤 값
+                        var over = currentScrollTop % pageHeight;
+                        // 0    : 한 페이지가 화면에 온전히 보여지는 경우
+                        // 양수 : 한 페이지가 화면에 온전히 보여지지 않는 경우
+
+                        // if(over == 0) mave = currentScrollTop + pageHeight;
+                        // if(over == 0) move = currentScrollTop + pageHeight - over;
+                        // else          move = currentScrollTop + pageHeight - over;
+
+                        move = currentScrollTop + pageHeight - over;
+                    }
+                    else {              // 마우스 휠을 위로 굴린 경우
+                        // move = currentScrollTop - pageHeight;
+                        var over = currentScrollTop % pageHeight;
+
+                        if(over == 0) move = currentScrollTop - pageHeight;
+                        else          move = currentScrollTop - over;
+
+                    }
+                    
+                    $html.animate({scrollTop : move});
+                }, {passive:false});
+            });
+        </script>
+    </head>
+    <body>
+        <div class="page">
+            <h1>1</h1>
+        </div>
+        <div class="page">
+            <h1>2</h1>
+        </div>
+        <div class="page">
+            <h1>3</h1>
+        </div>
+        <div class="page">
+            <h1>4</h1>
+        </div>
+        <div class="page">
+            <h1>5</h1>
+        </div>
+        <div class="page">
+            <h1>6</h1>
+        </div>
+        <div class="page">
+            <h1>7</h1>
+        </div>
+        <div class="page">
+            <h1>8</h1>
+        </div>
+        <div class="page">
+            <h1>9</h1>
+        </div>
+        <div class="page">
+            <h1>10</h1>
+        </div>
+    </body>
+</html>
