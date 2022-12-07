@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Example02 - Fixed Navigation Bar</title>
+        <link rel="stylesheet" href="../../css/reset.css">
+        <link rel="stylesheet" href="../../css/dark.css">
+        <!-- jQuery CDN-->
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <style>
+            #header, #nav > ul, #content {
+                width: 1200px;
+                margin: 0 auto;
+            }
+
+            #header > h1 {
+                font-size: 2.4em;
+                padding: 0.5em 1em;
+                font-weight: bold;
+                text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.4);
+            }
+
+            #nav {
+                background-color: #444;
+                box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.4);
+                margin-bottom: 16px;
+            }
+            #nav.fixed {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+            }
+            #nav > ul::after { content: ""; display: block; clear: both;}
+            #nav > ul > li { float: left; }
+            #nav > ul > li > a {
+                display: block;
+                padding: 0.5em 1em;
+                text-decoration: none;
+                color: inherit;
+            }
+            #nav > ul > li > a:hover {
+                background-color: yellowgreen;
+                color: navy;
+            }
+
+            #content > h2 {
+                font-size: 1.6em;
+                font-weight: bold;
+            }
+            #content > p {
+                margin-bottom: 1em;
+            }
+        </style>
+        <script>
+            $(function() { 
+
+                var $window = $(window);
+                var $nav = $("#nav");
+                var $content = $("#content");
+                // #nav 요소의 기존 위치
+                var navOffsetTop = $nav.offset().top;
+                // #nav 요소의 높이(margin 까지의 높이)
+                var navHeight = $nav.outerHeight(true);
+
+                $window.on("scroll", function() { 
+
+                    // 현재 스크롤된 값이 #nav 요소의 위치보다 크면
+                    // 브라우저 상단에 고정
+                    if($window.scrollTop() > navOffsetTop) {
+                        $nav.addClass("fixed");
+                        $content.css("marginTop", navHeight);
+                    }
+                    // 현재 스크롤된 값이 #nav 요소의 위치보다 작으면
+                    // 원래 위치에 배치
+                    else {
+                        $nav.removeClass("fixed");
+                        $content.removeAttr("style");
+                    }
+                });
+
+                
+            });
+        </script>
+    </head>
+    <body>
+        <header id="header">
+            <h1>Fixed Navigation Bar</h1>
+        </header>
+
+        <nav id="nav">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#html">HTML</a></li>
+                <li><a href="#css">CSS</a></li>
+                <li><a href="#javascript">JavaScript</a></li>
+                <li><a href="#jquery">jQuery</a></li>
+            </ul>
+        </nav>
+
+        <article id="content">
+            <h2>What is Loren Ipsum?</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum molestie enim tortor, ut mollis
+                velit pharetra sit amet. Fusce accumsan elit ut tellus pharetra sagittis. Nulla ornare venenatis
+                purus sit amet dictum. Morbi ut fringilla justo. Vivamus porttitor lacus pharetra ante ornare,
+                consequat tincidunt mauris sollicitudin. Morbi iaculis euismod dignissim. Donec condimentum magna a
+                nisi consequat, at commodo lorem varius.
+            </p>
+            <p>
+                Curabitur mollis nibh ante, pellentesque blandit mi hendrerit in. Sed placerat lobortis efficitur.
+                Curabitur nisl orci, rhoncus ut diam sit amet, congue tincidunt sem. Class aptent taciti sociosqu ad
+                litora torquent per conubia nostra, per inceptos himenaeos. Cras nec dolor eget urna porttitor
+                porta. Proin pellentesque, magna quis ornare fringilla, ante ante vulputate mauris, vel consectetur
+                eros ante eu nulla. Vestibulum laoreet enim id tempor ultricies. Etiam pretium metus tellus, nec
+                fermentum dolor pulvinar in. Maecenas convallis, erat a ultricies hendrerit, urna metus ultrices
+                mauris, sed venenatis sem nibh eu quam. Nam massa urna, lacinia sed enim quis, pellentesque feugiat
+                mi. Sed blandit dolor a neque semper, at maximus augue porttitor. Fusce ac mattis felis. Cras eu
+                lorem in eros varius volutpat. Curabitur vel tristique nibh, ultrices condimentum quam.
+            </p>
+            <p>
+                Maecenas malesuada nibh sed suscipit laoreet. Pellentesque mollis elementum augue, eu congue urna
+                tristique id. Morbi varius aliquam velit, et rhoncus nibh aliquet a. Maecenas pretium ultrices odio,
+                eu auctor dolor tincidunt ut. Maecenas non ipsum efficitur, porta justo fermentum, volutpat mi.
+                Aliquam eu velit elit. Nam at egestas lectus, vel ornare quam. Sed auctor pretium est, quis aliquet
+                risus accumsan et. Suspendisse potenti. Vivamus nec ultrices nulla. Fusce volutpat odio fermentum
+                volutpat fermentum.
+            </p>
+            <p>
+                Morbi a condimentum lacus. Vestibulum lacinia ligula ut augue semper molestie. Proin cursus aliquam
+                lectus at maximus. Aliquam a tellus orci. Sed at arcu posuere, commodo dolor non, posuere velit.
+                Fusce dapibus magna massa, quis gravida quam fringilla scelerisque. Nullam tempus ullamcorper diam,
+                et ultricies velit. Integer urna ligula, tempor sit amet nisl auctor, dapibus maximus mi. Fusce a
+                ipsum justo. Sed eget rhoncus mauris, at ullamcorper velit. Vestibulum mattis nibh vel lectus
+                tincidunt, et convallis turpis ornare. Proin id blandit enim, nec rhoncus purus. Praesent ac mi non
+                est varius fringilla ut vitae mauris.
+            </p>
+            <p>
+                Quisque non ornare nunc, pellentesque porttitor purus. Suspendisse sed lobortis urna. Cras eu nisi
+                sit amet sem convallis auctor. Mauris finibus commodo mi, posuere mattis diam porttitor ut. Quisque
+                aliquet urna non luctus pharetra. Nunc sed lacinia neque. Vivamus iaculis, arcu eleifend vestibulum
+                lacinia, turpis leo ornare velit, nec luctus neque justo et leo. Etiam iaculis nec leo vitae rutrum.
+            </p>
+        </article>
+    </body>
+</html>
