@@ -24,7 +24,11 @@ public class TodoController {
 
     @RequestMapping("/list")
     public void list(Model model) {
+
         log.info("todo list..........");
+
+        model.addAttribute("dtoList", todoService.getAll());
+
     }
 
     @GetMapping("/register")
@@ -32,7 +36,7 @@ public class TodoController {
         log.info("GET todo register........");
     }
 
-@PostMapping("/register")
+    @PostMapping("/register")
     public String registerPost(@Valid TodoDTO todoDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         log.info("POST todo register...........");
 
@@ -48,5 +52,6 @@ public class TodoController {
 
         return "redirect:/todo/list";
     }
+
 
 }
