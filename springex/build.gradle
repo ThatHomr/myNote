@@ -83,6 +83,7 @@ dependencies {
     // DTO 의 검증을 위한 Validate 관련 라이브러리
     implementation group: 'org.hibernate', name: 'hibernate-validator', version: '6.2.1.Final'
 
+
 }
 
 test {
