@@ -1,4 +1,4 @@
-package org.zerock.springex.service;
+package service;
 
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.zerock.springex.dto.TodoDTO;
+import org.zerock.springex.service.TodoService;
 
 import java.time.LocalDate;
 
