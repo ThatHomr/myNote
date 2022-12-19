@@ -32,7 +32,7 @@ public class TodoController {
             pageRequestDTO = PageRequestDTO.builder().build();
         }
 
-        model.addAttribute("dtoList", todoService.getList(pageRequestDTO));
+        model.addAttribute("responseDTO", todoService.getList(pageRequestDTO));
 
     }
 
