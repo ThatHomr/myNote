@@ -124,7 +124,12 @@
               }, false);
 
               document.querySelector(".btn-secondary").addEventListener("click", function(e) {
-                self.location = "/todo/list";
+
+                e.preventDefault()
+                e.stopPropagation()
+
+                self.location = `/todo/list?${pageRequestDTO.link}`;
+                
               }, false);
 
               const formObj = document.querySelector("form");
