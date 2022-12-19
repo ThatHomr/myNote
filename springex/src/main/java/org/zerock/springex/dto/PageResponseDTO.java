@@ -2,9 +2,13 @@ package org.zerock.springex.dto;
 
 
 import lombok.Builder;
+import lombok.Getter;
+import lombok.ToString;
 
 import java.util.List;
 
+@Getter
+@ToString
 public class PageResponseDTO<E> {
 
     private int page;
@@ -32,6 +36,19 @@ public class PageResponseDTO<E> {
         this.total = total;
         this.dtoList = dtoList;
 
+        this.end = (int)(Math.ceil(this.page / 10.0 )) * 10;
+
+        this.start = this.end - 9;
+
+        int last = (int)(Math.ceil((total/(double)size)));
+
+        this.end = end > last ? last : end;
+
+        this.prev = this.start > 1;
+
+        this.next = total > this.end * this.size;
+
     }
+
 }
 
