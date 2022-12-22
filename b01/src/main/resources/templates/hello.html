@@ -6,7 +6,7 @@
 </head>
 <body>
   <h1 th:text="${msg}"></h1>
-  
+
 <!--/* <h3 th:each="${sos}">SOS</h3> */-->
 
     <!--/* ${aaaa + bbb}*/-->
@@ -16,5 +16,8 @@
         </div>
     */-->
 
+<div th:with="num1 = ${10}, num2 = ${20}">
+    <h4 th:text="${num1 + num2}"></h4>
+</div>
 </body>
 </html>
